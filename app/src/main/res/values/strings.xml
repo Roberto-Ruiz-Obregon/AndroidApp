@@ -18,4 +18,5 @@
     <string name="contraseña">Contraseña</string>
     <string name="ocupacion">Ocupación</string>
     <string name="nivel_educativo">Nivel educativo</string>
+    <string name="registrarse">Registrarse</string>
 </resources>
