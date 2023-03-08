@@ -10,6 +10,8 @@
         android:layout_width="403dp"
         android:layout_height="182dp"
         android:layout_marginTop="4dp"
+        app:circularflow_defaultRadius="12sp"
+        app:circularflow_radiusInDP="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
