@@ -12,4 +12,10 @@
     <string name="código_postal">Código postal</string>
     <string name="name">Name</string>
     <string name="datos_de_contacto">Datos de contacto</string>
+    <string name="correo">Correo</string>
+    <string name="confirmar_contraseña">Confirmar contraseña</string>
+    <string name="logo">Logo</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="ocupacion">Ocupación</string>
+    <string name="nivel_educativo">Nivel educativo</string>
 </resources>
