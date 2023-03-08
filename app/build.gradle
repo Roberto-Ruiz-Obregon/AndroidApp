@@ -68,4 +68,9 @@ dependencies {
     //Databinding
     implementation 'androidx.databinding:databinding-runtime:7.1.2'
 
+    // Navigation
+    //implementation "android.arch.navigation:navigation-fragment-ktx"
+    //implementation "android.arch.navigation:navigation-ui-ktx"
+    //implementation 'com.google.android.material:material:1.0.0'
+
 }
