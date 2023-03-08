@@ -2,4 +2,14 @@
     <string name="app_name">RobertoRuizApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="informaci_n_personal">Información personal</string>
+    <string name="regístrate">Regístrate</string>
+    <string name="información_personal">Información personal</string>
+    <string name="sexo">Sexo</string>
+    <string name="nombre_completo">Nombre Completo</string>
+    <string name="edad">Edad</string>
+    <string name="sex">Sexo</string>
+    <string name="código_postal">Código postal</string>
+    <string name="name">Name</string>
+    <string name="datos_de_contacto">Datos de contacto</string>
 </resources>
