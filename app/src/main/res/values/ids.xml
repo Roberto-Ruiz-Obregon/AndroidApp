@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="sex" type="id" />
+    <item name="registerbutton" type="id" />
+    <item name="imageView2" type="id" />
+    <item name="personalInfo" type="id" />
+    <item name="registerTitle" type="id" />
+    <item name="name" type="id" />
+    <item name="age" type="id" />
+    <item name="educationLevelText" type="id" />
+    <item name="positionText" type="id" />
+    <item name="cptext" type="id" />
+    <item name="contactTitle" type="id" />
+    <item name="Mailtext" type="id" />
+    <item name="editTextTextPassword" type="id" />
+    <item name="textPassword" type="id" />
+    <item name="confirmPassword" type="id" />
 </resources>
