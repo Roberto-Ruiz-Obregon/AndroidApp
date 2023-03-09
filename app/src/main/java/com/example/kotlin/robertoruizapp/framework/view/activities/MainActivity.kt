@@ -25,7 +25,7 @@ class MainActivity: AppCompatActivity() {
         initializeBinding()
         //initializeObservers()
         initializeListeners()
-        exchangeCurrentFragment(FragmentoCursos(), Constants.MENU_CURSOS)
+        exchangeCurrentFragment(FragmentoHome(), Constants.MENU_INICIO)
 
 
     }
