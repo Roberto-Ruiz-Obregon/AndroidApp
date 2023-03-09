@@ -12,13 +12,13 @@
         android:theme="@style/Theme.RobertoRuizApp"
         tools:targetApi="31">
         <activity
-            android:name=".framework.view.MainActivity"
+            android:name=".framework.view.activities.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
         </activity>
 
         <activity
-        android:name=".framework.views.SplashScreenActivity"
+        android:name=".framework.view.activities.SplashScreenActivity"
         android:exported="true"
         android:screenOrientation="portrait">
         <intent-filter>

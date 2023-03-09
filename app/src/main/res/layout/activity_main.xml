@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="116dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="112dp"
         android:fontFamily="@font/roboto_slab"
         android:text="¡Bienvenido "
         android:textSize="20sp"
@@ -23,13 +23,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="112dp"
         android:layout_marginEnd="156dp"
         android:fontFamily="@font/roboto_slab"
         android:text="Carlos!"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.036"
+        app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toEndOf="@+id/Label_Bienvenida"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,8 +55,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/fondo_imagen"
         app:layout_constraintEnd_toEndOf="@+id/fondo_imagen"
+        app:layout_constraintHorizontal_bias="0.393"
         app:layout_constraintStart_toStartOf="@+id/fondo_imagen"
-        app:layout_constraintTop_toTopOf="@+id/fondo_imagen" />
+        app:layout_constraintTop_toTopOf="@+id/fondo_imagen"
+        app:layout_constraintVertical_bias="0.428" />
 
     <TextView
         android:id="@+id/titulo_redes"
@@ -136,8 +138,8 @@
         android:id="@+id/email_icon"
         android:layout_width="31dp"
         android:layout_height="46dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView9" />
@@ -146,8 +148,8 @@
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="40dp"
         android:text="robregon@gmail.com"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -157,8 +159,8 @@
         android:id="@+id/telefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="40dp"
         android:text="4425014968"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/imageView11"
@@ -168,8 +170,8 @@
         android:id="@+id/imageView11"
         android:layout_width="27dp"
         android:layout_height="32dp"
-        android:layout_marginStart="228dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/telefono"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_wa" />
@@ -185,25 +187,36 @@
         app:layout_constraintTop_toBottomOf="@+id/titulo_redes"
         android:src="@drawable/face_logo" />
 
-    <Button
-        android:id="@+id/boton_cursos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="156dp"
-        android:layout_marginBottom="32dp"
-        android:text="cursos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="98dp"
         android:layout_height="103dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/app_bar_main"
+        layout="@layout/main_navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="-137dp" />
+
+    <fragment
+        android:id="@+id/nav_host_fragment_content_main"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/app_bar_main"
+        />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

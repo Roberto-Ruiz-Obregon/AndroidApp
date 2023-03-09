@@ -1,4 +1,4 @@
-package com.example.kotlin.robertoruizapp.framework.views
+package com.example.kotlin.robertoruizapp.framework.view.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.kotlin.robertoruizapp.databinding.ActivitySplashscreenBinding
-import com.example.kotlin.robertoruizapp.framework.view.MainActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.SplashScreenViewModel
 
 class SplashScreenActivity:AppCompatActivity() {

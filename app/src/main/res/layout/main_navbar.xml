@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#CC2A25"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical"
+        android:id="@+id/homelogo"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+        <ImageView            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@drawable/iniciologo"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_width="2dp"
+
+    android:layout_height="56dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+        android:background="#FFFFFF"
+    />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical"
+        android:id="@+id/cursologo"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+        <ImageView            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@drawable/cursologo"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="2dp"
+
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#FFFFFF"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical"
+        android:id="@+id/becalogo"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+        <ImageView            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@drawable/becalogo"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="2dp"
+
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#FFFFFF"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical"
+        android:id="@+id/userlogo"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:layout_width="51dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:src="@drawable/userlogo" />
+
+    </LinearLayout>
+</LinearLayout>
