@@ -20,4 +20,10 @@
     <string name="nivel_educativo">Nivel educativo</string>
     <string name="registrarse">Registrarse</string>
     <string name="ocupaci_n">Ocupación</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="nombre_Completo">Nombre Completo</string>
+    <string name="Age">Edad</string>
+    <string name="nivel_Educativo">Nivel educativo</string>
+    <string name="correo_electr_nico">Correo electrónico</string>
+    <string name="sexospn">Sexo</string>
 </resources>
