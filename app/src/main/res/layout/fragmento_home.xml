@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ig_icon"
@@ -10,8 +11,8 @@
             android:id="@+id/Label_Bienvenida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="116dp"
-            android:layout_marginTop="112dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="108dp"
             android:fontFamily="@font/roboto_slab"
             android:text="¡Bienvenido "
             android:textSize="20sp"
@@ -23,13 +24,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
-            android:layout_marginTop="112dp"
+            android:layout_marginTop="108dp"
             android:layout_marginEnd="156dp"
             android:fontFamily="@font/roboto_slab"
             android:text="Carlos!"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.042"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/Label_Bienvenida"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,7 +56,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/fondo_imagen"
             app:layout_constraintEnd_toEndOf="@+id/fondo_imagen"
-            app:layout_constraintHorizontal_bias="0.393"
+            app:layout_constraintHorizontal_bias="0.531"
             app:layout_constraintStart_toStartOf="@+id/fondo_imagen"
             app:layout_constraintTop_toTopOf="@+id/fondo_imagen"
             app:layout_constraintVertical_bias="0.428" />
@@ -64,10 +65,11 @@
             android:id="@+id/titulo_redes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="36dp"
             android:fontFamily="@font/roboto_slab"
             android:text="Nuestras redes sociales:"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fondo_imagen" />
 
@@ -75,52 +77,44 @@
             android:id="@+id/label_contacto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="452dp"
             android:fontFamily="@font/roboto_slab"
             android:text="Contacto"
             android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tiktok_icon" />
-
-        <ImageView
-            android:id="@+id/tiktok_icon"
-            android:layout_width="57dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintEnd_toStartOf="@+id/twitter_icon"
-            app:layout_constraintTop_toBottomOf="@+id/titulo_redes"
-            android:src="@drawable/tiktok_icon" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/twitter_icon"
             android:layout_width="57dp"
             android:layout_height="75dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="56dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="168dp"
+            android:src="@drawable/twiitter_icon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titulo_redes"
-            android:src="@drawable/twiitter_icon" />
+            app:layout_constraintTop_toBottomOf="@+id/titulo_redes" />
 
         <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="48dp"
-            android:layout_height="49dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="36dp"
+            android:id="@+id/insta_icon"
+            android:layout_width="55dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/ig_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titulo_redes"
-            android:src="@drawable/ig_icon" />
+            app:layout_constraintTop_toBottomOf="@+id/titulo_redes" />
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/whaLogo"
             android:layout_width="36dp"
             android:layout_height="40dp"
-            android:layout_marginStart="108dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:src="@drawable/whatsapp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/label_contacto" />
 
@@ -128,74 +122,85 @@
             android:id="@+id/label_wa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="420dp"
             android:text="Vía Whatsapp"
-            app:layout_constraintStart_toEndOf="@+id/imageView9"
-            app:layout_constraintTop_toBottomOf="@+id/label_contacto" />
+            app:layout_constraintTop_toBottomOf="@+id/label_contacto"
+            tools:layout_editor_absoluteX="157dp" />
 
         <ImageView
             android:id="@+id/email_icon"
             android:layout_width="31dp"
             android:layout_height="46dp"
-            android:layout_marginStart="52dp"
+            android:layout_marginStart="28dp"
             android:layout_marginTop="20dp"
             android:src="@drawable/email"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+            app:layout_constraintTop_toBottomOf="@+id/whaLogo"
+            app:layout_constraintVertical_bias="0.042" />
 
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="36dp"
             android:text="robregon@gmail.com"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+            app:layout_constraintTop_toBottomOf="@+id/whaLogo" />
 
         <TextView
             android:id="@+id/telefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginBottom="52dp"
             android:text="4425014968"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView11"
-            app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/email" />
 
         <ImageView
             android:id="@+id/imageView11"
             android:layout_width="27dp"
             android:layout_height="32dp"
-            android:layout_marginStart="232dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginStart="252dp"
+            android:layout_marginTop="144dp"
             android:src="@drawable/telefono"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/label_wa" />
 
         <ImageView
-            android:id="@+id/imageView12"
+            android:id="@+id/faceLogo"
             android:layout_width="51dp"
             android:layout_height="61dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toStartOf="@+id/tiktok_icon"
-            app:layout_constraintHorizontal_bias="0.487"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
-            app:layout_constraintTop_toBottomOf="@+id/titulo_redes"
-            android:src="@drawable/face_logo" />
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="116dp"
+            android:src="@drawable/face_logo"
+            app:layout_constraintEnd_toStartOf="@+id/insta_icon"
+            app:layout_constraintTop_toBottomOf="@+id/titulo_redes" />
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="98dp"
             android:layout_height="103dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/logo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="23dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginBottom="44dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/email"
+            app:srcCompat="@drawable/telefono" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
