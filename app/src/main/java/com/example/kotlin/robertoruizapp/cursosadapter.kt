@@ -17,10 +17,10 @@ class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
     val states = arrayOf("Gratis", "Paga" , "Paga", "Gratis")
     val fecha = arrayOf("15/1/2023","02/2/2023","25/11/2023","25/10/2023")
 
-    val curso = intArrayOf(R.drawable.curso1)
-    val calendario = intArrayOf(R.drawable.calendario)
-    val pago = intArrayOf(R.drawable.pago)
-    val ping = intArrayOf(R.drawable.ping)
+    val curso = intArrayOf(R.drawable.curso1, R.drawable.curso1, R.drawable.curso1, R.drawable.curso1)
+    val calendario = intArrayOf(R.drawable.calendario, R.drawable.calendario, R.drawable.calendario, R.drawable.calendario)
+    val pago = intArrayOf(R.drawable.pago, R.drawable.pago, R.drawable.pago, R.drawable.pago)
+    val ping = intArrayOf(R.drawable.ping, R.drawable.ping, R.drawable.ping, R.drawable.ping)
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int):ViewHolder {
