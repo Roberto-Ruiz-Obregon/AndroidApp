@@ -13,19 +13,12 @@ class SplashScreenActivity:AppCompatActivity() {
     private lateinit var binding: ActivitySplashscreenBinding
     private val viewModel: SplashScreenViewModel by viewModels()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-
-
         initializeBinding()
-
         viewModel.onCreate()
         initializeObservers()
-
     }
-
 
     private fun initializeBinding(){
         binding = ActivitySplashscreenBinding.inflate(layoutInflater)
@@ -40,13 +33,10 @@ class SplashScreenActivity:AppCompatActivity() {
         })
     }
 
-
     private fun passViewGoToMain() {
         var intent: Intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         startActivity(intent)
         finish()
     }
-
-
 }

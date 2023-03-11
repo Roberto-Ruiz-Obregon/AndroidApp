@@ -10,8 +10,6 @@ import kotlinx.coroutines.launch
 
 class SplashScreenViewModel: ViewModel() {
     val finishedLoading = MutableLiveData<Boolean>()
-
-
     fun onCreate() {
         finishedLoading.postValue(false)
         viewModelScope.launch {

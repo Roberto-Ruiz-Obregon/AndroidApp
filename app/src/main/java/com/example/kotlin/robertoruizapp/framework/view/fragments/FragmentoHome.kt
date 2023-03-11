@@ -15,41 +15,28 @@ import com.example.kotlin.robertoruizapp.databinding.ActivityMainBinding
 import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
 import com.example.kotlin.robertoruizapp.databinding.FragmentoHomeBinding
 
-
 class FragmentoHome : Fragment() {
+
     private var _binding: FragmentoHomeBinding? = null
-
-
     private val binding get() = _binding!!
-
     private lateinit var viewModel: MainViewModel
-
     private lateinit var recyclerView: RecyclerView
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-
         _binding = FragmentoHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         initializeListeners()
-
-
         //initializeComponents(root)
         //initializeObservers()
-
-
         return root
     }
 
     private fun initializeListeners() {
-
-
         binding.twitterIcon.setOnClickListener {
             val openURL = Intent(Intent.ACTION_VIEW)
             openURL.data = Uri.parse("https://twitter.com/Fundacion_RRO")
@@ -73,15 +60,10 @@ class FragmentoHome : Fragment() {
             openURL.data = Uri.parse("https://wa.me/524428205425")
             startActivity(openURL)
         }
-
-
-
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }
