@@ -77,14 +77,14 @@
             android:id="@+id/label_contacto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="452dp"
+            android:layout_marginTop="100dp"
             android:fontFamily="@font/roboto_slab"
             android:text="@string/contacto"
             android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/titulo_redes" />
 
         <ImageView
             android:id="@+id/twitter_icon"
@@ -111,12 +111,13 @@
             android:id="@+id/whaLogo"
             android:layout_width="36dp"
             android:layout_height="40dp"
-            android:layout_marginTop="16dp"
             android:src="@drawable/whatsapp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_contacto" />
+            app:layout_constraintTop_toBottomOf="@+id/label_contacto"
+            app:layout_constraintVertical_bias="0.093" />
 
         <TextView
             android:id="@+id/label_wa"
@@ -130,35 +131,41 @@
             android:id="@+id/email_icon"
             android:layout_width="31dp"
             android:layout_height="46dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
             android:src="@drawable/email"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/email"
+            app:layout_constraintHorizontal_bias="0.606"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/whaLogo"
-            app:layout_constraintVertical_bias="0.042" />
+            app:layout_constraintVertical_bias="0.299" />
 
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="36dp"
             android:text="@string/correo"
             android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.272"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/whaLogo" />
+            app:layout_constraintTop_toBottomOf="@+id/whaLogo"
+            app:layout_constraintVertical_bias="0.35" />
 
         <TextView
             android:id="@+id/telefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="76dp"
-            android:layout_marginBottom="52dp"
+            android:layout_marginStart="88dp"
             android:text="@string/telefono"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/email" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/email"
+            app:layout_constraintTop_toBottomOf="@+id/whaLogo"
+            app:layout_constraintVertical_bias="0.309" />
 
         <ImageView
             android:id="@+id/imageView11"
@@ -196,9 +203,10 @@
             android:layout_width="23dp"
             android:layout_height="24dp"
             android:layout_marginStart="44dp"
-            android:layout_marginBottom="44dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/email"
+            app:layout_constraintTop_toBottomOf="@+id/whaLogo"
+            app:layout_constraintVertical_bias="0.322"
             app:srcCompat="@drawable/telefono" />
 
 
