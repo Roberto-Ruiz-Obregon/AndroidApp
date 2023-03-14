@@ -25,6 +25,7 @@ package com.example.kotlin.robertoruizapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -34,11 +35,16 @@ class MainActivity : AppCompatActivity() {
         this.supportActionBar?.hide()
         setContentView(R.layout.f_cursos)
 
+        val layoutManager = GridLayoutManager(this, 2)
+        //val recyclerView = findViewById<RecyclerView>(R.id.recyclercursos)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclercursos)
+        recyclerView.layoutManager = layoutManager
         val adapter = cursosadapter()
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        //recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+
+        recyclerView.setHasFixedSize(true)
     }
 
 
