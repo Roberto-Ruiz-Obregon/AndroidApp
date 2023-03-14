@@ -218,6 +218,4 @@
         android:layout_above="@+id/app_bar_main"
         />
 
-
-
 </RelativeLayout>
