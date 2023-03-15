@@ -1,6 +1,5 @@
 package com.example.kotlin.robertoruizapp.framework.view.activities
 
-
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
