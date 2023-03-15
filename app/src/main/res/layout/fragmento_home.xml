@@ -199,7 +199,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/iconollamada"
             android:layout_width="23dp"
             android:layout_height="24dp"
             android:layout_marginStart="44dp"
