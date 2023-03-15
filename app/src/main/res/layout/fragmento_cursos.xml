@@ -1,31 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/TituloCursos"
+    android:id="@+id/ScrollView1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_alignParentRight="false"
+    tools:context=".framework.view.activities.MainActivity">
 
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="Cursos de Aprendizaje"
-        android:textSize="24sp"
-        android:layout_gravity="center"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclercursos"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/titulo_cursosG"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/roboto_slab"
+            android:text="Cursos de Aprendizaje"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/row1"
+            android:layout_width="411dp"
+            android:layout_height="279dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titulo_cursosG">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/curso1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/titulo_curso_card_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imagen_curso1"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_slab"
+                        android:text="Escritura"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:id="@+id/imagen_curso1"
+                        android:layout_width="122dp"
+                        android:layout_height="61dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/curso2" />
+
+                    <TextView
+                        android:id="@+id/des_ccurso2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/titulo_curso_card_1"
+                        android:layout_centerInParent="true"
+                        android:paddingTop="16dp"
+                        android:text="Descripcion"
+                        android:textAlignment="viewStart" />
+
+                    <ImageView
+                        android:id="@+id/calendario_curso1"
+                        android:layout_width="33dp"
+                        android:layout_height="22dp"
+                        android:layout_below="@id/des_ccurso2"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="14dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="8dp"
+                        app:srcCompat="@drawable/calendario" />
+
+                    <ImageView
+                        android:id="@+id/pago_curso1"
+                        android:layout_width="35dp"
+                        android:layout_height="22dp"
+                        android:layout_below="@id/calendario_curso1"
+                        android:layout_marginTop="6dp"
+                        app:srcCompat="@drawable/pago" />
+
+                    <TextView
+                        android:id="@+id/fecha_curso1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignRight="@id/calendario_curso1"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="168dp"
+                        android:layout_marginRight="-56dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="10-3- 2022"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/locacion_curso1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignRight="@id/calendario_curso1"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="168dp"
+                        android:layout_marginRight="-115dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Zoom"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/cobro_curso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignRight="@id/calendario_curso1"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="194dp"
+                        android:layout_marginRight="-30dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Gratis"
+                        android:textSize="10sp" />
+
+                    <ImageView
+                        android:id="@+id/ping_curso1"
+                        android:layout_width="22dp"
+                        android:layout_height="16dp"
+                        android:layout_below="@id/des_ccurso2"
+                        android:layout_alignRight="@id/fecha_curso1"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="65dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="60dp"
+                        android:layout_marginRight="-30dp"
+                        android:layout_toEndOf="@+id/calendario_curso1"
+                        app:srcCompat="@drawable/ping" />
+
+                    <Button
+                        android:id="@+id/button_info1"
+                        android:layout_width="77dp"
+                        android:layout_height="34dp"
+                        android:layout_below="@+id/locacion_curso1"
+                        android:layout_alignEnd="@+id/locacion_curso1"
+                        android:layout_marginStart="58dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="-13dp"
+                        android:text="Ver mas"
+                        android:textSize="10sp" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/curso2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/des_curso2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/titulo_curso_card_2"
+                        android:layout_centerInParent="true"
+                        android:paddingTop="16dp"
+                        android:text="TextView"
+                        android:textAlignment="viewStart" />
+
+                    <ImageView
+                        android:id="@+id/imagen_curso2"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/curso2" />
+
+                    <TextView
+                        android:id="@+id/titulo_curso_card_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imagen_curso2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_slab"
+                        android:text="Escritura"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

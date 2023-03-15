@@ -6,11 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
-import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
 
 class FragmentoCursos : Fragment() {
@@ -27,14 +24,6 @@ class FragmentoCursos : Fragment() {
         viewModel = ViewModelProvider(this)[CursosFragmentoViewModel::class.java]
         _binding = FragmentoCursosBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        val layoutManager = GridLayoutManager(requireContext(), 2)
-        val recyclerView = root.findViewById<RecyclerView>(R.id.recyclercursos)
-        recyclerView.layoutManager = layoutManager
-        val adapter = cursosadapter()
-
-        recyclerView.adapter = adapter
-        recyclerView.setHasFixedSize(true)
-
         //initializeComponents(root)
         //initializeObservers()
         return root
