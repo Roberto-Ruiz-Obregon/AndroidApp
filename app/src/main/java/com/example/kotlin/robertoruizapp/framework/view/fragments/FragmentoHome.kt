@@ -1,15 +1,21 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.mypokedexapp.viewmodel.MainViewModel
+
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.databinding.ActivityMainBinding
 import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
@@ -21,6 +27,8 @@ class FragmentoHome : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
     private lateinit var recyclerView: RecyclerView
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -60,10 +68,21 @@ class FragmentoHome : Fragment() {
             openURL.data = Uri.parse("https://wa.me/524428205425")
             startActivity(openURL)
         }
+
+        binding.iconollamada.setOnClickListener(){
+            val phone  = "tel:" + binding.telefono.text.toString()
+            startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(phone)))
+
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }
+
+
+
+
