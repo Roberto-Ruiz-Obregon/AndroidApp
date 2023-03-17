@@ -4,7 +4,7 @@ import android.provider.SyncStateContract
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.kotlin.robertoruizapp.utils.Constants
+import com.example.kotlin.robertoruizapp.model.utils.Constants
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
