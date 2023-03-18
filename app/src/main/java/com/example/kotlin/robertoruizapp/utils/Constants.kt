@@ -5,6 +5,7 @@ object Constants {
 
     const val MENU_CURSOS = "CURSOS"
     const val MENU_INICIO = "INICIO"
+    const val MENU_PERFIL = "PERFIL"
 
 
 }
