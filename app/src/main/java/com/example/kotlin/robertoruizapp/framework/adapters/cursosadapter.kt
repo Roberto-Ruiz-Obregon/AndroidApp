@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.R
+import com.example.kotlin.robertoruizapp.model.Document
 
 
 class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
@@ -20,7 +21,17 @@ class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
 
     val curso = intArrayOf(R.drawable.curso1, R.drawable.curso2, R.drawable.escritura, R.drawable.curso4)
 
+    lateinit var data : List<Document>
+    var results : Int = 0
 
+    fun cursosAdapter (data: List<Document>) {
+        this.data = data
+
+    }
+
+    fun cursosResults (results: Int) {
+        this.results = results
+    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int):ViewHolder {
         val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_element_cursos, viewGroup, false)
@@ -28,17 +39,19 @@ class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.courseName.text = titulos[i]
-        viewHolder.description.text = desc[i]
-        viewHolder.modality.text = modalidad[i]
-        viewHolder.status.text = states[i]
-        viewHolder.startDate.text = fecha[i]
-        viewHolder.Imagen_curso.setImageResource(curso[i])
+        var temp: Document = data[i]
+        viewHolder.courseName.text = temp.courseName
+        viewHolder.description.text = temp.description
+        viewHolder.modality.text = temp.modality
+        viewHolder.status.text = temp.status
+        viewHolder.startDate.text = temp.startDate
+        viewHolder.Imagen_curso.setImageDrawable(temp.imageUrl)
 
     }
 
     override fun getItemCount(): Int {
-        return titulos.size
+        var courses: Int = results
+        return courses
     }
 
 
@@ -67,4 +80,8 @@ class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
 
         }
     }
+}
+
+private fun ImageView.setImageDrawable(imageUrl: String) {
+
 }
