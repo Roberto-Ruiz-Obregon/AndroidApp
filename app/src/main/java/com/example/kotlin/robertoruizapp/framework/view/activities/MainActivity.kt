@@ -13,7 +13,8 @@ import com.example.kotlin.robertoruizapp.databinding.ActivityMainBinding
 import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoCursos
 import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoHome
 import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoPerfil
-import com.example.kotlin.robertoruizapp.utils.Constants
+import com.example.kotlin.robertoruizapp.model.utils.Constants
+
 
 class MainActivity: AppCompatActivity() {
 
