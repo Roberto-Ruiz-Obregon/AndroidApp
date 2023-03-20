@@ -14,6 +14,7 @@ import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
 import com.example.kotlin.robertoruizapp.data.network.model.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.Repository
+import com.example.kotlin.robertoruizapp.model.Document
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,6 +22,7 @@ import kotlinx.coroutines.launch
 class FragmentoCursos : Fragment() {
 
     private var _binding: FragmentoCursosBinding? = null
+    private lateinit var data: List<Document>
     private val binding get() = _binding!!
     private lateinit var viewModel: CursosFragmentoViewModel
     private lateinit var recyclerView: RecyclerView
@@ -33,12 +35,7 @@ class FragmentoCursos : Fragment() {
         _binding = FragmentoCursosBinding.inflate(inflater, container, false)
         getCourseList()
         val root: View = binding.root
-        val layoutManager = GridLayoutManager(requireContext(), 2)
-        val recyclerView = root.findViewById<RecyclerView>(R.id.recyclercursos)
-        recyclerView.layoutManager = layoutManager
-        val adapter = cursosadapter()
-        recyclerView.adapter = adapter
-        recyclerView.setHasFixedSize(true)
+        recyclerView = root.findViewById<RecyclerView>(R.id.recyclercursos)
         return root
     }
 
@@ -47,8 +44,19 @@ class FragmentoCursos : Fragment() {
             val repository = Repository()
             val result: CursosObjeto? = repository.getCursos()
             Log.d("Salida", result?.data?.documents!![0].courseName )
+            Log.d("Salida2", result.results.toString())
+            CoroutineScope(Dispatchers.Main).launch{
+                val layoutManager = GridLayoutManager(requireContext(), 2)
+                recyclerView.layoutManager = layoutManager
+                val adapter = cursosadapter()
+                adapter.cursosResults(result.results)
+                adapter.cursosAdapter(result.data?.documents) //!!
+                recyclerView.adapter = adapter
+                recyclerView.setHasFixedSize(true)
+            }
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
