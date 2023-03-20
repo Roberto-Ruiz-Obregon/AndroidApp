@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
-import com.example.kotlin.robertoruizapp.model.CursosObjeto
-import com.example.kotlin.robertoruizapp.model.Repository
+import com.example.kotlin.robertoruizapp.data.network.model.CursosObjeto
+import com.example.kotlin.robertoruizapp.data.Repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,5 +1,6 @@
-package com.example.kotlin.robertoruizapp.model
+package com.example.kotlin.robertoruizapp.data.network.model
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ApiService {
 
@@ -9,5 +10,9 @@ interface ApiService {
 
     ): CursosObjeto
 
+    @GET("user/{id}")
+    suspend fun getUserInfo(
+        @Path("id") id: String
+    ): UserInfo
 
 }

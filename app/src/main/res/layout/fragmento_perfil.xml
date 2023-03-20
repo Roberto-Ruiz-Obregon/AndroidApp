@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/P_name"
+        android:id="@+id/P_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ricardo Pérez Mendieta"
@@ -21,7 +20,7 @@
         app:layout_constraintVertical_bias="0.047" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/P_correo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -29,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/P_age" />
+        app:layout_constraintTop_toBottomOf="@+id/P_edad" />
 
     <TextView
         android:id="@+id/textView10"
@@ -39,7 +38,7 @@
         android:layout_marginTop="40dp"
         android:text="********"
         app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/P_correo" />
 
     <TextView
         android:id="@+id/textView11"
@@ -66,7 +65,7 @@
         app:layout_constraintVertical_bias="0.967" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/P_ocupacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -87,17 +86,17 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/P_nivel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="44dp"
         android:text="Posgrado"
         app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/P_ocupacion" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/P_sexo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -106,10 +105,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.155"
         app:layout_constraintStart_toEndOf="@+id/P_sextag"
-        app:layout_constraintTop_toBottomOf="@+id/P_name" />
+        app:layout_constraintTop_toBottomOf="@+id/P_nombre" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/P_cp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="76090"
@@ -117,7 +116,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.173"
         app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/P_nivel"
         app:layout_constraintVertical_bias="0.596" />
 
     <ImageButton
@@ -168,7 +167,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
-        android:id="@+id/P_age"
+        android:id="@+id/P_edad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -177,7 +176,7 @@
         app:layout_constraintEnd_toStartOf="@+id/P_sextag"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/P_agetag"
-        app:layout_constraintTop_toBottomOf="@+id/P_name" />
+        app:layout_constraintTop_toBottomOf="@+id/P_nombre" />
 
     <TextView
         android:id="@+id/textView4"

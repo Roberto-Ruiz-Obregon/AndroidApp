@@ -1,7 +1,7 @@
-package com.example.kotlin.robertoruizapp.model
+package com.example.kotlin.robertoruizapp.data.network.model
 
 
-import com.example.kotlin.robertoruizapp.model.utils.Constants
+import com.example.kotlin.robertoruizapp.utils.Constants
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
