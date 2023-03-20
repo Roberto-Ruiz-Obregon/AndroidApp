@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
+import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
 import com.example.kotlin.robertoruizapp.data.network.model.CursosObjeto
+import com.example.kotlin.robertoruizapp.data.network.model.Document
 import com.example.kotlin.robertoruizapp.data.Repository
-import com.example.kotlin.robertoruizapp.model.Document
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

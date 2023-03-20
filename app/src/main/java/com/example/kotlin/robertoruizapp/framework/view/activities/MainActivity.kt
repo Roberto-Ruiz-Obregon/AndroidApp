@@ -1,5 +1,9 @@
 package com.example.kotlin.robertoruizapp.framework.view.activities
 
+
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,13 +16,13 @@ import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoHome
 import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoPerfil
 import com.example.kotlin.robertoruizapp.utils.Constants
 
-
 class MainActivity: AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     private lateinit var currentFragment: Fragment
     private var currentMenuOption:String?= null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeBinding()

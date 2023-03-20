@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.R
-import com.example.kotlin.robertoruizapp.model.Document
+import com.example.kotlin.robertoruizapp.data.network.model.Document
 
 
 class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
