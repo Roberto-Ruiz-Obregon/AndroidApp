@@ -38,6 +38,9 @@ class MainActivity: AppCompatActivity() {
         binding.appBarMain.imghome.setOnClickListener {
             selectMenuOption(Constants.MENU_INICIO)
         }
+        binding.appBarMain.userlogo.setOnClickListener {
+            selectMenuOption(Constants.MENU_PERFIL)
+        }
     }
 
     private fun initializeBinding() {
