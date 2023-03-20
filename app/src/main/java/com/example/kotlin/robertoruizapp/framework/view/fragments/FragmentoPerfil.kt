@@ -21,7 +21,6 @@ class FragmentoPerfil: Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: PerfilViewModel
     private lateinit var data: ArrayList<UserInfo>
-    lateinit var context: Context
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
