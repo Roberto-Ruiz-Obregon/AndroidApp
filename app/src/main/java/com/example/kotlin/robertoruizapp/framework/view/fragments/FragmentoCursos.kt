@@ -1,5 +1,6 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
+import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
+import com.example.kotlin.robertoruizapp.model.CURSO_ID_EXTRA
 import com.example.kotlin.robertoruizapp.model.CursosObjeto
 import com.example.kotlin.robertoruizapp.model.Document
 import com.example.kotlin.robertoruizapp.model.Repository
@@ -20,7 +23,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class FragmentoCursos : Fragment() {
+class FragmentoCursos : Fragment() , CursoClickListener{
 
     private var _binding: FragmentoCursosBinding? = null
     private lateinit var data: List<Document>
@@ -38,6 +41,12 @@ class FragmentoCursos : Fragment() {
         val root: View = binding.root
         recyclerView = root.findViewById<RecyclerView>(R.id.recyclercursos)
         return root
+    }
+
+    override fun onClick(document: Document) {
+        val intent = Intent(requireContext(), FragmentoInfoCursos::class.java)
+        intent.putExtra(CURSO_ID_EXTRA, document._id)
+        startActivity(intent)
     }
 
     private fun getCourseList(){
@@ -62,4 +71,8 @@ class FragmentoCursos : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
+
+
 }

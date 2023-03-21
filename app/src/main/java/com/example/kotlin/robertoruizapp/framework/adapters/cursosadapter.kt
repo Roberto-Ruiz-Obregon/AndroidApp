@@ -12,14 +12,6 @@ import com.example.kotlin.robertoruizapp.model.Document
 
 class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
 
-    val titulos = arrayOf("Escritura", "Español" , "Matematicas", "Artes")
-    val desc = arrayOf("Aprende a escribir", "Conoce mas acerca de nuestra lengua",
-        "Aprende desde 0", "Muchas areas por explorar")
-    val modalidad = arrayOf("Prencial", "Zoom" , "Zoom", "Presencial")
-    val states = arrayOf("Gratis", "Paga" , "Paga", "Gratis")
-    val fecha = arrayOf("15/1/2023","02/2/2023","25/11/2023","25/10/2023")
-
-    val curso = intArrayOf(R.drawable.curso1, R.drawable.curso2, R.drawable.escritura, R.drawable.curso4)
 
     lateinit var data : List<Document>
     var results : Int = 0
