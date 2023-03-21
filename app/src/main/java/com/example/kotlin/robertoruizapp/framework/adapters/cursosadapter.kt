@@ -3,14 +3,16 @@ package com.example.kotlin.robertoruizapp.framework.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.R
+import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
 import com.example.kotlin.robertoruizapp.model.Document
 
 
-class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
+class cursosadapter(val clickListener : CursoClickListener): RecyclerView.Adapter<cursosadapter.ViewHolder>() {
 
 
     lateinit var data : List<Document>
@@ -26,8 +28,9 @@ class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int):ViewHolder {
+
         val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_element_cursos, viewGroup, false)
-        return ViewHolder(v)
+        return ViewHolder(v, clickListener)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
@@ -38,6 +41,7 @@ class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
         viewHolder.status.text = temp.status
         viewHolder.startDate.text = temp.startDate
         viewHolder.Imagen_curso.setImageDrawable(temp.imageUrl)
+        viewHolder.botoncurso.setOnClickListener(temp._id)
 
     }
 
@@ -47,21 +51,20 @@ class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
     }
 
 
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View, private val clickListener : CursoClickListener): RecyclerView.ViewHolder(itemView){
         val courseName: TextView
         val description: TextView
         val startDate: TextView
         //val endDate: Date
         val modality: TextView
         val status: TextView
-
+        val botoncurso: Button
         val Imagen_curso: ImageView
-        // val Imagen_calendario: ImageView
-        // val Imagen_pago: ImageView
-        //val Imagen_ping: ImageView
+
 
 
         init {
+            botoncurso =  itemView.findViewById(R.id.button_info1)
             Imagen_curso =  itemView.findViewById(R.id.imagen_curso1)
             courseName =  itemView.findViewById(R.id.titulo_curso_card_1)
             description =  itemView.findViewById(R.id.des_ccurso2)
@@ -72,6 +75,10 @@ class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
 
         }
     }
+}
+
+private fun Button.setOnClickListener(_id: String) {
+
 }
 
 private fun ImageView.setImageDrawable(imageUrl: String) {

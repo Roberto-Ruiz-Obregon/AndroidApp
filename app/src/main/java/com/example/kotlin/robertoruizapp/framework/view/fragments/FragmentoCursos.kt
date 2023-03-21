@@ -57,8 +57,9 @@ class FragmentoCursos : Fragment() , CursoClickListener{
             Log.d("Salida2", result.results.toString())
             CoroutineScope(Dispatchers.Main).launch{
                 val layoutManager = GridLayoutManager(requireContext(), 2)
+                val fragmentoInfoCursos = this@FragmentoCursos
                 recyclerView.layoutManager = layoutManager
-                val adapter = cursosadapter()
+                val adapter = cursosadapter(fragmentoInfoCursos)
                 adapter.cursosResults(result.results)
                 adapter.cursosAdapter(result.data?.documents) //!!
                 recyclerView.adapter = adapter
