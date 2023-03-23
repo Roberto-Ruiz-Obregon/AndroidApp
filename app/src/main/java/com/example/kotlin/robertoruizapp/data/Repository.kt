@@ -1,9 +1,7 @@
 package com.example.kotlin.robertoruizapp.data
 
-import com.example.kotlin.robertoruizapp.data.network.model.ApiService
-import com.example.kotlin.robertoruizapp.data.network.model.CursosObjeto
-import com.example.kotlin.robertoruizapp.data.network.model.NetworkModuleDI
-import com.example.kotlin.robertoruizapp.data.network.model.UserInfo
+import com.example.kotlin.robertoruizapp.data.network.model.*
+import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
 
 class Repository() {
     private lateinit var api: ApiService
@@ -18,7 +16,7 @@ class Repository() {
         }
     }
 
-    suspend fun getUser(id:String): UserInfo?{
+    suspend fun getUserInfo(id:String): Profile?{
         api = NetworkModuleDI()
         return try{
             api.getUserInfo(id)
@@ -28,6 +26,6 @@ class Repository() {
         }
     }
 
-    suspend fun getUserInfo(id:String): UserInfo? = getUser(id)
+   // suspend fun getUserInfo(id:String): UserInfo? = getUser(id)
 
 }

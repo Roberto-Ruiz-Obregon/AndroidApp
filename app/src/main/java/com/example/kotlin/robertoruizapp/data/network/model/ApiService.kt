@@ -1,4 +1,5 @@
 package com.example.kotlin.robertoruizapp.data.network.model
+import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -13,6 +14,6 @@ interface ApiService {
     @GET("user/{id}")
     suspend fun getUserInfo(
         @Path("id") id: String
-    ): UserInfo
+    ): Profile
 
 }
