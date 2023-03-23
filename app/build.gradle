@@ -68,6 +68,12 @@ dependencies {
     //Databinding
     implementation 'androidx.databinding:databinding-runtime:7.1.2'
 
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+    //RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
     // Navigation
     //implementation "android.arch.navigation:navigation-fragment-ktx"
     //implementation "android.arch.navigation:navigation-ui-ktx"

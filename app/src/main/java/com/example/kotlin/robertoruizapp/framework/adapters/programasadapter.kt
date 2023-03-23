@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.R
 
 
-class programasadapter: RecyclerView.Adapter<programasadapter.ViewHolder>() {
+class programasAdapter: RecyclerView.Adapter<programasAdapter.ViewHolder>() {
 
     val titulos = arrayOf("Escritura", "Español" , "Matematicas", "Artes")
     val desc = arrayOf("Aprende a escribir", "Conoce mas acerca de nuestra lengua",
