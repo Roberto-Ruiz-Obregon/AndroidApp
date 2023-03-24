@@ -1,36 +1,28 @@
 package com.example.kotlin.robertoruizapp
 
-import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import androidx.databinding.DataBindingUtil
-import com.example.kotlin.robertoruizapp.databinding.ActivityMainBinding
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity: Activity() {
-
-    private lateinit var binding: ActivityMainBinding
+class MainActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
-        //binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
+        setContentView(R.layout.activity_main)
 
-        val spinnerSex = findViewById<Spinner>(R.id.spnSex)
-        val spinnerOcuppation = findViewById<Spinner>(R.id.spnOcuppation)
-        val spinnerEducation = findViewById<Spinner>(R.id.spnEducation)
+        val btnStartRegisterActivity = findViewById<Button>(R.id.btnStartSignUp0Activity)
 
-        val listaSex = listOf("Hombre", "Mujer", "Prefiero no decir")
-        val listaEducation = listOf("Ninguno", "Primaria", "Secundaria", "Preparatoria", "Universidad")
-        val listaOcuppation = listOf("Estudiante", "Trabajador", "Obrero", "Licuado", "Ingeniero")
+        btnStartRegisterActivity.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            // start your next activity
+            startActivity(intent)
+        }
 
-
-        val adaptadorSex = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaSex)
-        spinnerSex.adapter = adaptadorSex
-        val adaptadorOccupation = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaOcuppation)
-        spinnerOcuppation.adapter = adaptadorOccupation
-        val adaptadorEducation = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaEducation)
-        spinnerEducation.adapter = adaptadorEducation
     }
 
 }
+
+
+
+
