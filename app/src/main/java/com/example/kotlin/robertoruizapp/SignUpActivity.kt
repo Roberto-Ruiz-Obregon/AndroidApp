@@ -6,6 +6,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.kotlin.robertoruizapp.signup.SignUp
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var viewModel: SignUpActivityViewModel
@@ -14,7 +15,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        val name: EditText = findViewById<EditText>(R.id.editTextName)
+        val name: EditText = findViewById(R.id.editTextName)
         val edad: EditText = findViewById<EditText>(R.id.editTextAge)
         val sex: EditText = findViewById<EditText>(R.id.editTextSex)
         val education: EditText = findViewById<EditText>(R.id.editTextEducation)
@@ -49,12 +50,11 @@ class SignUpActivity : AppCompatActivity() {
         val btnRegister = findViewById<Button>(R.id.buttonRegister)
 
         fun signUpUser() {
-            val age = edad
-            val ageString: String = age.toString()
 
-            val user  = User(null, name.toString(), 21, sex.toString(), education.toString(),
-                job.toString(), 76060, "amatbelt@gmail.com", "1234567890",
-                "1234567890")
+            val ageInt: Int = edad.text.toString().toIntOrNull() ?: 0
+            val pcInt: Int = postalCode.text.toString().toIntOrNull() ?: 0
+            val user = SignUp(ageInt, education.toString(), email.toString(), sex.toString(), job.toString(),
+                name.toString(), password.toString(), cnfPassword.toString(), pcInt,)
             viewModel.signUpNewUser(user)
 
         }

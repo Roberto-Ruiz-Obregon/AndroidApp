@@ -15,4 +15,14 @@
     <item name="editTextTextPassword" type="id" />
     <item name="textPassword" type="id" />
     <item name="confirmPassword" type="id" />
+    <item name="editTextName" type="id" />
+    <item name="editTextAge" type="id" />
+    <item name="editTextSex" type="id" />
+    <item name="editTextEducation" type="id" />
+    <item name="editTextJob" type="id" />
+    <item name="editTextPostalCode" type="id" />
+    <item name="editTextEmail" type="id" />
+    <item name="editTextPassword" type="id" />
+    <item name="editTextCnfPassword" type="id" />
+    <item name="buttonRegister" type="id" />
 </resources>
