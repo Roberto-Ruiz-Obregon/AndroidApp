@@ -1,13 +1,13 @@
 package com.example.kotlin.robertoruizapp.signup
 
 data class SignUp(
+    val name: String,
     val age: Int,
-    val educationLevel: String,
-    val email: String,
     val gender: String,
     val job: String,
-    val name: String,
+    val educationLevel: String,
+    val postalCode: Int,
+    val email: String,
     val password: String,
     val passwordConfirm: String,
-    val postalCode: Int
 )

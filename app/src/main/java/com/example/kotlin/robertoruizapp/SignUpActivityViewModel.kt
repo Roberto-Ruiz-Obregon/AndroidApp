@@ -1,5 +1,6 @@
 package com.example.kotlin.robertoruizapp
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlin.robertoruizapp.signup.SignUp
@@ -26,6 +27,7 @@ class SignUpActivityViewModel: ViewModel() {
 
             override fun onResponse(call: Call<SignUp>, response: Response<SignUp>) {
                 if(response.isSuccessful) {
+                    Log.d("Salida", response.toString())
                     signUpNewUserLiveData.postValue(response.body())
                 } else {
                     signUpNewUserLiveData.postValue(null)

@@ -53,8 +53,17 @@ class SignUpActivity : AppCompatActivity() {
 
             val ageInt: Int = edad.text.toString().toIntOrNull() ?: 0
             val pcInt: Int = postalCode.text.toString().toIntOrNull() ?: 0
-            val user = SignUp(ageInt, education.toString(), email.toString(), sex.toString(), job.toString(),
-                name.toString(), password.toString(), cnfPassword.toString(), pcInt,)
+            val user = SignUp(
+                name.text.toString(),
+                ageInt,
+                sex.text.toString(),
+                job.text.toString(),
+                education.text.toString(),
+                pcInt,
+                email.text.toString(),
+                password.text.toString(),
+                cnfPassword.text.toString(),
+            )
             viewModel.signUpNewUser(user)
 
         }
