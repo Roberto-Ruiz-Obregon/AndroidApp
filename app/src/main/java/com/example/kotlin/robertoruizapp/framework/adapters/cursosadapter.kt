@@ -12,7 +12,7 @@ import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickLis
 import com.example.kotlin.robertoruizapp.model.Document
 
 
-class cursosadapter(val clickListener : CursoClickListener): RecyclerView.Adapter<cursosadapter.ViewHolder>() {
+class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter<cursosadapter.ViewHolder>() {
 
 
     lateinit var data : List<Document>
@@ -82,5 +82,6 @@ private fun Button.setOnClickListener(_id: String) {
 }
 
 private fun ImageView.setImageDrawable(imageUrl: String) {
+
 
 }

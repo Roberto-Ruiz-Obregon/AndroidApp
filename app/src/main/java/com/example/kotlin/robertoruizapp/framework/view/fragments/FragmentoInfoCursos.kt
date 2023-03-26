@@ -16,7 +16,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
         binding = FragmentoInfoCursosBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val cursoID = intent.getIntExtra(CURSO_ID_EXTRA, -1)
+        val cursoID = intent.getIntExtra(CURSO_ID_EXTRA, 1)
         val curso = cursoFromID(cursoID)
         if (curso != null)
         {
