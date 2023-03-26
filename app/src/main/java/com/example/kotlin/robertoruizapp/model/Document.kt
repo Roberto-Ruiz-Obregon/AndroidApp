@@ -1,10 +1,12 @@
 package com.example.kotlin.robertoruizapp.model
 
 data class Document(
+    val capacity: Int,
     val _id: String,
     val cost: Int,
     val courseName: String,
     val createdAt: String,
+    val updatedAt: String,
     val description: String,
     val duration: Int,
     val endDate: String,
@@ -12,7 +14,10 @@ data class Document(
     val modality: String,
     val startDate: String,
     val status: String,
-    val teachers: List<String>,
+    val teacher: String,
     val topics: List<Any>,
-    val updatedAt: String
+    val postalCode: String,
+    val accessLink: String,
+    val address: String
+
 )
