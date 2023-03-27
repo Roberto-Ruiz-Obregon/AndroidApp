@@ -14,7 +14,6 @@ import com.example.kotlin.robertoruizapp.model.Document
 
 class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter<cursosadapter.ViewHolder>() {
 
-
     lateinit var data : List<Document>
     var results : Int = 0
 
@@ -41,7 +40,9 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
         viewHolder.status.text = temp.status
         viewHolder.startDate.text = temp.startDate
         viewHolder.Imagen_curso.setImageDrawable(temp.imageUrl)
-        viewHolder.botoncurso.setOnClickListener(temp._id)
+        viewHolder.botoncurso.setOnClickListener(){
+            clickListener.onClick(temp)
+        }
 
     }
 

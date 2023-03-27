@@ -22,6 +22,11 @@
             android:exported="true"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:name=".framework.view.fragments.FragmentoInfoCursos"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
             android:name=".framework.view.activities.SplashScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait">

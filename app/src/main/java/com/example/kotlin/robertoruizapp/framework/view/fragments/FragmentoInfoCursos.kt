@@ -16,19 +16,19 @@ class FragmentoInfoCursos : AppCompatActivity() {
         binding = FragmentoInfoCursosBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val cursoID = intent.getIntExtra(CURSO_ID_EXTRA, 1)
-        val curso = cursoFromID(cursoID)
-        if (curso != null)
-        {
-            binding.nombreCursoInfo.text = curso.courseName
-            binding.descripcionCurso.text = curso.description
-            binding.fechaCurso.text = curso.startDate
-            binding.tipoModalidad.text = curso.modality
-           // binding.nombrePonente.text = curso.teachers
+        val cursoID = intent.getIntExtra(CURSO_ID_EXTRA, -1)
+        /* val curso = cursoFromID(cursoID)*/
+        /*   if (curso != null)
+           {
+               binding.nombreCursoInfo.text = curso.courseName
+               binding.descripcionCurso.text = curso.description
+               binding.fechaCurso.text = curso.startDate
+               binding.tipoModalidad.text = curso.modality
+              // binding.nombrePonente.text = curso.teachers
 
 
 
-        }
+           }*/
     }
 
     private fun cursoFromID(cursoID: Int): Document?
