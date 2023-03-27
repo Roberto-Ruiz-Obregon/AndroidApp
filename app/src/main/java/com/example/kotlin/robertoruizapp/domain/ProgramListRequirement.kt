@@ -1,7 +1,7 @@
 package com.example.kotlin.robertoruizapp.domain
 
 import com.example.kotlin.robertoruizapp.data.ProgramRepository
-import com.example.kotlin.robertoruizapp.data.network.model.ProgramObject
+import com.example.kotlin.robertoruizapp.data.network.model.program.Program
 
 class ProgramListRequirement {
 
@@ -9,5 +9,5 @@ class ProgramListRequirement {
 
     suspend operator fun invoke(
         limit: Int
-    ): ProgramObject? = repository.getProgramList(limit)
+    ): Program? = repository.getProgramList(limit)
 }

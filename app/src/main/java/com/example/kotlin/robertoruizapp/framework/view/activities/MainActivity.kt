@@ -13,53 +13,70 @@ import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.databinding.ActivityMainBinding
 import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoCursos
 import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoHome
+import com.example.kotlin.robertoruizapp.framework.view.fragments.ProgramFragment
 import com.example.kotlin.robertoruizapp.utils.Constants
 
-class MainActivity: AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     private lateinit var currentFragment: Fragment
-    private var currentMenuOption:String?= null
+    private var currentMenuOption: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeBinding()
-        //initializeObservers()
+        initializeObservers()
         initializeListeners()
         exchangeCurrentFragment(FragmentoHome(), Constants.MENU_INICIO)
-    }
-
-    private fun initializeListeners(){
-        binding.appBarMain.cursologo.setOnClickListener {
-            selectMenuOption(Constants.MENU_CURSOS)
-        }
-        binding.appBarMain.imghome.setOnClickListener {
-            selectMenuOption(Constants.MENU_INICIO)
-        }
     }
 
     private fun initializeBinding() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
+
+    private fun initializeObservers() {
+    }
+
+
+    private fun initializeListeners() {
+        binding.appBarMain.cursologo.setOnClickListener {
+            selectMenuOption(Constants.MENU_CURSOS)
+        }
+        binding.appBarMain.imghome.setOnClickListener {
+            selectMenuOption(Constants.MENU_INICIO)
+        }
+        binding.appBarMain.becalogo.setOnClickListener {
+            selectMenuOption(Constants.MENU_PROGRAM)
+        }
+    }
+
+
     // conexiones
-    private fun exchangeCurrentFragment(newFragment: Fragment, newMenuOption:String){
+    private fun exchangeCurrentFragment(newFragment: Fragment, newMenuOption: String) {
         currentFragment = newFragment
         supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment_content_main,currentFragment)
+            .replace(R.id.nav_host_fragment_content_main, currentFragment)
             .commit()
         currentMenuOption = newMenuOption
     }
 
-    private fun selectMenuOption(menuOption:String){
-        if(menuOption == currentMenuOption){
+    private fun selectMenuOption(menuOption: String) {
+        if (menuOption == currentMenuOption) {
             return
         }
-        when(menuOption){
-            Constants.MENU_CURSOS -> exchangeCurrentFragment(FragmentoCursos(),Constants.MENU_CURSOS)
-            Constants.MENU_INICIO -> exchangeCurrentFragment(FragmentoHome(),Constants.MENU_INICIO)
+        when (menuOption) {
+            Constants.MENU_CURSOS -> exchangeCurrentFragment(
+                FragmentoCursos(),
+                Constants.MENU_CURSOS
+            )
+            Constants.MENU_INICIO -> exchangeCurrentFragment(FragmentoHome(), Constants.MENU_INICIO)
             //Constants.MENU_SEARCH -> exchangeCurrentFragment(SearchFragment(),Constants.MENU_SEARCH)
+            Constants.MENU_PROGRAM -> exchangeCurrentFragment(
+                ProgramFragment(), Constants
+                    .MENU_PROGRAM
+            )
         }
     }
 }

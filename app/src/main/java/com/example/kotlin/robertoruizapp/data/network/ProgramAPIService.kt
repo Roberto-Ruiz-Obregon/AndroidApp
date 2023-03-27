@@ -1,15 +1,14 @@
 package com.example.kotlin.robertoruizapp.data.network
 
-import com.example.kotlin.robertoruizapp.data.network.model.ProgramObject
+import com.example.kotlin.robertoruizapp.data.network.model.program.Program
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface ProgramAPIService {
     @GET("program")
     suspend fun getProgramList(
-        @Query("limit") limit: Int? = null
-    ): ProgramObject
+
+    ): Program
     //todo Implementar el ProgramaObject
 
     @GET("program/{idProgram}")
