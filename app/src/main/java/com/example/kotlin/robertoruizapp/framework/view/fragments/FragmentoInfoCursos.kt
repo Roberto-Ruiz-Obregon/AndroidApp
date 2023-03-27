@@ -17,29 +17,33 @@ class FragmentoInfoCursos : AppCompatActivity() {
         setContentView(binding.root)
 
         val cursoID = intent.getIntExtra(CURSO_ID_EXTRA, -1)
-        /* val curso = cursoFromID(cursoID)*/
-        /*   if (curso != null)
+
+       /* // Carga los datos
+         var data: List<Document>*/
+
+         /*val curso = cursoFromID(cursoID)
+          if (curso != null)
            {
                binding.nombreCursoInfo.text = curso.courseName
                binding.descripcionCurso.text = curso.description
                binding.fechaCurso.text = curso.startDate
                binding.tipoModalidad.text = curso.modality
-              // binding.nombrePonente.text = curso.teachers
 
 
 
-           }*/
+
+           }
     }
 
-    private fun cursoFromID(cursoID: Int): Document?
-    {
-        lateinit var data: List<Document>
 
-        for (curso in data){
+
+
+    private fun cursoFromID(cursoID: Int): Document? {
+        for (curso in Document){
             var cursoid = curso._id
             if(cursoid.toInt() == cursoID)
                 return curso
         }
-        return null
+        return null*/
     }
 }

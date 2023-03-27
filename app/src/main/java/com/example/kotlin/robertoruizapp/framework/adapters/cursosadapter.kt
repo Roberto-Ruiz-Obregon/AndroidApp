@@ -18,7 +18,7 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
     var results : Int = 0
 
     fun cursosAdapter (data: List<Document>) {
-        this.data = data
+            this.data = data
 
     }
 

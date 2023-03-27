@@ -43,11 +43,7 @@ class FragmentoCursos : Fragment() , CursoClickListener{
         return root
     }
 
-    override fun onClick(document: Document) {
-        val intent = Intent(requireContext(), FragmentoInfoCursos::class.java)
-        intent.putExtra(CURSO_ID_EXTRA, document._id)
-        startActivity(intent)
-    }
+
 
     private fun getCourseList(){
         CoroutineScope(Dispatchers.IO).launch {
@@ -66,6 +62,16 @@ class FragmentoCursos : Fragment() , CursoClickListener{
                 recyclerView.setHasFixedSize(true)
             }
         }
+    }
+
+    override fun onClick(document: Document) {
+        val intent = Intent(requireContext(), FragmentoInfoCursos::class.java)
+        // Imprime el valor de document._id en el Logcat
+        Log.d("Salida3", "Document ID: ${document._id}")
+
+
+        intent.putExtra(CURSO_ID_EXTRA, document._id)
+        startActivity(intent)
     }
 
     override fun onDestroyView() {
