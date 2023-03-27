@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.databinding.FragmentoInfoCursosBinding
 import com.example.kotlin.robertoruizapp.model.Document
@@ -50,6 +51,11 @@ class FragmentoInfoCursos : AppCompatActivity() {
                     binding.fechaCurso.text = curso.startDate
                     binding.tipoModalidad.text = curso.modality
                     binding.nombrePonente.text = curso.teacher
+                    val imageView = findViewById<ImageView>(R.id.imageView)
+
+                    Glide.with(this@FragmentoInfoCursos)
+                        .load(curso.imageUrl)
+                        .into(imageView)
 
                 }
             }
