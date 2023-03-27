@@ -15,10 +15,11 @@ import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
 import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
-import com.example.kotlin.robertoruizapp.model.CURSO_ID_EXTRA
+
 import com.example.kotlin.robertoruizapp.model.CursosObjeto
 import com.example.kotlin.robertoruizapp.model.Document
 import com.example.kotlin.robertoruizapp.model.Repository
+import com.example.kotlin.robertoruizapp.model.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

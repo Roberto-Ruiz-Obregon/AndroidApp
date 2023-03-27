@@ -1,6 +1,6 @@
 package com.example.kotlin.robertoruizapp.model
 
-val CURSO_ID_EXTRA = "cursoExtra"
+
 data class Document(
     val capacity: Int,
     val _id: String,
