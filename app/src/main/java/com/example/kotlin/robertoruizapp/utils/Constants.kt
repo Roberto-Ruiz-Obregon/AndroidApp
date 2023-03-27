@@ -6,5 +6,6 @@ object Constants {
     const val MENU_CURSOS = "CURSOS"
     const val MENU_INICIO = "INICIO"
 
+    const val BASE_URL = "meantime"
 
 }

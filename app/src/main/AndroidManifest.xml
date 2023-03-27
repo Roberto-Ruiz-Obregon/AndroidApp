@@ -34,6 +34,13 @@
             android:theme="@style/Theme.RobertoRuizApp.NoActionBar">
 
         </activity>
+
+        <!-- Activiy de Detalle Programas y Becas-->
+        <activity android:name=".framework.view.activities.ProgramaDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.RobertoRuizApp.NoActionBar"
+            />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
