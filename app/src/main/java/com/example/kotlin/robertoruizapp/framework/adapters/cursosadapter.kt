@@ -42,7 +42,9 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
         viewHolder.startDate.text = temp.startDate
 
 
-        viewHolder.Imagen_curso.setImageDrawable(temp.imageUrl)
+        Glide.with(viewHolder.itemView.context)
+            .load(temp.imageUrl)
+            .into(viewHolder.Imagen_curso)
 
 
         viewHolder.botoncurso.setOnClickListener(){
@@ -71,7 +73,7 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
 
         init {
             botoncurso =  itemView.findViewById(R.id.button_info1)
-            Imagen_curso =  itemView.findViewById(R.id.imageView)
+            Imagen_curso =  itemView.findViewById(R.id.imagen_curso1)
             courseName =  itemView.findViewById(R.id.titulo_curso_card_1)
             description =  itemView.findViewById(R.id.des_ccurso2)
             startDate =  itemView.findViewById(R.id.fecha_curso1)
