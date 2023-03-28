@@ -2,12 +2,15 @@ package com.example.kotlin.robertoruizapp.framework.adapters.viewholder
 
 import android.content.Context
 import android.content.Intent
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlin.robertoruizapp.data.network.model.ProgramBase
+import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
+import com.bumptech.glide.request.RequestOptions
 import com.example.kotlin.robertoruizapp.data.network.model.program.Document
 import com.example.kotlin.robertoruizapp.data.network.model.program.Program
 import com.example.kotlin.robertoruizapp.databinding.ItemProgramaBinding
-import com.example.kotlin.robertoruizapp.domain.ProgramInfoRequirement
+import com.example.kotlin.robertoruizapp.domain.ProgramListRequirement
 import com.example.kotlin.robertoruizapp.framework.view.activities.ProgramDetailActivity
 import com.example.kotlin.robertoruizapp.utils.Constants
 import kotlinx.coroutines.CoroutineScope
@@ -15,28 +18,51 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView.ViewHolder
-    (binding.root){
+    (binding.root) {
     // todo llProgram
-        fun bind(item: Document, context: Context) {
-            binding.tvCardTituloPrograma.text = item.programName // Se le cambia el valor a la card
-            //getProgramInfo(item.url, binding.ivPrograma, context)
-            binding.llProgram.setOnClickListener {
-              //  passViewGoToProgramDetail(item.url,context)
-                // Todo passview
-            }
-        }
+    fun bind(item: Document, context: Context) {
+        binding.tvCardTituloPrograma.text = item.programName // Se le cambia el valor a la card
+        CoroutineScope(Dispatchers.Main).launch {
+            var urlImage = item.imageUrl
 
-    private fun getProgramInfo(url: String, context: Context){
-        var programStringNumber: String = url.replace("https://us-central1-robertoruiz-eca78" +
-                ".cloudfunctions.net/api/v1/program","")
-        programStringNumber = programStringNumber.replace("/","")
-        val programNumber : String = programStringNumber
+            val requestOptions = RequestOptions()
+                .priority(Priority.HIGH)
+
+            Glide.with(context).load(urlImage?.toString())
+                .apply(requestOptions)
+                .into(binding.ivPrograma)
+        }
+        //getProgramInfo(item.imageUrl, binding.ivPrograma, context)
+        binding.clProgram.setOnClickListener {
+            //  passViewGoToProgramDetail(item.url,context)
+            // Todo passview
+        }
+    }
+
+    private fun getProgramInfo(url: String, imageView: ImageView, context: Context) {
+        var programStringNumber: String = url.replace(
+            "https://us-central1-robertoruiz-eca78" +
+                    ".cloudfunctions.net/api/v1/program", ""
+        )
+        programStringNumber = programStringNumber.replace("/", "")
+        val programNumber: String = programStringNumber
 
         //TOdo Passes the information of the program
         CoroutineScope(Dispatchers.IO).launch {
-            val programInfoRequirement = ProgramInfoRequirement()
-            val result: Program? = programInfoRequirement(programNumber)
+            val programListRequirement = ProgramListRequirement()
+            val result: Program? = programListRequirement()
+            CoroutineScope(Dispatchers.Main).launch {
 
+                val urlImage = result?.data?.documents?.iterator()?.next()?.imageUrl
+
+                val requestOptions = RequestOptions()
+                    .fitCenter()
+                    .priority(Priority.HIGH)
+
+                Glide.with(context).load(urlImage?.toString())
+                    .apply(requestOptions)
+                    .into(imageView)
+            }
         }
     }
 

@@ -1,11 +1,12 @@
 package com.example.kotlin.robertoruizapp.data.network
 
+import com.example.kotlin.robertoruizapp.data.network.model.program.Document
 import com.example.kotlin.robertoruizapp.data.network.model.program.Program
 
 class ProgramApiClient {
     private lateinit var api: ProgramAPIService
     //todo revisar si está todo listo
-    suspend fun getProgramList(limit : Int): Program? {
+    suspend fun getProgramList(): Program? {
         api = NetworkModuleDI()
         return try {
             api.getProgramList()
@@ -15,7 +16,7 @@ class ProgramApiClient {
         }
     }
 
-    suspend fun getProgramInfo(idProgram: String): Program? {
+    suspend fun getProgramInfo(idProgram: String): Document? {
         api = NetworkModuleDI()
         return try {
             api.getProgramInfo(idProgram)

@@ -22,7 +22,7 @@ class ProgramViewModel : ViewModel() {
 
     fun getProgramList() {
         viewModelScope.launch(Dispatchers.IO) {
-            val result: Program? = programListRequirement(Constants.MAX_PROGRAM_NUMBER)
+            val result: Program? = programListRequirement()
             var programs: List<Document>? = result?.data?.documents
             Log.d("Salida",programs.toString())
             CoroutineScope(Dispatchers.Main).launch{
