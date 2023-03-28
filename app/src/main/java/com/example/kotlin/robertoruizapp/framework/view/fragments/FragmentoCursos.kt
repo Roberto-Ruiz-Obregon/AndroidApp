@@ -39,6 +39,7 @@ class FragmentoCursos : Fragment() , CursoClickListener{
         viewModel = ViewModelProvider(this)[CursosFragmentoViewModel::class.java]
         _binding = FragmentoCursosBinding.inflate(inflater, container, false)
         getCourseList()
+
         val root: View = binding.root
         recyclerView = root.findViewById<RecyclerView>(R.id.recyclercursos)
         return root

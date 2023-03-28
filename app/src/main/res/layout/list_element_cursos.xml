@@ -21,10 +21,11 @@
                 android:layout_below="@+id/imagen_curso1"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
+                android:maxLines="1"
                 android:fontFamily="@font/roboto_slab"
                 android:text="Escritura"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="10sp" />
 
             <ImageView
                 android:id="@+id/imagen_curso1"
@@ -45,7 +46,8 @@
                 android:maxLines="1"
                 android:paddingTop="16dp"
                 android:text="Descripcion"
-                android:textAlignment="viewStart" />
+                android:textAlignment="viewStart"
+                android:textSize="10sp" />
 
             <ImageView
                 android:id="@+id/calendario_curso1"

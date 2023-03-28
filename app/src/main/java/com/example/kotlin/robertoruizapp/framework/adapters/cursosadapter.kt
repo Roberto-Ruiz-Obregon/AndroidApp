@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
 import com.example.kotlin.robertoruizapp.model.Document
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter<cursosadapter.ViewHolder>() {
@@ -35,11 +37,15 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         var temp: Document = data[i]
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val date = inputFormat.parse(temp.startDate)
+        val formattedDate = outputFormat.format(date)
         viewHolder.courseName.text = temp.courseName
         viewHolder.description.text = temp.description
         viewHolder.modality.text = temp.modality
         viewHolder.status.text = temp.status
-        viewHolder.startDate.text = temp.startDate
+        viewHolder.startDate.text = formattedDate
 
 
         Glide.with(viewHolder.itemView.context)
@@ -70,6 +76,8 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
         val status: TextView
         val botoncurso: Button
         val Imagen_curso: ImageView
+
+
 
 
 
