@@ -28,13 +28,13 @@ class SplashScreenActivity:AppCompatActivity() {
     private fun initializeObservers(){
         viewModel.finishedLoading.observe(this, Observer {finishedLoading->
             if(finishedLoading){
-                passViewGoToMain()
+                passViewGoToLogin()
             }
         })
     }
 
-    private fun passViewGoToMain() {
-        var intent: Intent = Intent(this, MainActivity::class.java)
+    private fun passViewGoToLogin() {
+        var intent: Intent = Intent(this, LoginActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         startActivity(intent)
         finish()

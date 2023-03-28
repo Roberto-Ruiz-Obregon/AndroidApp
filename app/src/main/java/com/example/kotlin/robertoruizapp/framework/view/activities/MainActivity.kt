@@ -1,9 +1,6 @@
 package com.example.kotlin.robertoruizapp.framework.view.activities
 
 
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +19,7 @@ class MainActivity: AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var currentFragment: Fragment
     private var currentMenuOption:String?= null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,4 +65,9 @@ class MainActivity: AppCompatActivity() {
             //Constants.MENU_SEARCH -> exchangeCurrentFragment(SearchFragment(),Constants.MENU_SEARCH)
         }
     }
+
+
 }
+
+
+

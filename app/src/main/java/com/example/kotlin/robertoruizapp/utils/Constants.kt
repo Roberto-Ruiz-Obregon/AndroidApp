@@ -6,7 +6,7 @@ object Constants {
     const val MENU_CURSOS = "CURSOS"
     const val MENU_INICIO = "INICIO"
     const val MENU_PERFIL = "PERFIL"
-    const val ID_PERFIL = "6405a58bb5883551fc92fdb2"
+    const val ID_PERFIL = "641e2e746f6fd2c83702ca33"
 
 
 }
