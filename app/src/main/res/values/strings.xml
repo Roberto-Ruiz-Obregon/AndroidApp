@@ -31,4 +31,14 @@
     <string name="eDad">Edad</string>
     <string name="this_is_first_activity">This is first Activity</string>
     <string name="start_another_activity">Start Another Activity</string>
+    <string name="nivel_EducAtivo">Nivel educativo</string>
+
+    <string-array name = "generos">
+        <item>Hombre</item>
+        <item>Mujer</item>
+        <item>Prefiero no decir</item>
+
+
+    </string-array>
+
 </resources>

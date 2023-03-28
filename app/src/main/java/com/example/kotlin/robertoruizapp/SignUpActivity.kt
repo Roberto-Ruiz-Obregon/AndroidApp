@@ -1,8 +1,12 @@
 package com.example.kotlin.robertoruizapp
 
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -15,10 +19,16 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
+        val generos = arrayOf("Hombre", "Mujer", "Prefiero no decir")
+        val gender = findViewById<Spinner>(R.id.spinnerSex)
+        gender.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, generos)
+
+        val estudios = arrayOf("Ninguno", "Primaria", "Secundaria", "Preparatoria", "Universidad")
+        val studies = findViewById<Spinner>(R.id.spinnerEducation)
+        studies.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, estudios)
+
         val name: EditText = findViewById(R.id.editTextName)
         val edad: EditText = findViewById<EditText>(R.id.editTextAge)
-        val sex: EditText = findViewById<EditText>(R.id.editTextSex)
-        val education: EditText = findViewById<EditText>(R.id.editTextEducation)
         val job: EditText = findViewById<EditText>(R.id.editTextJob)
         val postalCode: EditText = findViewById<EditText>(R.id.editTextPostalCode)
         val email: EditText = findViewById<EditText>(R.id.editTextEmail)
@@ -53,12 +63,14 @@ class SignUpActivity : AppCompatActivity() {
 
             val ageInt: Int = edad.text.toString().toIntOrNull() ?: 0
             val pcInt: Int = postalCode.text.toString().toIntOrNull() ?: 0
+            val selectedGender = gender.selectedItem.toString()
+            val selectedStudies = studies.selectedItem.toString()
             val user = SignUp(
                 name.text.toString(),
                 ageInt,
-                sex.text.toString(),
+                selectedGender,
                 job.text.toString(),
-                education.text.toString(),
+                selectedStudies,
                 pcInt,
                 email.text.toString(),
                 password.text.toString(),
