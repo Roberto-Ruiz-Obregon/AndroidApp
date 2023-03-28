@@ -5,15 +5,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.data.network.model.ProgramBase
+import com.example.kotlin.robertoruizapp.data.network.model.program.Document
 import com.example.kotlin.robertoruizapp.databinding.ItemProgramaBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.viewholder.ProgramViewHolder
 
 class ProgramAdapter : RecyclerView.Adapter<ProgramViewHolder>() {
-    var data: ArrayList<ProgramBase> = ArrayList()
+    lateinit var data: ArrayList<Document>
     lateinit var context: Context
 
-    fun ProgramAdapter(basicData: ArrayList<ProgramBase>, context: Context){
-        this.data = basicData
+    // Investigar porque se ocupa Cast
+    // "La variable del adaptabdor es un arraylist"
+    fun ProgramAdapter(basicData: List<Document>, context: Context){
+        this.data = basicData as ArrayList<Document>
         this.context = context
     }
 

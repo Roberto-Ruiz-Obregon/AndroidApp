@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.data.network.model.ProgramBase
+import com.example.kotlin.robertoruizapp.data.network.model.program.Document
 import com.example.kotlin.robertoruizapp.data.network.model.program.Program
 import com.example.kotlin.robertoruizapp.databinding.ItemProgramaBinding
 import com.example.kotlin.robertoruizapp.domain.ProgramInfoRequirement
@@ -16,11 +17,11 @@ import kotlinx.coroutines.launch
 class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView.ViewHolder
     (binding.root){
     // todo llProgram
-        fun bind(item: ProgramBase, context: Context) {
-            binding.tvCardTituloPrograma.text = item.name // Se le cambia el valor a la card
+        fun bind(item: Document, context: Context) {
+            binding.tvCardTituloPrograma.text = item.programName // Se le cambia el valor a la card
             //getProgramInfo(item.url, binding.ivPrograma, context)
             binding.llProgram.setOnClickListener {
-                passViewGoToProgramDetail(item.url,context)
+              //  passViewGoToProgramDetail(item.url,context)
                 // Todo passview
             }
         }

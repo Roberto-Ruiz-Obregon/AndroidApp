@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.data.network.model.ProgramBase
+import com.example.kotlin.robertoruizapp.data.network.model.program.Document
 import com.example.kotlin.robertoruizapp.databinding.FragmentProgramasBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.ProgramAdapter
 import com.example.kotlin.robertoruizapp.framework.viewmodel.ProgramViewModel
@@ -50,12 +51,12 @@ class ProgramFragment: Fragment() {
     }
 
     private fun initializeObservers() {
-        viewModel.programObjectLiveData.observe(viewLifecycleOwner) {programObject ->
-            setUpRecyclerView(programObject.results)
+        viewModel.programObjectLiveData.observe(viewLifecycleOwner) {programs ->
+            setUpRecyclerView(programs)
         }
     }
 
-    private fun setUpRecyclerView(dataForList:ArrayList<ProgramBase>){
+    private fun setUpRecyclerView(dataForList:List<Document>){
         recyclerView.setHasFixedSize(true)
 
         val gridLayoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager
