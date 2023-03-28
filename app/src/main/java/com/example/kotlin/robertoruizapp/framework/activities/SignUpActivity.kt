@@ -1,8 +1,6 @@
-package com.example.kotlin.robertoruizapp
+package com.example.kotlin.robertoruizapp.framework.activities
 
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -10,7 +8,9 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.kotlin.robertoruizapp.signup.SignUp
+import com.example.kotlin.robertoruizapp.R
+import com.example.kotlin.robertoruizapp.framework.viewmodel.SignUpActivityViewModel
+import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var viewModel: SignUpActivityViewModel

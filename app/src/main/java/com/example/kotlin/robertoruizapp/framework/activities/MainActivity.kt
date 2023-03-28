@@ -1,9 +1,10 @@
-package com.example.kotlin.robertoruizapp
+package com.example.kotlin.robertoruizapp.framework.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.kotlin.robertoruizapp.R
 
 class MainActivity: AppCompatActivity() {
 

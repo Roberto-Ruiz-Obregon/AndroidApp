@@ -1,4 +1,4 @@
-package com.example.kotlin.robertoruizapp.signup
+package com.example.kotlin.robertoruizapp.data.network.model.signup
 
 data class SignUp(
     val name: String,

@@ -1,9 +1,11 @@
-package com.example.kotlin.robertoruizapp
+package com.example.kotlin.robertoruizapp.framework.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.kotlin.robertoruizapp.signup.SignUp
+import com.example.kotlin.robertoruizapp.data.network.model.ApiService
+import com.example.kotlin.robertoruizapp.data.network.model.NetworkModuleDI
+import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

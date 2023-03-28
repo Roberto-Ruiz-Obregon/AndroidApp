@@ -1,6 +1,6 @@
-package com.example.kotlin.robertoruizapp
+package com.example.kotlin.robertoruizapp.data.network.model
 
-import com.example.kotlin.robertoruizapp.Constants.BASE_URL_PROYECTO
+import com.example.kotlin.robertoruizapp.utils.Constants.BASE_URL_PROYECTO
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

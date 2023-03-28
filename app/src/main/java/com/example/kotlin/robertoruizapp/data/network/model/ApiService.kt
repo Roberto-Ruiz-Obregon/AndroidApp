@@ -1,6 +1,6 @@
-package com.example.kotlin.robertoruizapp
+package com.example.kotlin.robertoruizapp.data.network.model
 
-import com.example.kotlin.robertoruizapp.signup.SignUp
+import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Headers
