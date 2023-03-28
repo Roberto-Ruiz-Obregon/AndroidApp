@@ -1,6 +1,7 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
 import android.app.Activity
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
@@ -19,6 +20,7 @@ import com.example.kotlin.robertoruizapp.model.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
 
 class FragmentoInfoCursos : AppCompatActivity() {
     private lateinit var binding: FragmentoInfoCursosBinding
@@ -48,9 +50,24 @@ class FragmentoInfoCursos : AppCompatActivity() {
                 {
                     binding.nombreCursoInfo.text = curso.courseName
                     binding.descripcionCurso.text = curso.description
-                    binding.fechaCurso.text = curso.startDate
                     binding.tipoModalidad.text = curso.modality
                     binding.nombrePonente.text = curso.teacher
+                    //binding.fechaCurso.text = curso.startDate
+
+                    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+                    val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                    val date = inputFormat.parse(curso.startDate)
+                    val formattedDate = outputFormat.format(date)
+
+                    binding.fechaCurso.text = formattedDate
+
+                    if(curso.cost.toString() == "0"){
+                        binding.tipoPago.text = "Gratuito"
+                    }
+                    else{
+                        binding.tipoPago.text = "$" + curso.cost.toString()
+                    }
+
                     val imageView = findViewById<ImageView>(R.id.imageView)
 
                     Glide.with(this@FragmentoInfoCursos)

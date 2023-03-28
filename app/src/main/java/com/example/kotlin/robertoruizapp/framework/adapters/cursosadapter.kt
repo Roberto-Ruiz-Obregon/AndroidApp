@@ -51,6 +51,8 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
             clickListener.onClick(temp)
         }
 
+
+
     }
 
     override fun getItemCount(): Int {
