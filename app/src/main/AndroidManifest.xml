@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -13,21 +14,38 @@
         android:label="robertoruizapp"
         android:supportsRtl="true"
         android:theme="@style/Theme.RobertoRuizApp"
-        tools:targetApi="31">
-        <activity
-            android:name=".framework.activities.SignUpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".framework.activities.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        tools:targetApi="31"
+        android:usesCleartextTraffic="true">
 
-                <category android:name="android.intent.category.LAUNCHER" />
+        <activity
+            android:name=".framework.view.activities.SignUpActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".framework.view.activities.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".framework.view.activities.SplashScreenActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
-        <meta-data
+        <activity
+            android:name=".framework.view.activities.LoginActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            />
+
+
+    <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>

@@ -1,5 +1,6 @@
-package com.example.kotlin.robertoruizapp.framework.activities
+package com.example.kotlin.robertoruizapp.framework.view.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -58,7 +59,7 @@ class SignUpActivity : AppCompatActivity() {
         initViewModel()
 
         val btnRegister = findViewById<Button>(R.id.buttonRegister)
-
+        val btnGoLogin = findViewById<Button>(R.id.buttonGoLogin)
         fun signUpUser() {
 
             val ageInt: Int = edad.text.toString().toIntOrNull() ?: 0
@@ -81,7 +82,16 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         btnRegister.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
             signUpUser()
+            startActivity(intent)
+
+        }
+
+        btnGoLogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+
         }
 
     }

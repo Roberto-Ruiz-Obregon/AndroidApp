@@ -12,7 +12,6 @@
     <string name="código_postal">Código postal</string>
     <string name="name">Name</string>
     <string name="datos_de_contacto">Datos de contacto</string>
-    <string name="correo">Correo</string>
     <string name="confirmar_contraseña">Confirmar contraseña</string>
     <string name="logo">Logo</string>
     <string name="contraseña">Contraseña</string>
@@ -40,5 +39,13 @@
 
 
     </string-array>
+    <string name="bienvenida">¡Bienvenido</string>
+    <string name="nombreUsuario">Carlos!</string>
+    <string name="misCursos">Mis Cursos</string>
+    <string name="redesSociales">Nuestras redes sociales</string>
+    <string name="contacto">Contacto</string>
+    <string name="correo">robregon@gmail.com</string>
+    <string name="telefono">4425014968</string>
+    <string name="volver_al_inicio_de_sesi_n">Volver al inicio de sesión</string>
 
 </resources>

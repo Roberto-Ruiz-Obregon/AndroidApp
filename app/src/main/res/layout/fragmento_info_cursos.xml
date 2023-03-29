@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".framework.activities.MainActivity"
+    tools:context=".framework.view.activities.MainActivity"
     tools:layout_editor_absoluteX="61dp"
     tools:layout_editor_absoluteY="242dp">
 

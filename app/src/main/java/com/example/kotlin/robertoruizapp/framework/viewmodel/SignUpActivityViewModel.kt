@@ -9,6 +9,7 @@ import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 class SignUpActivityViewModel: ViewModel() {
 
@@ -29,7 +30,7 @@ class SignUpActivityViewModel: ViewModel() {
 
             override fun onResponse(call: Call<SignUp>, response: Response<SignUp>) {
                 if(response.isSuccessful) {
-                    Log.d("Salida", response.toString())
+                    Timber.tag("Salida").d(response.toString())
                     signUpNewUserLiveData.postValue(response.body())
                 } else {
                     signUpNewUserLiveData.postValue(null)

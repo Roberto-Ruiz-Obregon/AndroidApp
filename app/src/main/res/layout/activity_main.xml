@@ -1,26 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:gravity="center"
+    android:id="@+id/ig_icon"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".framework.activities.MainActivity">
+    android:layout_height="match_parent">
+<!--
+    <TextView
+        android:id="@+id/Label_Bienvenida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="112dp"
+        android:fontFamily="@font/roboto_slab"
+        android:text="¡Bienvenido "
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:text="@string/this_is_first_activity"
-        android:textSize="25sp"
-        android:padding="20sp"
+        android:id="@+id/Nombre_usuario"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="156dp"
+        android:fontFamily="@font/roboto_slab"
+        android:text="Carlos!"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.042"
+        app:layout_constraintStart_toEndOf="@+id/Label_Bienvenida"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnStartSignUp0Activity"
-        android:text="@string/start_another_activity"
-        android:textColor="#FFF"
-        android:padding="20sp"
-        android:background="#397bb2"
+    <ImageView
+        android:id="@+id/fondo_imagen"
+        android:layout_width="251dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="20dp"
+        android:background="#D3FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Label_Bienvenida"
+        android:src="@drawable/curso2" />
+
+    <TextView
+        android:id="@+id/Mis_cursos"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_slab"
+        android:text="Mis Cursos"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/fondo_imagen"
+        app:layout_constraintEnd_toEndOf="@+id/fondo_imagen"
+        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintStart_toStartOf="@+id/fondo_imagen"
+        app:layout_constraintTop_toTopOf="@+id/fondo_imagen"
+        app:layout_constraintVertical_bias="0.428" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/titulo_redes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_slab"
+        android:text="Nuestras redes sociales:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fondo_imagen" />
+
+    <TextView
+        android:id="@+id/label_contacto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/roboto_slab"
+        android:text="Contacto"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tiktok_icon" />
+
+    <ImageView
+        android:id="@+id/tiktok_icon"
+        android:layout_width="57dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/twitter_icon"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_redes"
+        android:src="@drawable/tiktok_icon" />
+
+    <ImageView
+        android:id="@+id/twitter_icon"
+        android:layout_width="57dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_redes"
+        android:src="@drawable/twiitter_icon" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="48dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_redes"
+        android:src="@drawable/ig_icon" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="36dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/whatsapp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_contacto" />
+
+    <TextView
+        android:id="@+id/label_wa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="44dp"
+        android:text="Vía Whatsapp"
+        app:layout_constraintStart_toEndOf="@+id/imageView9"
+        app:layout_constraintTop_toBottomOf="@+id/label_contacto" />
+
+    <ImageView
+        android:id="@+id/email_icon"
+        android:layout_width="31dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="40dp"
+        android:text="robregon@gmail.com"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+
+    <TextView
+        android:id="@+id/telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="40dp"
+        android:text="4425014968"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView11"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="27dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="232dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/telefono"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_wa" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="51dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/tiktok_icon"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_redes"
+        android:src="@drawable/face_logo" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="98dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+-->
+    <include
+        android:id="@+id/app_bar_main"
+        layout="@layout/main_navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="-137dp" />
+
+    <fragment
+        android:id="@+id/nav_host_fragment_content_main"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/app_bar_main"
+        />
+
+</RelativeLayout>
