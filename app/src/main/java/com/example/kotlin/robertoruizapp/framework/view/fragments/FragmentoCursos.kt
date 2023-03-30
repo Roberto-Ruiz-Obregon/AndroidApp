@@ -1,6 +1,8 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +13,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
+import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
 
-class FragmentoCursos : Fragment() {
+import com.example.kotlin.robertoruizapp.model.CursosObjeto
+import com.example.kotlin.robertoruizapp.model.Document
+import com.example.kotlin.robertoruizapp.model.Repository
+import com.example.kotlin.robertoruizapp.model.utils.Constants.CURSO_ID_EXTRA
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+class FragmentoCursos : Fragment() , CursoClickListener{
 
     private var _binding: FragmentoCursosBinding? = null
+    private lateinit var data: List<Document>
     private val binding get() = _binding!!
     private lateinit var viewModel: CursosFragmentoViewModel
     private lateinit var recyclerView: RecyclerView
@@ -26,21 +38,50 @@ class FragmentoCursos : Fragment() {
     ): View {
         viewModel = ViewModelProvider(this)[CursosFragmentoViewModel::class.java]
         _binding = FragmentoCursosBinding.inflate(inflater, container, false)
+        getCourseList()
+
         val root: View = binding.root
-        val layoutManager = GridLayoutManager(requireContext(), 2)
-        val recyclerView = root.findViewById<RecyclerView>(R.id.recyclercursos)
-        recyclerView.layoutManager = layoutManager
-        val adapter = cursosadapter()
-
-        recyclerView.adapter = adapter
-        recyclerView.setHasFixedSize(true)
-
-        //initializeComponents(root)
-        //initializeObservers()
+        recyclerView = root.findViewById<RecyclerView>(R.id.recyclercursos)
         return root
     }
+
+
+
+    private fun getCourseList(){
+        CoroutineScope(Dispatchers.IO).launch {
+            val repository = Repository()
+            val result: CursosObjeto? = repository.getCursos()
+            Log.d("Salida", result?.data?.documents!![0].courseName )
+            Log.d("Salida2", result.results.toString())
+            CoroutineScope(Dispatchers.Main).launch{
+                val layoutManager = GridLayoutManager(requireContext(), 2)
+                val fragmentoInfoCursos = this@FragmentoCursos
+                recyclerView.layoutManager = layoutManager
+                val adapter = cursosadapter(fragmentoInfoCursos)
+                adapter.cursosResults(result.results)
+                adapter.cursosAdapter(result.data?.documents) //!!
+                recyclerView.adapter = adapter
+                recyclerView.setHasFixedSize(true)
+            }
+        }
+    }
+
+    override fun onClick(document: Document) {
+        val intent = Intent(requireContext(), FragmentoInfoCursos::class.java)
+        // Imprime el valor de document._id en el Logcat
+        Log.d("Salida3", "Document ID: ${document._id}")
+
+
+        intent.putExtra(CURSO_ID_EXTRA, document._id)
+        startActivity(intent)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+
+
+
 }
