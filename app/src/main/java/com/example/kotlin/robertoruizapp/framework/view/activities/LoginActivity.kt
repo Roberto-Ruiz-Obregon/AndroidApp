@@ -22,12 +22,16 @@ import java.io.File
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    companion object {
+        var token: String = ""
+    }
 
     fun isFileExists(file: File): Boolean {
         return file.exists() && !file.isDirectory
     }
 
-    fun checkCache(token_data: String) {
+    // TODO testing for file caching
+    /*fun checkCache(token_data: String) {
         val filePath = "$cacheDir/token.cache"
         val file = File(filePath)
 
@@ -41,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
             println(filePath)
             println("File doesn't exist or program doesn't have access to it")
         }
-    }
+    }*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -83,6 +87,7 @@ class LoginActivity : AppCompatActivity() {
         val request = LoginRequest(etEmail, etPassword)
         val call = retroService.postLogin(request)
 
+        // TODO check why toasts arent displayed
         call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
@@ -96,7 +101,8 @@ class LoginActivity : AppCompatActivity() {
                         return
                     }
                     if (loginResponse.status == "success") {
-                        checkCache(loginResponse.token)
+//                        checkCache(loginResponse.token)
+                        token = loginResponse.token
                         createSessionPreference(loginResponse.token)
                         goToHome()
 

@@ -9,6 +9,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
+import okhttp3.Cookie
 import retrofit2.http.Headers
 
     interface ApiService {
@@ -26,6 +27,11 @@ import retrofit2.http.Headers
         @GET("user/{id}")
         suspend fun getUserInfo(
             @Path("id") id: String
+        ): Profile
+
+        @GET("user/auth/me")
+        suspend fun getMyInfo(
+            @Header("Cookie") jwt: String
         ): Profile
 
         @POST("user/auth/login")

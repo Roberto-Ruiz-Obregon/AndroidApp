@@ -1,6 +1,5 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
-import android.accounts.AccountManager.get
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,7 +19,6 @@ import com.example.kotlin.robertoruizapp.utils.PreferenceHelper.set
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
 
 
 class FragmentoPerfil: Fragment() {
@@ -53,7 +51,7 @@ class FragmentoPerfil: Fragment() {
     }
 
     private fun initUI() {
-        viewModel.getUserInfo()
+        viewModel.getMyInfo()
         viewModel.userLiveData.observe(viewLifecycleOwner) { user ->
             if (user != null) {
                 binding.PNombre.text = user.data.document.name.toString()
@@ -90,7 +88,6 @@ class FragmentoPerfil: Fragment() {
     }
 
     private fun clearSessionPreference(){
-
         preferences["token"] = ""
     }
 

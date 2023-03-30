@@ -4,4 +4,5 @@ data class LoginResponse(
     val `data`: Data,
     val status: String,
     val token: String
-)
+) {
+}
