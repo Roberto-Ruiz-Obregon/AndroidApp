@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -36,7 +37,7 @@
         </activity>
 
         <!-- Activiy de Detalle Programas y Becas-->
-        <activity android:name=".framework.view.activities.ProgramaDetailActivity"
+        <activity android:name=".framework.view.activities.ProgramDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.RobertoRuizApp.NoActionBar"

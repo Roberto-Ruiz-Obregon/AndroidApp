@@ -9,5 +9,5 @@ object Constants {
 
     const val BASE_URL = "https://us-central1-robertoruiz-eca78.cloudfunctions.net/api/v1/"
     const val MAX_PROGRAM_NUMBER = 200
-    const val URL_PROGRAM = "URL_PROGRAM"
+    const val ID_PROGRAM = "ID_PROGRAM"
 }

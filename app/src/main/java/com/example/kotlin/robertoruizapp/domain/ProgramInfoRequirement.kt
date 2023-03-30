@@ -9,5 +9,5 @@ class ProgramInfoRequirement {
 
     suspend operator fun invoke(
         numberProgram: String
-    ): Document? = repository.getProgramInfo(numberProgram)
+    ): Program? = repository.getProgramInfo(numberProgram)
 }

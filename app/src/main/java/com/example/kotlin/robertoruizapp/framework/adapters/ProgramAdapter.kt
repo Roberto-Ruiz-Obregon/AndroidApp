@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlin.robertoruizapp.data.network.model.ProgramBase
 import com.example.kotlin.robertoruizapp.data.network.model.program.Document
 import com.example.kotlin.robertoruizapp.databinding.ItemProgramaBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.viewholder.ProgramViewHolder

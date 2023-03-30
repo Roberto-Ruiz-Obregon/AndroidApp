@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.R
-import com.example.kotlin.robertoruizapp.data.network.model.ProgramBase
 import com.example.kotlin.robertoruizapp.data.network.model.program.Document
 import com.example.kotlin.robertoruizapp.databinding.FragmentProgramasBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.ProgramAdapter
@@ -24,7 +23,7 @@ class ProgramFragment: Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private val adapter : ProgramAdapter = ProgramAdapter()
-    private lateinit var data:ArrayList<ProgramBase>
+    //private lateinit var data:ArrayList<ProgramBase>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +35,7 @@ class ProgramFragment: Fragment() {
         _binding = FragmentProgramasBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        data = ArrayList()
+        //data = ArrayList()
 
         //todo FragmentProgramBinding
         initializeComponents(root)

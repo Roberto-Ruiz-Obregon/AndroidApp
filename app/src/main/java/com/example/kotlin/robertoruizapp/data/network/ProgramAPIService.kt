@@ -15,6 +15,6 @@ interface ProgramAPIService {
     @GET("program/{idProgram}")
     suspend fun getProgramInfo(
         @Path("idProgram") idProgram: String
-    ): Document
+    ): Program
     //todo Crar el archivo de programa
 }

@@ -11,6 +11,6 @@ class ProgramRepository {
     private val apiProgram = ProgramApiClient()
 
     suspend fun getProgramList(): Program? = apiProgram.getProgramList()
-    suspend fun getProgramInfo(numberProgram: String): Document? =
+    suspend fun getProgramInfo(numberProgram: String): Program? =
         apiProgram.getProgramInfo(numberProgram)
 }

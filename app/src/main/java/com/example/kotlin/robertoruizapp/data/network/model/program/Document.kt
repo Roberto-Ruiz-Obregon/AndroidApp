@@ -5,5 +5,6 @@ data class Document(
     val createdAt: String,
     val imageUrl: String,
     val programName: String,
-    val updatedAt: String
+    val updatedAt: String,
+    val description: String
 )

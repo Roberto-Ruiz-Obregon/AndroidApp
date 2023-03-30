@@ -16,7 +16,7 @@ class ProgramApiClient {
         }
     }
 
-    suspend fun getProgramInfo(idProgram: String): Document? {
+    suspend fun getProgramInfo(idProgram: String): Program? {
         api = NetworkModuleDI()
         return try {
             api.getProgramInfo(idProgram)
