@@ -18,32 +18,50 @@ import com.example.kotlin.robertoruizapp.utils.PreferenceHelper.set
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
+    fun isFileExists(file: File): Boolean {
+        return file.exists() && !file.isDirectory
+    }
+
+    fun checkCache(token_data: String) {
+        val filePath = "$cacheDir/token.cache"
+        val file = File(filePath)
+
+        if (isFileExists(file)) {
+            println("File exists!!")
+            println(file.readText())
+            println(filePath)
+        } else {
+            kotlin.io.path.createTempFile("token","cache")
+            file.writeText(token_data)
+            println(filePath)
+            println("File doesn't exist or program doesn't have access to it")
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initializeBinding()
 
         val preferences = PreferenceHelper.defaultPrefs(this)
-        if (preferences["token",""].contains("."))
+        if (preferences["token", ""].contains("."))
             goToHome()
-
 
         val btnGoMenu = findViewById<Button>(R.id.button_login)
         btnGoMenu.setOnClickListener {
             performLogin()
         }
 
-       val btnStartRegisterActivity = findViewById<Button>(R.id.signup)
+        val btnStartRegisterActivity = findViewById<Button>(R.id.signup)
 
         btnStartRegisterActivity.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
-
 
 
     }
@@ -53,66 +71,69 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    private fun createSessionPreference(token: String){
+    private fun createSessionPreference(token: String) {
         val preferences = PreferenceHelper.defaultPrefs(this)
         preferences["token"] = token
     }
 
-    private fun performLogin(){
+    private fun performLogin() {
         val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
         val etEmail = findViewById<EditText>(R.id.email_login).text.toString()
         val etPassword = findViewById<EditText>(R.id.password_login).text.toString()
         val request = LoginRequest(etEmail, etPassword)
         val call = retroService.postLogin(request)
 
-        call.enqueue(object: Callback<LoginResponse> {
+        call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
                     if (loginResponse == null) {
                         Toast.makeText(
-                                applicationContext,
-                                "Se produjo un error en el servidor (null)",
-                                Toast.LENGTH_LONG
+                            applicationContext,
+                            "Se produjo un error en el servidor (null)",
+                            Toast.LENGTH_LONG
                         ).show()
                         return
                     }
                     if (loginResponse.status == "success") {
+                        checkCache(loginResponse.token)
                         createSessionPreference(loginResponse.token)
                         goToHome()
 
                     } else {
                         Toast.makeText(
-                                applicationContext,
-                                "Las credenciales son incorrectas.",
-                                Toast.LENGTH_LONG
+                            applicationContext,
+                            "Las credenciales son incorrectas.",
+                            Toast.LENGTH_LONG
                         ).show()
                     }
 
                 } else {
                     Toast.makeText(
-                            applicationContext,
-                            "Se produjo un error en el servidor (not success)",
-                            Toast.LENGTH_LONG
+                        applicationContext,
+                        "Se produjo un error en el servidor (not success)",
+                        Toast.LENGTH_LONG
                     ).show()
                 }
             }
+
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Toast.makeText(
-                        applicationContext,
-                        "Falló la llamada",
-                        Toast.LENGTH_LONG
+                    applicationContext,
+                    "Falló la llamada",
+                    Toast.LENGTH_LONG
                 ).show()
             }
         })
 
     }
 
-    private fun goToHome(){
+    private fun goToHome() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
+
 }
 
 
