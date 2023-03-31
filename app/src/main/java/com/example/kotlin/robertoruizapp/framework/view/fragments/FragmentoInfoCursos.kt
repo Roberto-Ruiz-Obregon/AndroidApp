@@ -4,6 +4,8 @@ import android.app.Activity
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -20,6 +22,7 @@ import com.example.kotlin.robertoruizapp.model.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 import java.util.*
 
 class FragmentoInfoCursos : AppCompatActivity() {
@@ -61,11 +64,30 @@ class FragmentoInfoCursos : AppCompatActivity() {
 
                     binding.fechaCurso.text = formattedDate
 
-                    if(curso.cost.toString() == "0"){
+                    if (curso.cost.toString() == "0") {
                         binding.tipoPago.text = "Gratuito"
+                        val boton = findViewById<Button>(R.id.button_inscribirme)
+                        boton.setText("Inscribirme")
+
                     }
                     else{
                         binding.tipoPago.text = "$" + curso.cost.toString()
+                        val boton = findViewById<Button>(R.id.button_inscribirme)
+                        boton.setText("Pagar")
+                        boton.setOnClickListener{
+                            val contenedor = findViewById<ViewGroup>(R.id.InfoCurso)
+                            contenedor.removeAllViews() // Elimina todos los hijos del contenedor
+
+                            val fragmentoNuevo = FragmentoPagoCurso()
+                            supportFragmentManager.beginTransaction()
+                                .replace(R.id.InfoCurso, fragmentoNuevo)
+                                .addToBackStack(null)
+                                .commit()
+
+                        }
+
+
+
                     }
 
                     val imageView = findViewById<ImageView>(R.id.imageView)
@@ -73,6 +95,11 @@ class FragmentoInfoCursos : AppCompatActivity() {
                     Glide.with(this@FragmentoInfoCursos)
                         .load(curso.imageUrl)
                         .into(imageView)
+
+
+
+
+                    }
 
                 }
             }
@@ -87,5 +114,5 @@ class FragmentoInfoCursos : AppCompatActivity() {
         }
         return null
     }
-}
+
 
