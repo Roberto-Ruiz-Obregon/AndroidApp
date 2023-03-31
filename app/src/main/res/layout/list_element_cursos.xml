@@ -122,9 +122,9 @@
             android:layout_height="48dp"
             android:layout_below="@+id/locacion_curso1"
             android:layout_alignEnd="@+id/locacion_curso1"
-            android:layout_marginStart="58dp"
+            android:layout_marginStart="45dp"
             android:layout_marginTop="13dp"
-            android:layout_marginEnd="-13dp"
+            android:layout_marginEnd="10dp"
             android:text="Ver mas"
             android:textSize="8sp" />
 
