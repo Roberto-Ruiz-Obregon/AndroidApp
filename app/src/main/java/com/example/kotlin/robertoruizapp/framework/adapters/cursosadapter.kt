@@ -3,29 +3,25 @@ package com.example.kotlin.robertoruizapp.framework.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
+import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
 import com.example.kotlin.robertoruizapp.data.network.model.Document
+import java.text.SimpleDateFormat
+import java.util.*
 
 
-class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
-
-    val titulos = arrayOf("Escritura", "Español" , "Matematicas", "Artes")
-    val desc = arrayOf("Aprende a escribir", "Conoce mas acerca de nuestra lengua",
-        "Aprende desde 0", "Muchas areas por explorar")
-    val modalidad = arrayOf("Prencial", "Zoom" , "Zoom", "Presencial")
-    val states = arrayOf("Gratis", "Paga" , "Paga", "Gratis")
-    val fecha = arrayOf("15/1/2023","02/2/2023","25/11/2023","25/10/2023")
-
-    val curso = intArrayOf(R.drawable.curso1, R.drawable.curso2, R.drawable.escritura, R.drawable.curso4)
+class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter<cursosadapter.ViewHolder>() {
 
     lateinit var data : List<Document>
     var results : Int = 0
 
     fun cursosAdapter (data: List<Document>) {
-        this.data = data
+            this.data = data
 
     }
 
@@ -35,17 +31,32 @@ class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int):ViewHolder {
         val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_element_cursos, viewGroup, false)
-        return ViewHolder(v)
+        return ViewHolder(v, clickListener)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         var temp: Document = data[i]
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val date = inputFormat.parse(temp.startDate)
+        val formattedDate = outputFormat.format(date)
         viewHolder.courseName.text = temp.courseName
         viewHolder.description.text = temp.description
         viewHolder.modality.text = temp.modality
         viewHolder.status.text = temp.status
-        viewHolder.startDate.text = temp.startDate
-        viewHolder.Imagen_curso.setImageDrawable(temp.imageUrl)
+        viewHolder.startDate.text = formattedDate
+
+
+        Glide.with(viewHolder.itemView.context)
+            .load(temp.imageUrl)
+            .into(viewHolder.Imagen_curso)
+
+
+        viewHolder.botoncurso.setOnClickListener(){
+            clickListener.onClick(temp)
+        }
+
+
 
     }
 
@@ -55,21 +66,22 @@ class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
     }
 
 
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    inner class ViewHolder(itemView: View, private val clickListener : CursoClickListener): RecyclerView.ViewHolder(itemView){
         val courseName: TextView
         val description: TextView
         val startDate: TextView
         //val endDate: Date
         val modality: TextView
         val status: TextView
-
+        val botoncurso: Button
         val Imagen_curso: ImageView
-        // val Imagen_calendario: ImageView
-        // val Imagen_pago: ImageView
-        //val Imagen_ping: ImageView
+
+
+
 
 
         init {
+            botoncurso =  itemView.findViewById(R.id.button_info1)
             Imagen_curso =  itemView.findViewById(R.id.imagen_curso1)
             courseName =  itemView.findViewById(R.id.titulo_curso_card_1)
             description =  itemView.findViewById(R.id.des_ccurso2)
@@ -82,6 +94,11 @@ class cursosadapter: RecyclerView.Adapter<cursosadapter.ViewHolder>() {
     }
 }
 
+private fun Button.setOnClickListener(_id: String) {
+
+}
+
 private fun ImageView.setImageDrawable(imageUrl: String) {
+
 
 }

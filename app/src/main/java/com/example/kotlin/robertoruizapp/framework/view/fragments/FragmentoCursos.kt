@@ -1,5 +1,6 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,15 +13,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
+import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
 import com.example.kotlin.robertoruizapp.data.network.model.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Document
 import com.example.kotlin.robertoruizapp.data.Repository
+import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
-class FragmentoCursos : Fragment() {
+class FragmentoCursos : Fragment() , CursoClickListener{
 
     private var _binding: FragmentoCursosBinding? = null
     private lateinit var data: List<Document>
@@ -44,18 +48,29 @@ class FragmentoCursos : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
             val result: CursosObjeto? = repository.getCursos()
-            Log.d("Salida", result?.data?.documents!![0].courseName )
-            Log.d("Salida2", result.results.toString())
-            CoroutineScope(Dispatchers.Main).launch{
+            Timber.tag("Salida").d(result?.data?.documents!![0].courseName)
+            Timber.tag("Salida2").d(result.results.toString())
+            CoroutineScope(Dispatchers.Main).launch {
                 val layoutManager = GridLayoutManager(requireContext(), 2)
+                val fragmentoInfoCursos = this@FragmentoCursos
                 recyclerView.layoutManager = layoutManager
-                val adapter = cursosadapter()
+                val adapter = cursosadapter(fragmentoInfoCursos)
                 adapter.cursosResults(result.results)
                 adapter.cursosAdapter(result.data?.documents) //!!
                 recyclerView.adapter = adapter
                 recyclerView.setHasFixedSize(true)
             }
         }
+    }
+
+    override fun onClick(document: Document) {
+        val intent = Intent(requireContext(), FragmentoInfoCursos::class.java)
+        // Imprime el valor de document._id en el Logcat
+        Log.d("Salida3", "Document ID: ${document._id}")
+
+
+        intent.putExtra(CURSO_ID_EXTRA, document._id)
+        startActivity(intent)
     }
 
     override fun onDestroyView() {
