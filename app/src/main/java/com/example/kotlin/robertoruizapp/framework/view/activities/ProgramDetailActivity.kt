@@ -76,40 +76,66 @@ class ProgramDetailActivity : Activity() {
             val programInfoRequirement = ProgramInfoRequirement()
             val result: Program? = programInfoRequirement(programIDString)
 
+            if(result?.data?.document?.createdAt != null) {
+                CoroutineScope(Dispatchers.Main).launch {
+
+                    val urlImage = result.data.document.imageUrl
+                    val activity = this@ProgramDetailActivity
+                    val imageView: ImageView = activity.findViewById(R.id.ivDetailProgramImagen)
+
+                    val aux = result.data.document
+                    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+                    val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                    val date = inputFormat.parse(aux.createdAt)
+                    val formattedDate = outputFormat.format(date!!)
 
 
-
-            CoroutineScope(Dispatchers.Main).launch {
-
-                val urlImage = result?.data?.document?.imageUrl
-                val activity = this@ProgramDetailActivity
-                val imageView: ImageView = activity.findViewById(R.id.ivDetailProgramImagen)
-
-                val aux = result?.data?.document
-                val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-                val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                val date = inputFormat.parse(aux?.createdAt.toString())
-                val formattedDate = outputFormat.format(date)
+                    binding.tvDetailProgramTitle.text = aux.programName
+                    binding.tvDetailProgramDescripcion.text = aux.description
+                    binding.tvDetailProgramCambioFecha.text = formattedDate
 
 
-                binding.tvDetailProgramTitle.text = aux?.programName
-                binding.tvDetailProgramDescripcion.text = aux?.description
-                binding.tvDetailProgramCambioFecha.text = formattedDate
+                    // Agrega el icono de calendario a la vista de DetailProgram
+                    Glide.with(activity).load(R.drawable.calendario_24)
+                        .into(binding.ivDetailProgramCalendario)
+                    // Agrega el icono de whatsapp a la vista de DetailProgram
+                    Glide.with(activity).load(R.drawable.whatsapp)
+                        .into(binding.ivDetailProgramWhatsApp) //
+
+                    Glide.with(activity).load(urlImage.toString())
+                        .apply(
+                            RequestOptions.placeholderOf(R.mipmap.ic_launcher)
+                                .error(R.mipmap.ic_launcher)
+                        )
+                        .into(imageView)
+                }
+            } else {
+                CoroutineScope(Dispatchers.Main).launch {
+
+                    val urlImage = result?.data?.document?.imageUrl
+                    val activity = this@ProgramDetailActivity
+                    val imageView: ImageView = activity.findViewById(R.id.ivDetailProgramImagen)
+
+                    val aux = result?.data?.document
+                    binding.tvDetailProgramTitle.text = aux?.programName
+                    binding.tvDetailProgramDescripcion.text = aux?.description
+                    binding.tvDetailProgramCambioFecha.text = "15/04/2023"
 
 
-                // Agrega el icono de calendario a la vista de DetailProgram
-                Glide.with(activity).load(R.drawable.calendario_24)
-                    .into(binding.ivDetailProgramCalendario)
-                // Agrega el icono de whatsapp a la vista de DetailProgram
-                Glide.with(activity).load(R.drawable.whatsapp)
-                    .into(binding.ivDetailProgramWhatsApp) //
+                    // Agrega el icono de calendario a la vista de DetailProgram
+                    Glide.with(activity).load(R.drawable.calendario_24)
+                        .into(binding.ivDetailProgramCalendario)
+                    // Agrega el icono de whatsapp a la vista de DetailProgram
+                    Glide.with(activity).load(R.drawable.whatsapp)
+                        .into(binding.ivDetailProgramWhatsApp) //
 
-                Glide.with(activity).load(urlImage.toString())
-                    .apply(
-                        RequestOptions.placeholderOf(R.mipmap.ic_launcher)
-                            .error(R.mipmap.ic_launcher)
-                    )
-                    .into(imageView)
+                    Glide.with(activity).load(urlImage.toString())
+                        .apply(
+                            RequestOptions.placeholderOf(R.mipmap.ic_launcher)
+                                .error(R.mipmap.ic_launcher)
+                        )
+                        .into(imageView)
+                }
             }
 
 
