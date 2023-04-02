@@ -1,5 +1,7 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,9 +37,6 @@ class ProgramFragment: Fragment() {
         _binding = FragmentProgramasBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        //data = ArrayList()
-
-        //todo FragmentProgramBinding
         initializeComponents(root)
         initializeObservers()
         viewModel.getProgramList()
@@ -54,6 +53,7 @@ class ProgramFragment: Fragment() {
             setUpRecyclerView(programs)
         }
     }
+
 
     private fun setUpRecyclerView(dataForList:List<Document>){
         recyclerView.setHasFixedSize(true)

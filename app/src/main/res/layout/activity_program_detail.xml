@@ -6,41 +6,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <!-- Tarjeta por altura -->
     <ImageView
         android:id="@+id/ivDetailProgramImagen"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="200dp"
         android:layout_alignParentTop="true"
-        android:src="@mipmap/ic_launcher" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="142dp"
-        android:layout_marginTop="124dp"
-        android:layout_marginEnd="27dp"
-        android:layout_toStartOf="@+id/tvDetailProgramLugar"
-        android:src="@drawable/pin_24" />
-
-    <TextView
-        android:id="@+id/tvDetailProgramLugar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ivDetailProgramImagen"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:text="Lugar"
-        android:textSize="10sp" />
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/tvDetailProgramTitle"
         style="@style/detail_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvDetailProgramLugar"
-        android:layout_marginTop="8dp"
+        android:layout_below="@id/ivDetailProgramImagen"
+        android:layout_marginTop="30dp"
         android:text="Detalle Programa"
         android:textAlignment="center"
         android:textStyle="bold" />
@@ -50,13 +32,13 @@
         android:layout_width="match_parent"
         android:layout_height="158dp"
         android:layout_below="@id/tvDetailProgramTitle"
+        android:layout_centerVertical="true"
         android:layout_marginTop="16dp"
         android:paddingLeft="20sp"
+        android:paddingTop="20dp"
         android:paddingRight="20sp"
         android:text="@string/Lorem"
         android:textAlignment="center"
-        android:paddingTop="20dp"
-        android:layout_centerVertical="true"
         android:textSize="14sp" />
 
     <TextView
@@ -64,21 +46,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="448dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="449dp"
+        android:layout_marginEnd="93dp"
         android:text="Fecha límitepara envío de datos"
-        android:textStyle="bold"
-        android:textSize="14sp" />
-
-    <TextView
-        android:id="@+id/tvDetailProgramWhatsapp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="111dp"
-        android:layout_marginTop="557dp"
-        android:text="Vía WhatsApp"
         android:textSize="14sp"
         android:textStyle="bold" />
 
@@ -89,10 +60,22 @@
         android:layout_below="@+id/tvDetailProgramFecha"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginBottom="236dp"
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="237dp"
         android:text="Fecha" />
+
+    <TextView
+        android:id="@+id/tvDetailProgramWhatsapp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="114dp"
+        android:layout_marginTop="574dp"
+        android:text="Vía WhatsApp"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvDetailProgramComunicate"
@@ -115,10 +98,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="21dp"
-        android:layout_marginBottom="31dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="30dp"
         android:drawableStart="@drawable/correo_24"
         android:drawablePadding="12dp"
+        android:gravity="center"
         android:text="robregon@gmail.com" />
 
     <TextView
@@ -127,11 +111,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="212dp"
-        android:layout_marginBottom="33dp"
+        android:layout_marginStart="203dp"
+        android:layout_marginBottom="30dp"
         android:drawableStart="@drawable/telefono_24"
         android:drawablePadding="12dp"
-        android:text="robregon@gmail.com" />
+        android:gravity="center"
+        android:text="442 5014 968" />
 
     <ImageView
         android:id="@+id/ivDetailProgramWhatsApp"
@@ -149,8 +134,9 @@
         android:layout_height="52dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="35dp"
-        android:layout_marginBottom="284dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="283dp"
         app:srcCompat="@drawable/calendario_24" />
 
 
