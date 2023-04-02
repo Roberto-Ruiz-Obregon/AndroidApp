@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.request.RequestOptions
+import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.data.network.model.program.Document
 import com.example.kotlin.robertoruizapp.data.network.model.program.Program
 import com.example.kotlin.robertoruizapp.databinding.ItemProgramaBinding
@@ -27,6 +28,26 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
 
         if(item.createdAt.isNullOrEmpty()) {
             binding.tvCardCalendarioPrograma.text =  "15/04/2023"
+            binding.tvCardTituloPrograma.text = item.programName // Se le cambia el valor a la card
+            binding.tvCardDescripcionPrograma.text = item.description
+            CoroutineScope(Dispatchers.Main).launch {
+                var urlImage = item.imageUrl
+
+                val requestOptions = RequestOptions()
+                    .priority(Priority.HIGH)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+
+                Glide.with(context).load(urlImage?.toString())
+                    .apply(requestOptions)
+                    .into(binding.ivPrograma)
+            }
+
+            binding.btnCardDetallePrograma.setOnClickListener {
+                passViewGoToProgramDetail(item._id,context)
+
+            }
+
         }
         else {
 
