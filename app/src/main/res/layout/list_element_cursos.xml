@@ -40,12 +40,16 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/titulo_curso_card_1"
             android:layout_centerInParent="true"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="1dp"
             android:ellipsize="end"
             android:lines="1"
             android:maxLines="1"
             android:paddingTop="16dp"
             android:text="Descripcion"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             android:textSize="10sp" />
 
         <ImageView
