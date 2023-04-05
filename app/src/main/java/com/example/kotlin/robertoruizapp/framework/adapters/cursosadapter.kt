@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
-import com.example.kotlin.robertoruizapp.model.Document
+import com.example.kotlin.robertoruizapp.data.network.model.Document
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -30,7 +30,6 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int):ViewHolder {
-
         val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_element_cursos, viewGroup, false)
         return ViewHolder(v, clickListener)
     }
