@@ -2,21 +2,22 @@ package com.example.kotlin.robertoruizapp.framework.view.fragments
 
 import android.app.Activity
 import android.icu.text.SimpleDateFormat
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
+import com.example.kotlin.robertoruizapp.data.Repository
+import com.example.kotlin.robertoruizapp.data.network.model.CursosObjeto
+import com.example.kotlin.robertoruizapp.data.network.model.Document
 import com.example.kotlin.robertoruizapp.databinding.FragmentoInfoCursosBinding
-import com.example.kotlin.robertoruizapp.model.Document
 import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
-import com.example.kotlin.robertoruizapp.model.CursosObjeto
-import com.example.kotlin.robertoruizapp.model.Data
-import com.example.kotlin.robertoruizapp.model.Repository
-import com.example.kotlin.robertoruizapp.model.utils.Constants.CURSO_ID_EXTRA
+import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,6 +26,7 @@ import java.util.*
 class FragmentoInfoCursos : AppCompatActivity() {
     private lateinit var binding: FragmentoInfoCursosBinding
     private var cursoID : String? = null
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = FragmentoInfoCursosBinding.inflate(layoutInflater)
@@ -39,6 +41,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun getCourseList(){
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()

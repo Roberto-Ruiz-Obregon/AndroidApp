@@ -14,7 +14,8 @@ import com.example.kotlin.robertoruizapp.databinding.ActivityMainBinding
 import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoCursos
 import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoHome
 import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoInfoCursos
-import com.example.kotlin.robertoruizapp.model.utils.Constants
+import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoPerfil
+import com.example.kotlin.robertoruizapp.utils.Constants
 
 class MainActivity: AppCompatActivity() {
 
@@ -38,6 +39,9 @@ class MainActivity: AppCompatActivity() {
         binding.appBarMain.imghome.setOnClickListener {
             selectMenuOption(Constants.MENU_INICIO)
         }
+        binding.appBarMain.userlogo.setOnClickListener {
+            selectMenuOption(Constants.MENU_PERFIL)
+        }
     }
 
     private fun initializeBinding() {
@@ -60,7 +64,7 @@ class MainActivity: AppCompatActivity() {
         when(menuOption){
             Constants.MENU_CURSOS -> exchangeCurrentFragment(FragmentoCursos(), Constants.MENU_CURSOS)
             Constants.MENU_INICIO -> exchangeCurrentFragment(FragmentoHome(), Constants.MENU_INICIO)
-
+            Constants.MENU_PERFIL -> exchangeCurrentFragment(FragmentoPerfil(), Constants.MENU_PERFIL)
             //Constants.MENU_SEARCH -> exchangeCurrentFragment(SearchFragment(),Constants.MENU_SEARCH)
         }
     }

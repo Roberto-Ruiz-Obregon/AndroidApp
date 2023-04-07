@@ -1,4 +1,4 @@
-package com.example.kotlin.robertoruizapp.model
+package com.example.kotlin.robertoruizapp.data.network.model
 
 
 data class Document(

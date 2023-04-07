@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="sex" type="id" />
+    <item name="registerbutton" type="id" />
+    <item name="imageView2" type="id" />
+    <item name="personalInfo" type="id" />
+    <item name="registerTitle" type="id" />
+    <item name="name" type="id" />
+    <item name="age" type="id" />
+    <item name="educationLevelText" type="id" />
+    <item name="positionText" type="id" />
+    <item name="cptext" type="id" />
+    <item name="contactTitle" type="id" />
+    <item name="Mailtext" type="id" />
+    <item name="editTextTextPassword" type="id" />
+    <item name="textPassword" type="id" />
+    <item name="confirmPassword" type="id" />
+    <item name="editTextName" type="id" />
+    <item name="editTextAge" type="id" />
+    <item name="editTextSex" type="id" />
+    <item name="editTextEducation" type="id" />
+    <item name="editTextJob" type="id" />
+    <item name="editTextPostalCode" type="id" />
+    <item name="editTextEmail" type="id" />
+    <item name="editTextPassword" type="id" />
+    <item name="editTextCnfPassword" type="id" />
+    <item name="buttonRegister" type="id" />
+</resources>

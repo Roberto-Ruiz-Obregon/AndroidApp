@@ -1,7 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
 }
+//https://us-central1-robertoruiz-eca78.cloudfunctions.net/api/
+//{{URL}}/v1/user/auth/signup
 
 android {
     namespace 'com.example.kotlin.robertoruizapp'
@@ -33,6 +36,7 @@ android {
 
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 }
 
@@ -43,10 +47,15 @@ dependencies {
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.databinding:databinding-runtime:7.4.2'
+
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
     // dependencia para cards
     implementation("androidx.cardview:cardview:1.0.0")
 
@@ -69,6 +78,14 @@ dependencies {
     //Databinding
     implementation 'androidx.databinding:databinding-runtime:7.1.2'
 
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
+
+    implementation 'com.google.code.gson:gson:2.8.8'
+    implementation "androidx.activity:activity:1.6.0-alpha05"
+
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
     // LiveData
@@ -79,5 +96,7 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
 
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
 
 }

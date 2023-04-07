@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
-import com.example.kotlin.robertoruizapp.model.Document
+import com.example.kotlin.robertoruizapp.data.network.model.Document
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -30,7 +30,6 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int):ViewHolder {
-
         val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_element_cursos, viewGroup, false)
         return ViewHolder(v, clickListener)
     }
@@ -39,13 +38,22 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
         var temp: Document = data[i]
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val date = inputFormat.parse(temp.startDate)
-        val formattedDate = outputFormat.format(date)
+
+        if (temp.startDate != null)
+        {
+            val date = inputFormat.parse(temp.startDate)
+            val formattedDate = outputFormat.format(date)
+            viewHolder.startDate.text = formattedDate
+        }
+        else {
+            viewHolder.status.text = temp.status
+           //viewHolder.status.text = "00/00/00"
+        }
         viewHolder.courseName.text = temp.courseName
         viewHolder.description.text = temp.description
         viewHolder.modality.text = temp.modality
-        viewHolder.status.text = temp.status
-        viewHolder.startDate.text = formattedDate
+
+
 
 
         Glide.with(viewHolder.itemView.context)

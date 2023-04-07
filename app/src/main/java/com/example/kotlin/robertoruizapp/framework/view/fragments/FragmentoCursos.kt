@@ -15,14 +15,14 @@ import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
 import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
-
-import com.example.kotlin.robertoruizapp.model.CursosObjeto
-import com.example.kotlin.robertoruizapp.model.Document
-import com.example.kotlin.robertoruizapp.model.Repository
-import com.example.kotlin.robertoruizapp.model.utils.Constants.CURSO_ID_EXTRA
+import com.example.kotlin.robertoruizapp.data.network.model.CursosObjeto
+import com.example.kotlin.robertoruizapp.data.network.model.Document
+import com.example.kotlin.robertoruizapp.data.Repository
+import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class FragmentoCursos : Fragment() , CursoClickListener{
 
@@ -39,21 +39,18 @@ class FragmentoCursos : Fragment() , CursoClickListener{
         viewModel = ViewModelProvider(this)[CursosFragmentoViewModel::class.java]
         _binding = FragmentoCursosBinding.inflate(inflater, container, false)
         getCourseList()
-
         val root: View = binding.root
         recyclerView = root.findViewById<RecyclerView>(R.id.recyclercursos)
         return root
     }
 
-
-
     private fun getCourseList(){
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
             val result: CursosObjeto? = repository.getCursos()
-            Log.d("Salida", result?.data?.documents!![0].courseName )
-            Log.d("Salida2", result.results.toString())
-            CoroutineScope(Dispatchers.Main).launch{
+            Timber.tag("Salida").d(result?.data?.documents!![0].courseName)
+            Timber.tag("Salida2").d(result.results.toString())
+            CoroutineScope(Dispatchers.Main).launch {
                 val layoutManager = GridLayoutManager(requireContext(), 2)
                 val fragmentoInfoCursos = this@FragmentoCursos
                 recyclerView.layoutManager = layoutManager
@@ -80,8 +77,4 @@ class FragmentoCursos : Fragment() , CursoClickListener{
         super.onDestroyView()
         _binding = null
     }
-
-
-
-
 }
