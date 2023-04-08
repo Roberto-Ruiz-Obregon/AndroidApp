@@ -1,6 +1,7 @@
 package com.example.kotlin.robertoruizapp.data
 
 import com.example.kotlin.robertoruizapp.data.network.model.*
+import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
 
 class Repository() {

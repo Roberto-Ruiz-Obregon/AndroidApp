@@ -1,4 +1,4 @@
-package com.example.kotlin.robertoruizapp.data.network.model
+package com.example.kotlin.robertoruizapp.data.network.model.Cursos
 
 data class CursosObjeto(
     val `data`: Data,
