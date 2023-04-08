@@ -1,4 +1,5 @@
 package com.example.kotlin.robertoruizapp.data.network.model
+import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginRequest
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginResponse
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
@@ -9,7 +10,6 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
-import okhttp3.Cookie
 import retrofit2.http.Headers
 
     interface ApiService {

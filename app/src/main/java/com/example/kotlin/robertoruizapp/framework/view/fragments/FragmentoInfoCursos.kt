@@ -1,22 +1,17 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
-import android.app.Activity
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.data.Repository
-import com.example.kotlin.robertoruizapp.data.network.model.CursosObjeto
-import com.example.kotlin.robertoruizapp.data.network.model.Document
+import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
+import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document
 import com.example.kotlin.robertoruizapp.databinding.FragmentoInfoCursosBinding
-import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
 import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -82,7 +77,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
         }
     }
 
-    private fun cursoFromID(cursoID: String?, result:CursosObjeto?): Document? {
+    private fun cursoFromID(cursoID: String?, result: CursosObjeto?): Document? {
         for (curso in result!!.data.documents){
             var cursoid = curso._id
             if(cursoid.toString() == cursoID)

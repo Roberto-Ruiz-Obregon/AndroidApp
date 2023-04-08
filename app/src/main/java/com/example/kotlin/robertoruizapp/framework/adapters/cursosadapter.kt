@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
-import com.example.kotlin.robertoruizapp.data.network.model.Document
+import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document
 import java.text.SimpleDateFormat
 import java.util.*
 
