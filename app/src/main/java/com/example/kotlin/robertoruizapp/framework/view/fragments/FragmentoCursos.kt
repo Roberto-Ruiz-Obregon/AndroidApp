@@ -72,7 +72,6 @@ class FragmentoCursos : Fragment() , CursoClickListener{
         intent.putExtra(CURSO_ID_EXTRA, document._id)
         startActivity(intent)
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

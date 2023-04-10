@@ -134,7 +134,7 @@
             android:text="Ver mas"
             android:textSize="8sp" />
 
-    </RelativeLayout>
+        </RelativeLayout>
 
 
 </androidx.cardview.widget.CardView>

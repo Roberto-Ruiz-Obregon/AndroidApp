@@ -29,17 +29,27 @@
             android:exported="true"
             android:screenOrientation="portrait"></activity>
 
+        <!-- Pantalla de Carga de FRRO -->
         <activity
             android:name=".framework.view.activities.SplashScreenActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.RobertoRuizApp.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- Activiy de Detalle Programas y Becas-->
+        <activity android:name=".framework.view.activities.ProgramDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.RobertoRuizApp.NoActionBar"
+            />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
         <activity
             android:name=".framework.view.activities.LoginActivity"
             android:exported="true"

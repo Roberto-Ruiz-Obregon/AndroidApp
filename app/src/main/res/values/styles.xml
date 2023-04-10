@@ -10,6 +10,14 @@
         <item name="android:textAlignment">viewStart</item>
     </style>
 
+    <style name="card_content">
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="detail_title">
+        <item name="android:textSize">30sp</item>
+    </style>
+
     <style name="spinner_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
