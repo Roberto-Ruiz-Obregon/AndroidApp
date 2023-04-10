@@ -71,8 +71,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="114dp"
-        android:layout_marginTop="574dp"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="603dp"
         android:text="Vía WhatsApp"
         android:textSize="14sp"
         android:textStyle="bold" />
@@ -125,7 +125,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="558dp"
+        android:layout_marginTop="588dp"
         app:srcCompat="@drawable/whatsapp" />
 
     <ImageView
@@ -133,10 +133,9 @@
         android:layout_width="60dp"
         android:layout_height="52dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="283dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="445dp"
         app:srcCompat="@drawable/calendario_24" />
 
 
