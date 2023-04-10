@@ -11,27 +11,12 @@
             android:id="@+id/Label_Bienvenida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="156dp"
             android:layout_marginTop="108dp"
             android:fontFamily="@font/roboto_slab"
-            android:text="@string/bienvenida"
+            android:text="¡Bienvenido!"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/Nombre_usuario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="108dp"
-            android:layout_marginEnd="156dp"
-            android:fontFamily="@font/roboto_slab"
-            android:text="@string/nombreUsuario"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/Label_Bienvenida"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -40,10 +25,11 @@
             android:layout_height="125dp"
             android:layout_marginTop="20dp"
             android:background="#D3FFFFFF"
+            android:src="@drawable/curso2"
+            android:tint="#450C0C0C"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Label_Bienvenida"
-            android:src="@drawable/curso2" />
+            app:layout_constraintTop_toBottomOf="@+id/Label_Bienvenida" />
 
         <TextView
             android:id="@+id/Mis_cursos"
@@ -51,7 +37,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_slab"
             android:text="@string/misCursos"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/fondo_imagen"
