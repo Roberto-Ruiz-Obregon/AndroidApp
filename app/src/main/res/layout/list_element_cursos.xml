@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imagen_curso1"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/roboto_slab"
             android:maxLines="1"
             android:text="Escritura"
@@ -29,9 +29,11 @@
         <ImageView
             android:id="@+id/imagen_curso1"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="100dp"
+
+            android:scaleType="fitXY"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
             android:src="@drawable/curso2" />
 
         <TextView
@@ -41,13 +43,13 @@
             android:layout_below="@id/titulo_curso_card_1"
             android:layout_centerInParent="true"
             android:layout_marginStart="3dp"
-            android:layout_marginTop="1dp"
+
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="1dp"
             android:ellipsize="end"
             android:lines="1"
             android:maxLines="1"
-            android:paddingTop="16dp"
+            android:paddingTop="8dp"
             android:text="Descripcion"
             android:textAlignment="center"
             android:textSize="10sp" />
@@ -130,11 +132,11 @@
             android:layout_alignEnd="@+id/locacion_curso1"
             android:layout_marginStart="45dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="15dp"
             android:text="Ver mas"
             android:textSize="8sp" />
 
-    </RelativeLayout>
+        </RelativeLayout>
 
 
 </androidx.cardview.widget.CardView>

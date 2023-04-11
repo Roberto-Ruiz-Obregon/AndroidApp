@@ -12,10 +12,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="223dp"
-        android:layout_height="121dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
         app:srcCompat="@drawable/curso1"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="5dp" />
@@ -24,6 +23,7 @@
         android:id="@+id/nombre_curso_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto_slab"
         android:text="Nombre del curso"

@@ -15,6 +15,7 @@ import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoCurso
 import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoHome
 import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoInfoCursos
 import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoPerfil
+import com.example.kotlin.robertoruizapp.framework.view.fragments.ProgramFragment
 import com.example.kotlin.robertoruizapp.utils.Constants
 
 class MainActivity: AppCompatActivity() {
@@ -22,7 +23,7 @@ class MainActivity: AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     private lateinit var currentFragment: Fragment
-    private var currentMenuOption:String?= null
+    private var currentMenuOption: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +42,9 @@ class MainActivity: AppCompatActivity() {
         }
         binding.appBarMain.userlogo.setOnClickListener {
             selectMenuOption(Constants.MENU_PERFIL)
+        }
+        binding.appBarMain.becalogo.setOnClickListener {
+            selectMenuOption(Constants.MENU_PROGRAM)
         }
     }
 
@@ -66,6 +70,10 @@ class MainActivity: AppCompatActivity() {
             Constants.MENU_INICIO -> exchangeCurrentFragment(FragmentoHome(), Constants.MENU_INICIO)
             Constants.MENU_PERFIL -> exchangeCurrentFragment(FragmentoPerfil(), Constants.MENU_PERFIL)
             //Constants.MENU_SEARCH -> exchangeCurrentFragment(SearchFragment(),Constants.MENU_SEARCH)
+            Constants.MENU_PROGRAM -> exchangeCurrentFragment(
+                ProgramFragment(), Constants
+                    .MENU_PROGRAM
+            )
         }
     }
 }
