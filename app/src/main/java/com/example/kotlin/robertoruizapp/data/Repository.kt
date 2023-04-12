@@ -37,6 +37,16 @@ class Repository() {
         }
     }
 
-   // suspend fun getUserInfo(id:String): UserInfo? = getUser(id)
+    fun editMyInfo(jwt: String): Profile? {
+        api = NetworkModuleDI()
+        return try{
+            api.editMyInfo(jwt)
+        }catch (e:java.lang.Exception){
+            e.printStackTrace()
+            null
+        }
+    }
+
+    // suspend fun getUserInfo(id:String): UserInfo? = getUser(id)
 
 }

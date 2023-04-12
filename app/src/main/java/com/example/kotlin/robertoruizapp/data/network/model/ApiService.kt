@@ -11,8 +11,9 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
 import retrofit2.http.Headers
+import retrofit2.http.PATCH
 
-    interface ApiService {
+interface ApiService {
 
         @POST("user/auth/signup")
         @Headers("Accept:application/json", "Content-Type:application/json")
@@ -42,5 +43,10 @@ import retrofit2.http.Headers
         @POST("user/auth/logout")
         fun postLogout(
             @Header("Authorization") authHeader: String
+        ): Call<Void>
+
+        // TODO: wip
+        @PATCH("user/auth/updateme")
+        fun editMyInfo(
         ): Call<Void>
     }
