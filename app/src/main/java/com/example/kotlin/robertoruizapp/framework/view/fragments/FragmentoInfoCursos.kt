@@ -9,9 +9,11 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
+import com.example.kotlin.robertoruizapp.databinding.ActivityMainBinding
 import com.example.kotlin.robertoruizapp.databinding.FragmentoInfoCursosBinding
 import com.example.kotlin.robertoruizapp.model.Document
 import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
@@ -28,17 +30,21 @@ import java.util.*
 class FragmentoInfoCursos : AppCompatActivity() {
     private lateinit var binding: FragmentoInfoCursosBinding
     private var cursoID : String? = null
+    private lateinit var currentFragment: Fragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentoInfoCursosBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+        initializeBinding()
         cursoID = intent.getStringExtra(CURSO_ID_EXTRA)
 
         // Carga los datos
         lateinit var data: List<Document>
         getCourseList()
 
+    }
+
+    private fun initializeBinding() {
+        binding = FragmentoInfoCursosBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
 
@@ -68,6 +74,24 @@ class FragmentoInfoCursos : AppCompatActivity() {
                         binding.tipoPago.text = "Gratuito"
                         val boton = findViewById<Button>(R.id.button_inscribirme)
                         boton.setText("Inscribirme")
+                        boton.setOnClickListener{
+                            val contenedor = findViewById<ViewGroup>(R.id.InfoCurso)
+                            contenedor.removeAllViews() // Elimina todos los hijos del contenedor
+
+                            val fragmentoNuevo = FragmentoInscripcionCurso()
+                            supportFragmentManager.beginTransaction()
+                                .replace(R.id.InfoCurso, fragmentoNuevo)
+                                //.addToBackStack(null)
+                                .commit()
+
+
+                            supportFragmentManager.beginTransaction()
+                                .replace(R.id.InfoCurso, fragmentoNuevo)
+                                .addToBackStack(null)
+                                .commit()
+
+
+                        }
 
                     }
                     else{
@@ -81,8 +105,15 @@ class FragmentoInfoCursos : AppCompatActivity() {
                             val fragmentoNuevo = FragmentoPagoCurso()
                             supportFragmentManager.beginTransaction()
                                 .replace(R.id.InfoCurso, fragmentoNuevo)
+                                //.addToBackStack(null)
+                                .commit()
+
+
+                            supportFragmentManager.beginTransaction()
+                                .replace(R.id.InfoCurso, fragmentoNuevo)
                                 .addToBackStack(null)
                                 .commit()
+
 
                         }
 
