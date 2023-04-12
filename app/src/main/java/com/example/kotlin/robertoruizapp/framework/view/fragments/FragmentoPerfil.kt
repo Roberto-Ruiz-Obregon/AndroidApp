@@ -73,6 +73,11 @@ class FragmentoPerfil: Fragment() {
         call.enqueue(object: Callback<Void>{
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 clearSessionPreference()
+                Toast.makeText(
+                    this@FragmentoPerfil.requireActivity(),
+                    "Logout exitoso",
+                    Toast.LENGTH_SHORT
+                ).show()
                 passViewGoToLogin()
             }
 

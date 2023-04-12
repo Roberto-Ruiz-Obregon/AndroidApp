@@ -13,11 +13,12 @@ object NetworkModuleDI {
     fun getRetroInstance(): Retrofit {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
+
         val client = OkHttpClient.Builder()
         client.addInterceptor(logging)
 
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL_PROYECTO)
+            .baseUrl(BASE_URL_PROYECTO)
             .client(client.build())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -27,9 +28,9 @@ object NetworkModuleDI {
     private val okHttpClient: OkHttpClient = OkHttpClient()
     operator fun invoke(): ApiService {
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL_PROYECTO)
+            .baseUrl(BASE_URL_PROYECTO)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(gsonFactory)
             .build()
             .create(ApiService::class.java)
     }

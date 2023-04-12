@@ -2,6 +2,7 @@ package com.example.kotlin.robertoruizapp.framework.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -90,34 +91,20 @@ class LoginActivity : AppCompatActivity() {
         // TODO check why toasts arent displayed
         call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                val loginResponse = response.body()
                 if (response.isSuccessful) {
-                    val loginResponse = response.body()
-                    if (loginResponse == null) {
-                        Toast.makeText(
-                            applicationContext,
-                            "Se produjo un error en el servidor (null)",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        return
-                    }
-                    if (loginResponse.status == "success") {
+                    Log.d("RESPONSE", loginResponse.toString())
+                    if (loginResponse?.status == "success") {
 //                        checkCache(loginResponse.token)
                         token = loginResponse.token
                         createSessionPreference(loginResponse.token)
                         goToHome()
 
-                    } else {
-                        Toast.makeText(
-                            applicationContext,
-                            "Las credenciales son incorrectas.",
-                            Toast.LENGTH_LONG
-                        ).show()
                     }
-
                 } else {
                     Toast.makeText(
                         applicationContext,
-                        "Se produjo un error en el servidor (not success)",
+                        "Usuario o contraseña no válidos",
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -126,7 +113,7 @@ class LoginActivity : AppCompatActivity() {
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Toast.makeText(
                     applicationContext,
-                    "Falló la llamada",
+                    "No se pudo conectar a servidor",
                     Toast.LENGTH_LONG
                 ).show()
             }
