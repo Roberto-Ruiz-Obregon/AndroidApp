@@ -36,6 +36,15 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         var temp: Document = data[i]
+
+        if (temp.cost.toString() == "0") {
+            viewHolder.cobro_curso.text = "Gratuito"
+        }
+        else{
+            viewHolder.cobro_curso.text = "$" + temp.cost.toString()
+        }
+
+
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
 
@@ -84,8 +93,7 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
         val status: TextView
         val botoncurso: Button
         val Imagen_curso: ImageView
-
-
+        val cobro_curso: TextView
 
 
 
@@ -95,6 +103,7 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
             courseName =  itemView.findViewById(R.id.titulo_curso_card_1)
             description =  itemView.findViewById(R.id.des_ccurso2)
             startDate =  itemView.findViewById(R.id.fecha_curso1)
+            cobro_curso = itemView.findViewById(R.id.cobro_curso)
             // endDate =  itemView.findViewById(R.id.course_Name)
             status =  itemView.findViewById(R.id.cobro_curso)
             modality =  itemView.findViewById(R.id.locacion_curso1)

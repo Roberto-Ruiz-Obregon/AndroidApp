@@ -61,7 +61,7 @@
             android:text="fecha" />
 
         <TextView
-            android:id="@+id/tvCardPagoPrograma"
+            android:id="@+id/tvCardCategoryPrograma"
             style="@style/card_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

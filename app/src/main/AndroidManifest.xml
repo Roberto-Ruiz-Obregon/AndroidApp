@@ -23,11 +23,11 @@
         <activity
             android:name=".framework.view.activities.MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".framework.view.fragments.FragmentoInfoCursos"
             android:exported="true"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
 
         <!-- Pantalla de Carga de FRRO -->
         <activity
