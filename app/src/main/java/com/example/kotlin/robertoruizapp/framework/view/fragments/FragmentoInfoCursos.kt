@@ -29,8 +29,8 @@ import java.util.*
 class FragmentoInfoCursos : AppCompatActivity() {
     private lateinit var binding: FragmentoInfoCursosBinding
     private var cursoID : String? = null
-    @RequiresApi(Build.VERSION_CODES.N)
     private lateinit var currentFragment: Fragment
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeBinding()
