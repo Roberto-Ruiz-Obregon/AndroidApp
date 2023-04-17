@@ -1,5 +1,6 @@
 package com.example.kotlin.robertoruizapp.data.network.model
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
+import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginRequest
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginResponse
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
@@ -11,8 +12,9 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
 import retrofit2.http.Headers
+import retrofit2.http.Query
 
-    interface ApiService {
+interface ApiService {
 
         @POST("user/auth/signup")
         @Headers("Accept:application/json", "Content-Type:application/json")
@@ -21,8 +23,17 @@ import retrofit2.http.Headers
         //https://us-central1-robertoruiz-eca78.cloudfunctions.net/api/course/
         @GET("course")
         suspend fun getCursos(
-
+            @Query("courseName[regex]") courseName: String,
+            @Query("postalCode[regex]") postalCode: String,
+            @Query("modality[regex]") modality: String,
+            @Query("status[regex]") status: String,
+            @Query("topics[in]") topic: String?
         ): CursosObjeto
+
+    @GET("topics")
+    suspend fun getTopics(
+
+    ): TopicsObject
 
         @GET("user/{id}")
         suspend fun getUserInfo(
