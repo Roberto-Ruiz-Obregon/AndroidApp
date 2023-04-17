@@ -41,13 +41,33 @@ class FragmentoFichaPago : Fragment() {
         val root: View = binding.root
 
         val boton : Button = root.findViewById(R.id.boton_comprobante)
-        boton.setOnClickListener{
+        boton.setOnClickListener {
             val newFragment = FragmentoPagoCurso()
+            val currentFragment = FragmentoFichaPago()
+            val container: ViewGroup = root.findViewById(R.id.fichaPago)
+            val tag = "fragmento_anterior_tag"
+
+            // Elimina todas las vistas contenidas en el contenedor
+            container.removeAllViews()
+
+            // Agrega el fragmento anterior al back stack si no está en la pila
+            var fragmentAnterior = parentFragmentManager.findFragmentByTag(tag)
+            if (fragmentAnterior == null) {
+                fragmentAnterior = currentFragment
+                parentFragmentManager.beginTransaction()
+                    .add(R.id.fichaPago, fragmentAnterior, tag)
+                    .commit()
+            }
+
+            // Reemplaza el fragmento actual con el nuevo fragmento
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fichaPago, newFragment)
                 .addToBackStack(null)
                 .commit()
         }
+
+
+
 
         return root
     }
