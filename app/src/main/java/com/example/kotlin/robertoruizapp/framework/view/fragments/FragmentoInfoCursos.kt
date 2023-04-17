@@ -52,7 +52,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
     private fun getCourseList(){
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
-            val result: CursosObjeto? = repository.getCursos()
+            val result: CursosObjeto? = repository.getCursos("", "", "", "", null)
 
             CoroutineScope(Dispatchers.Main).launch{
                 val curso = cursoFromID(cursoID,result)
