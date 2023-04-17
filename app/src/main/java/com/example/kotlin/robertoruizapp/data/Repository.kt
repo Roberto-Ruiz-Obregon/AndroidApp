@@ -50,7 +50,7 @@ class Repository() {
      * @param [params] Changed fields for the user's [Profile]
      * @return the API response [EditProfileResponse]
      */
-    fun editMyInfo(jwt: String, params: EditProfileRequest): Profile? {
+    suspend fun editMyInfo(jwt: String, params: EditProfileRequest): Profile? {
         api = NetworkModuleDI()
         return try{
             api.editMyInfo(jwt, params)

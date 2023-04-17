@@ -1,13 +1,13 @@
 package com.example.kotlin.robertoruizapp.data.network.model.Profile
 
 data class EditProfileRequest(
+    val name: String,
     val age: Int,
-    val educationLevel: String,
-    val email: String,
-    val emailAgreement: Boolean,
     val gender: String,
     val job: String,
-    val name: String,
+    val educationLevel: String,
     val postalCode: Int,
-    val topics: List<Any>
+    val email: String,
+    val password: String,
+    val passwordConfirm: String,
 )

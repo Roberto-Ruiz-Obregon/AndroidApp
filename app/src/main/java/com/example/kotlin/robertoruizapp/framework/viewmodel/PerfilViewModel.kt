@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlin.robertoruizapp.data.Repository
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginResponse
+import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileRequest
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
-import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
-import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity.Companion.token
+import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity.UserToken.token
 import com.example.kotlin.robertoruizapp.utils.Constants
 import com.example.kotlin.robertoruizapp.utils.PreferenceHelper
 import kotlinx.coroutines.CoroutineScope
@@ -43,7 +43,7 @@ class PerfilViewModel : ViewModel() {
     fun editMyInfo() {
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
-            val result: Profile? = repository.editMyInfo("jwt=${token}")
+            val result: Profile? = repository.editMyInfo("jwt=${token}", EditProfileRequest)
             Log.d("Salida", result.toString())
             CoroutineScope(Dispatchers.Main).launch {
                 userLiveData.postValue(result)

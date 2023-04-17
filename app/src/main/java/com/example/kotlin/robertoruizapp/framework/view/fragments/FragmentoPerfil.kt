@@ -47,6 +47,12 @@ class FragmentoPerfil: Fragment() {
             performLogout()
         }
 
+        val btnEditProfile = binding.btnEditProfile
+
+        btnEditProfile.setOnClickListener {
+            editMyProfile()
+        }
+
         return root
     }
 
@@ -90,6 +96,12 @@ class FragmentoPerfil: Fragment() {
             }
 
         })
+    }
+    // TODO
+    private fun editMyProfile(){
+        val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
+        val token = preferences["token", ""]
+        val call = retroService.editMyInfo("Bearer $token")
     }
 
     private fun clearSessionPreference(){

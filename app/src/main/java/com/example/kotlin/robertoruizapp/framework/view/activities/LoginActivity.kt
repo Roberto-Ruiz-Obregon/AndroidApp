@@ -23,7 +23,7 @@ import java.io.File
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    companion object {
+    companion object UserToken {
         var token: String = ""
     }
 
