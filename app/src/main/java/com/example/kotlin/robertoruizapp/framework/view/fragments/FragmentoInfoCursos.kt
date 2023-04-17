@@ -79,7 +79,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
                             val contenedor = findViewById<ViewGroup>(R.id.InfoCurso)
                             contenedor.removeAllViews() // Elimina todos los hijos del contenedor
 
-                            val fragmentoNuevo = FragmentoInscripcionCurso()
+                            val fragmentoNuevo = FragmentoFichaPago()
                             supportFragmentManager.beginTransaction()
                                 .replace(R.id.InfoCurso, fragmentoNuevo)
                                 //.addToBackStack(null)
@@ -103,7 +103,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
                             val contenedor = findViewById<ViewGroup>(R.id.InfoCurso)
                             contenedor.removeAllViews() // Elimina todos los hijos del contenedor
 
-                            val fragmentoNuevo = FragmentoPagoCurso()
+                            val fragmentoNuevo = FragmentoFichaPago()
                             supportFragmentManager.beginTransaction()
                                 .replace(R.id.InfoCurso, fragmentoNuevo)
                                 //.addToBackStack(null)
