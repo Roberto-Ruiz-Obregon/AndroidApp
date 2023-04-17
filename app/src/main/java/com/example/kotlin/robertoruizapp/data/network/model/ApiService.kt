@@ -2,6 +2,7 @@ package com.example.kotlin.robertoruizapp.data.network.model
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginRequest
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginResponse
+import com.example.kotlin.robertoruizapp.data.network.model.Profile.Document
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
 import retrofit2.Call
 import retrofit2.http.Body
@@ -48,5 +49,7 @@ interface ApiService {
         // TODO: wip
         @PATCH("user/auth/updateme")
         fun editMyInfo(
+                @Header("Cookie") jwt: String,
+                @Body params: Document
         ): Call<Void>
     }
