@@ -2,6 +2,8 @@ package com.example.kotlin.robertoruizapp.data
 
 import com.example.kotlin.robertoruizapp.data.network.model.*
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
+import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileRequest
+import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileResponse
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
 
 class Repository() {
@@ -27,6 +29,11 @@ class Repository() {
         }
     }
 
+    /**
+     * Gets the user [Profile] using their [jwt]
+     * @param [jwt] Authorization header of the user
+     * @return the API response in [Profile]
+     */
     suspend fun getMyInfo(jwt:String): Profile?{
         api = NetworkModuleDI()
         return try{
@@ -37,10 +44,16 @@ class Repository() {
         }
     }
 
-    fun editMyInfo(jwt: String): Profile? {
+    /**
+     * Edits the user [Profile]
+     * @param [jwt] Authorization header of the user
+     * @param [params] Changed fields for the user's [Profile]
+     * @return the API response [EditProfileResponse]
+     */
+    fun editMyInfo(jwt: String, params: EditProfileRequest): Profile? {
         api = NetworkModuleDI()
         return try{
-            api.editMyInfo(jwt)
+            api.editMyInfo(jwt, params)
         }catch (e:java.lang.Exception){
             e.printStackTrace()
             null
