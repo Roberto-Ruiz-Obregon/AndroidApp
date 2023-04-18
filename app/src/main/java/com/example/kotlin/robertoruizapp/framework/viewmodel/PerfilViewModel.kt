@@ -7,7 +7,7 @@ import com.example.kotlin.robertoruizapp.data.Repository
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginResponse
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
-import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity.Companion.token
+import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity.userToken.token
 import com.example.kotlin.robertoruizapp.utils.Constants
 import com.example.kotlin.robertoruizapp.utils.PreferenceHelper
 import kotlinx.coroutines.CoroutineScope

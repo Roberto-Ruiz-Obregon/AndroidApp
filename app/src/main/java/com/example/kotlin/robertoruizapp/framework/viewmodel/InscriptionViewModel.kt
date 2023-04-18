@@ -1,10 +1,12 @@
 package com.example.kotlin.robertoruizapp.framework.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlin.robertoruizapp.data.network.model.ApiService
 import com.example.kotlin.robertoruizapp.data.network.model.NetworkModuleDI
 import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Inscription
+import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity.userToken.token
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,11 +21,12 @@ class InscriptionViewModel: ViewModel() {
         return InscripitionLiveData
     }
 
-    fun enrollUser(user: Inscription){
+    fun enrollUser(token: String, user: Inscription){
         val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
-        val call = retroService.postInscription(user)
+        val call = retroService.postInscription(token,user)
         call.enqueue(object: Callback<Inscription> {
             override fun onFailure(call: Call<Inscription>, t: Throwable) {
+                Log.d("Falla de llamada", t.toString())
                 InscripitionLiveData.postValue(null)
             }
 
