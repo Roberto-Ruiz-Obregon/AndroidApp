@@ -40,15 +40,4 @@ class PerfilViewModel : ViewModel() {
         }
     }
 
-    fun editMyInfo() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val repository = Repository()
-            val result: Profile? = repository.editMyInfo("jwt=${token}", EditProfileRequest)
-            Log.d("Salida", result.toString())
-            CoroutineScope(Dispatchers.Main).launch {
-                userLiveData.postValue(result)
-            }
-        }
-    }
-
 }

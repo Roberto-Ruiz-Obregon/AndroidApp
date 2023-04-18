@@ -13,6 +13,7 @@ import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.framework.viewmodel.SignUpActivityViewModel
 import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
 
+
 class SignUpActivity : AppCompatActivity() {
     private lateinit var viewModel: SignUpActivityViewModel
 

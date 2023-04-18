@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.kotlin.robertoruizapp.data.network.model.ApiService
 import com.example.kotlin.robertoruizapp.data.network.model.NetworkModuleDI
 import com.example.kotlin.robertoruizapp.databinding.FragmentoPerfilBinding
+import com.example.kotlin.robertoruizapp.framework.view.activities.EditProfileActivity
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.PerfilViewModel
 import com.example.kotlin.robertoruizapp.utils.PreferenceHelper
@@ -99,9 +100,9 @@ class FragmentoPerfil: Fragment() {
     }
     // TODO
     private fun editMyProfile(){
-        val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
-        val token = preferences["token", ""]
-        val call = retroService.editMyInfo("Bearer $token")
+        val intent = Intent()
+        intent.setClass(requireActivity(), EditProfileActivity::class.java)
+        requireActivity().startActivity(intent)
     }
 
     private fun clearSessionPreference(){

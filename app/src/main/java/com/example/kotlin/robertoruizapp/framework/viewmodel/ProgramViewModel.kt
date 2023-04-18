@@ -16,8 +16,6 @@ class ProgramViewModel : ViewModel() {
     val programObjectLiveData = MutableLiveData<List<Document>>()
     private val programListRequirement = ProgramListRequirement()
 
-
-
     fun getProgramList() {
         viewModelScope.launch(Dispatchers.IO) {
             val result: Program? = programListRequirement()

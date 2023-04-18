@@ -55,6 +55,11 @@
             android:exported="true"
             android:screenOrientation="portrait"
             />
+        <activity
+            android:name=".framework.view.activities.EditProfileActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            />
 
 
     <meta-data

@@ -11,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileRequest
-import com.example.kotlin.robertoruizapp.framework.viewmodel.EditProfileActivityViewModel
+import com.example.kotlin.robertoruizapp.framework.viewmodel.EditProfileViewModel
 
 class EditProfileActivity : AppCompatActivity() {
-    private lateinit var viewModel: EditProfileActivityViewModel
+    private lateinit var viewModel: EditProfileViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +37,7 @@ class EditProfileActivity : AppCompatActivity() {
         val password: EditText = findViewById(R.id.editTextPassword)
         val cnfPassword: EditText = findViewById(R.id.editTextCnfPassword)
         fun initViewModel() {
-            viewModel = ViewModelProvider(this)[EditProfileActivityViewModel::class.java]
+            viewModel = ViewModelProvider(this)[EditProfileViewModel::class.java]
             viewModel.getProfileUserObserver().observe(this) {
 
                 if (it == null) {
@@ -74,7 +74,7 @@ class EditProfileActivity : AppCompatActivity() {
                 password.text.toString(),
                 cnfPassword.text.toString(),
             )
-            viewModel.editProfileUser(user)
+            viewModel.editMyInfo(user)
         }
 
         btnConfirm.setOnClickListener {
