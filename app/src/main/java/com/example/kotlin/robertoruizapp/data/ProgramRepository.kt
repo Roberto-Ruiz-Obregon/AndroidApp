@@ -10,7 +10,7 @@ class ProgramRepository {
     private lateinit var api: ProgramAPIService
     private val apiProgram = ProgramApiClient()
 
-    suspend fun getProgramList(): Program? = apiProgram.getProgramList()
+    suspend fun getProgramList(programName: String, categorySelected: String): Program? = apiProgram.getProgramList(programName, categorySelected)
     suspend fun getProgramInfo(numberProgram: String): Program? =
         apiProgram.getProgramInfo(numberProgram)
 }

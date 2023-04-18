@@ -85,7 +85,7 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
 
         CoroutineScope(Dispatchers.IO).launch {
             val programListRequirement = ProgramListRequirement()
-            val result: Program? = programListRequirement()
+            val result: Program? = programListRequirement("", "")
             CoroutineScope(Dispatchers.Main).launch {
 
                 val urlImage = result?.data?.documents?.iterator()?.next()?.imageUrl
