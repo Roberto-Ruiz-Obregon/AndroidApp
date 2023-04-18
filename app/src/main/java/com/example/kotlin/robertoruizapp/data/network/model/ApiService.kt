@@ -45,10 +45,9 @@ import retrofit2.http.Headers
             @Header("Authorization") authHeader: String
         ): Call<Void>
 
-        @POST("user/auth/inscription/")
+        @POST("/InscribeTo{:idCourse}")
         fun postInscription(
             @Header("Authorization") authHeader: String,
             @Body params: Inscription): Call<Inscription>
-
 
     }
