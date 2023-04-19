@@ -24,6 +24,7 @@ class FragmentoPagoCurso : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var image_view: ImageView
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,6 +44,8 @@ class FragmentoPagoCurso : Fragment() {
 
         }
 
+
+
         //initializeComponents(root)
         //initializeObservers()
         return root
@@ -56,9 +59,6 @@ class FragmentoPagoCurso : Fragment() {
             image_view.setImageURI(selectedImageUri)
         }
     }
-
-
-
 
 
     override fun onDestroyView() {
