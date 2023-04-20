@@ -14,6 +14,8 @@ import com.example.kotlin.robertoruizapp.utils.PreferenceHelper.get
 
 
 class UserInscription  : AppCompatActivity() {
+/*
+
     private lateinit var viewModel: InscriptionViewModel
 
 
@@ -46,5 +48,5 @@ class UserInscription  : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
+ */
 }
