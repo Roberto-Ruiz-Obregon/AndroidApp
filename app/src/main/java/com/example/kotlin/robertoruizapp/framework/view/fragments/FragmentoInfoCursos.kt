@@ -81,6 +81,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
 
                             val fragmentoNuevo = FragmentoInscripcionCurso()
                             supportFragmentManager.beginTransaction()
+
                                 .replace(R.id.InfoCurso, fragmentoNuevo)
                                 //.addToBackStack(null)
                                 .commit()
