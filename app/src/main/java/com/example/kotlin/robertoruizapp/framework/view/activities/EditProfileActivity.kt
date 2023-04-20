@@ -33,9 +33,6 @@ class EditProfileActivity : AppCompatActivity() {
         val edad: EditText = findViewById(R.id.editTextAge)
         val job: EditText = findViewById(R.id.editTextJob)
         val postalCode: EditText = findViewById(R.id.editTextPostalCode)
-        val email: EditText = findViewById(R.id.editTextEmail)
-        val password: EditText = findViewById(R.id.editTextPassword)
-        val cnfPassword: EditText = findViewById(R.id.editTextCnfPassword)
         fun initViewModel() {
             viewModel = ViewModelProvider(this)[EditProfileViewModel::class.java]
             viewModel.getProfileUserObserver().observe(this) {
@@ -70,23 +67,17 @@ class EditProfileActivity : AppCompatActivity() {
                 job.text.toString(),
                 selectedStudies,
                 pcInt,
-                email.text.toString(),
-                password.text.toString(),
-                cnfPassword.text.toString(),
             )
             viewModel.editMyInfo(user)
         }
 
         btnConfirm.setOnClickListener {
-            val intent = Intent(this, EditProfileActivity::class.java)
             editUserProfile()
-            startActivity(intent)
         }
 
         btnCancel.setOnClickListener {
-            val intent = Intent(this, EditProfileActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
     }
 }

@@ -6,231 +6,111 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="@+id/TextViewPersonalInfo"
-        app:layout_constraintStart_toEndOf="@+id/TextViewPersonalInfo">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/TextViewPersonalInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="140dp"
-            android:layout_marginBottom="15dp"
-            android:text="@string/informaci_n_personal"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/editTextName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4"
-            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textViewRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="51dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="104dp"
-            android:layout_marginBottom="48dp"
             android:text="Cambia tus datos"
             android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/TextViewPersonalInfo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:padding="16dp"/>
 
         <EditText
             android:id="@+id/editTextName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="140dp"
-            android:layout_marginBottom="12dp"
-            android:ems="10"
             android:hint="@string/nombre_completo"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/editTextAge"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TextViewPersonalInfo" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewRegister"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="16dp"/>
 
         <EditText
             android:id="@+id/editTextAge"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="12dp"
-            android:ems="10"
             android:hint="@string/eDad"
-            android:inputType="number"
-            app:layout_constraintBottom_toTopOf="@+id/spinnerEducation"
-            app:layout_constraintEnd_toStartOf="@+id/spinnerSex"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextName" />
-
-        <Button
-            android:id="@+id/buttonConfirm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="220dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/red"
-            android:text="Cambiar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            android:inputType="textPersonName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextCnfPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextName"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="16dp"/>
 
         <EditText
             android:id="@+id/editTextJob"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="140dp"
-            android:layout_marginBottom="11dp"
-            android:ems="10"
             android:hint="@string/ocupaci_n"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/editTextPostalCode"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerEducation" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextAge"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="16dp"/>
 
         <EditText
             android:id="@+id/editTextPostalCode"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="140dp"
-            android:layout_marginBottom="22dp"
-            android:ems="10"
             android:hint="@string/código_postal"
             android:inputType="number"
-            app:layout_constraintBottom_toTopOf="@+id/textViewContactData"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextJob" />
-
-        <TextView
-            android:id="@+id/textViewContactData"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="140dp"
-            android:layout_marginBottom="14dp"
-            android:text="@string/datos_de_contacto"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPostalCode" />
-
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="140dp"
-            android:layout_marginBottom="12dp"
-            android:ems="10"
-            android:hint="@string/correo_electr_nico"
-            android:inputType="textEmailAddress"
-            app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
+            app:layout_constraintTop_toBottomOf="@+id/editTextJob"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewContactData" />
-
-        <EditText
-            android:id="@+id/editTextPassword"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="140dp"
-            android:layout_marginBottom="14dp"
-            android:ems="10"
-            android:hint="@string/contrase_a"
-            android:inputType="textPassword"
-            app:layout_constraintBottom_toTopOf="@+id/editTextCnfPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
-
-        <EditText
-            android:id="@+id/editTextCnfPassword"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="140dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="@string/confirmar_contraseña"
-            android:inputType="textPassword"
-            app:layout_constraintBottom_toTopOf="@+id/buttonConfirm"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+            android:padding="16dp"/>
 
         <Spinner
             android:id="@+id/spinnerSex"
-            android:layout_width="215dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="16dp"
             android:spinnerMode="dialog"
-            app:layout_constraintBottom_toTopOf="@+id/spinnerEducation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPostalCode"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/editTextAge"
-            app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+            android:padding="16dp"/>
 
         <Spinner
             android:id="@+id/spinnerEducation"
-            android:layout_width="242dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="140dp"
-            android:layout_marginBottom="8dp"
             android:spinnerMode="dialog"
-            app:layout_constraintBottom_toTopOf="@+id/editTextJob"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerSex"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextAge" />
-
-         <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="81dp"
-            android:layout_height="51dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/TextViewPersonalInfo"
-            app:layout_constraintEnd_toStartOf="@+id/textViewRegister"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo" />
+            android:padding="16dp"/>
 
         <Button
             android:id="@+id/buttonCancel"
-            android:layout_width="184dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="24dp"
             android:background="@android:color/transparent"
             android:text="Cancelar"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/buttonConfirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextCnfPassword"
-            tools:ignore="SmallSp" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerEducation"
+            app:layout_constraintEnd_toStartOf="@id/buttonConfirm"
+            android:padding="16dp"/>
+        <Button
+            android:id="@+id/buttonConfirm"
+            android:backgroundTint="@color/red"
+            android:text="Cambiar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/buttonCancel"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerEducation"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="16dp"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

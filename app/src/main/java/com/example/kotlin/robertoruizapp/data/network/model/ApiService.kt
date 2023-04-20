@@ -49,8 +49,8 @@ interface ApiService {
 
         // TODO: wip
         @PATCH("user/auth/updateme")
-        fun editMyInfo(
-                @Header("Cookie") jwt: String,
-                @Body params: EditProfileRequest
-        ): Profile
+        suspend fun editMyInfo(
+                @Header("Authorization") jwt: String,
+                @Body request: EditProfileRequest
+        ): EditProfileResponse
 }

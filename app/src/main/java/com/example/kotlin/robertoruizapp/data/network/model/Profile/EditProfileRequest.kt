@@ -7,7 +7,4 @@ data class EditProfileRequest(
     val job: String,
     val educationLevel: String,
     val postalCode: Int,
-    val email: String,
-    val password: String,
-    val passwordConfirm: String,
 )

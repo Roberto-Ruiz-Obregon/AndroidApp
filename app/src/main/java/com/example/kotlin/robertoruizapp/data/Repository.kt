@@ -5,6 +5,7 @@ import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileRequest
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileResponse
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
+import retrofit2.Call
 
 class Repository() {
     private lateinit var api: ApiService
@@ -47,19 +48,16 @@ class Repository() {
     /**
      * Edits the user [Profile]
      * @param [jwt] Authorization header of the user
-     * @param [params] Changed fields for the user's [Profile]
+     * @param [request] Changed fields for the user's profile using a [EditProfileRequest]
      * @return the API response [EditProfileResponse]
      */
-    suspend fun editMyInfo(jwt: String, params: EditProfileRequest): Profile? {
+    suspend fun editMyInfo(jwt: String, request: EditProfileRequest): EditProfileResponse? {
         api = NetworkModuleDI()
         return try{
-            api.editMyInfo(jwt, params)
+            api.editMyInfo(jwt, request)
         }catch (e:java.lang.Exception){
             e.printStackTrace()
             null
         }
     }
-
-    // suspend fun getUserInfo(id:String): UserInfo? = getUser(id)
-
 }
