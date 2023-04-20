@@ -49,7 +49,6 @@ class FragmentoInscripcionCurso :  Fragment() {
             //Este es un ejemplo de un curso
             //TODO extraer info de curso en vista de Inscripción
             val cursoId: String = "64386615c8ec2f0bc8b9dee3"
-            //val userID: String = "Marco"
 
             val user = Inscription(
                 cursoId
@@ -61,6 +60,7 @@ class FragmentoInscripcionCurso :  Fragment() {
         btnInscribirse.setOnClickListener {
             EnrollUser()
             Log.d("inscribirme boton", "me clickeaste")
+
         }
 
         return root
