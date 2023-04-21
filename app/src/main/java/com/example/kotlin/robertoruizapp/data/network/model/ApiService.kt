@@ -1,5 +1,6 @@
 package com.example.kotlin.robertoruizapp.data.network.model
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
+import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Inscription
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginRequest
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginResponse
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
@@ -44,7 +45,10 @@ import retrofit2.http.Headers
             @Header("Authorization") authHeader: String
         ): Call<Void>
 
-
-
+        @POST("inscription/inscribeTo")
+        fun postInscription(
+            @Header("Authorization") authHeader: String,
+            @Body params: Inscription
+        ): Call<Inscription>
 
     }
