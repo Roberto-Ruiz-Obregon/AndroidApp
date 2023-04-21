@@ -6,35 +6,36 @@ import androidx.lifecycle.ViewModel
 import com.example.kotlin.robertoruizapp.data.network.model.ApiService
 import com.example.kotlin.robertoruizapp.data.network.model.NetworkModuleDI
 import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Inscription
+import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Pago
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 
 
-class InscriptionViewModel: ViewModel() {
+class PaymentViewModel: ViewModel() {
 
-    var InscripitionLiveData: MutableLiveData<Inscription?> = MutableLiveData()
+    var PaymentLiveData: MutableLiveData<Pago?> = MutableLiveData()
 
-    fun getInscriptionObserver(): MutableLiveData<Inscription?> {
-        return InscripitionLiveData
+    fun getInscriptionObserver(): MutableLiveData<Pago?> {
+        return PaymentLiveData
     }
 
-    fun enrollUser(token: String, course: Inscription){
+    fun startPayment(token: String, course: Pago){
         val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
-        val call = retroService.postInscription(token,course)
-        call.enqueue(object: Callback<Inscription> {
-            override fun onFailure(call: Call<Inscription>, t: Throwable) {
+        val call = retroService.postPago(token,course)
+        call.enqueue(object: Callback<Pago> {
+            override fun onFailure(call: Call<Pago>, t: Throwable) {
                 Log.d("Falla de llamada", t.toString())
-                InscripitionLiveData.postValue(null)
+                PaymentLiveData.postValue(null)
             }
 
-            override fun onResponse(call: Call<Inscription>, response: Response<Inscription>) {
+            override fun onResponse(call: Call<Pago>, response: Response<Pago>) {
                 if(response.isSuccessful) {
                     Timber.tag("Salida").d(response.toString())
-                    InscripitionLiveData.postValue(response.body())
+                    PaymentLiveData.postValue(response.body())
                 } else {
-                    InscripitionLiveData.postValue(null)
+                    PaymentLiveData.postValue(null)
                 }
             }
         })
