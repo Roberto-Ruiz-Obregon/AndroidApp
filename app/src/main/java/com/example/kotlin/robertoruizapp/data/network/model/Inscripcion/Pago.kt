@@ -1,9 +1,9 @@
 package com.example.kotlin.robertoruizapp.data.network.model.Inscripcion
 
-import android.net.Uri
+import okhttp3.MultipartBody
 
-data class  Pago (
+data class  Pago(
     val courseId: String?,
-    val status: String,
-    val billImageUrl: Uri?
+    //val status: String,
+    val billImageUrl: MultipartBody.Part
 )

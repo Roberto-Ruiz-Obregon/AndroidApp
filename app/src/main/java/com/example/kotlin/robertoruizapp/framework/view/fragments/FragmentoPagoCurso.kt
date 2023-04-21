@@ -2,7 +2,11 @@ package com.example.kotlin.robertoruizapp.framework.view.fragments
 
 import android.app.Activity
 import android.content.Intent
-import android.media.Image
+import okhttp3.RequestBody
+import okhttp3.MultipartBody
+
+
+
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -14,15 +18,15 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlin.mypokedexapp.viewmodel.MainViewModel
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Pago
 import com.example.kotlin.robertoruizapp.databinding.FragmentoFormaDePagoBinding
-import com.example.kotlin.robertoruizapp.databinding.FragmentoHomeBinding
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.PaymentViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import java.io.File
+import java.io.FileOutputStream
 
 class FragmentoPagoCurso : Fragment() {
     private var _binding: FragmentoFormaDePagoBinding? = null
@@ -46,22 +50,31 @@ class FragmentoPagoCurso : Fragment() {
         image_view = root.findViewById(R.id.image_view)
 
         cursoID = requireActivity().intent.getStringExtra(Constants.CURSO_ID_EXTRA);
-        val status: String = "Pendiente"
+       // val status: String = "Pendiente"
 
         val token: String = "Bearer" + LoginActivity.token
 
         fun startPayment() {
+            // Obtener la ruta real del archivo de imagen a partir de su Uri
+            val imageFile = File(requireContext().cacheDir, "image.jpg")
+            val inputStream = requireContext().contentResolver.openInputStream(imagen_pago!!)
+            val outputStream = FileOutputStream(imageFile)
+            inputStream?.copyTo(outputStream)
+            inputStream?.close()
+            outputStream.close()
 
-            //Este es un ejemplo de un curso
-            //TODO extraer info de curso en vista de Inscripción
-            //  val cursoId: String = "64386615c8ec2f0bc8b9dee3"
+            // Crear un objeto RequestBody a partir del archivo de imagen
+            val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), imageFile)
 
-            val user = Pago(
-               cursoID, status, imagen_pago
-            )
-           viewModel.startPayment(token, user)
+            // Crear un objeto MultipartBody.Part a partir del objeto RequestBody
+            val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
 
+            val user = Pago(cursoID, imagePart)
+            viewModel.startPayment(token, user)
         }
+
+
+
         boton.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, Companion.REQUEST_CODE_SELECT_IMAGE)
@@ -84,9 +97,6 @@ class FragmentoPagoCurso : Fragment() {
             imagen_pago = selectedImageUri
         }
     }
-
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
