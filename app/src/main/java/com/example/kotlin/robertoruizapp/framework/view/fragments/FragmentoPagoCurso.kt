@@ -16,6 +16,7 @@ import com.example.kotlin.mypokedexapp.viewmodel.MainViewModel
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.databinding.FragmentoFormaDePagoBinding
 import com.example.kotlin.robertoruizapp.databinding.FragmentoHomeBinding
+import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 
 class FragmentoPagoCurso : Fragment() {
     private var _binding: FragmentoFormaDePagoBinding? = null
@@ -36,7 +37,22 @@ class FragmentoPagoCurso : Fragment() {
         val boton : Button = root.findViewById(R.id.choose_image_btn)
         image_view = root.findViewById(R.id.image_view)
 
+        //cursoID = requireActivity().intent.getStringExtra(MainViewModel)
 
+        val token: String = "Bearer" + LoginActivity.token
+
+        fun EnrollUser() {
+
+            //Este es un ejemplo de un curso
+            //TODO extraer info de curso en vista de Inscripción
+            //  val cursoId: String = "64386615c8ec2f0bc8b9dee3"
+
+          //  val user = Payment(
+             //   cursoID
+            //)
+           // viewModel.enrollUser(token, user)
+
+        }
         boton.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, Companion.REQUEST_CODE_SELECT_IMAGE)
