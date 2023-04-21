@@ -52,10 +52,13 @@ import retrofit2.http.Headers
             @Body params: Inscription
         ): Call<Inscription>
 
-        @POST("payment/startPayment")
+        @POST("payment/startPayment/{id}")
         fun postPago(
+            @Path("id") id: String,
             @Header("Authorization") authHeader: String,
             @Body params: Pago
         ): Call<Pago>
+
+
 
     }
