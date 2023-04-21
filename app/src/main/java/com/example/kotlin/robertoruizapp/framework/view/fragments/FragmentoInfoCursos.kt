@@ -62,7 +62,19 @@ class FragmentoInfoCursos : AppCompatActivity() {
                     binding.descripcionCurso.text = curso.description
                     binding.tipoModalidad.text = curso.modality
                     binding.nombrePonente.text = curso.teacher
-                    binding.ubicacionCurso.text = curso.address
+
+                    if (curso.modality == "Remoto"){
+                        binding.ubicacionCurso.text = "Curso Online"
+                       /*
+                       Para que cargue el link del zoom se usa esta linea (Se pone despues de que un usuario se inscribe)
+                       binding.ubicacionCurso.text = curso.accessLink
+                       */
+
+                    }
+                    else{
+                        binding.ubicacionCurso.text = curso.address
+                    }
+
                     //binding.fechaCurso.text = curso.startDate
 
                     val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
@@ -74,6 +86,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
 
                     if (curso.cost.toString() == "0") {
                         binding.tipoPago.text = "Gratuito"
+
                         val boton = findViewById<Button>(R.id.button_inscribirme)
                         boton.setText("Inscribirme")
                         boton.setOnClickListener{
@@ -122,6 +135,9 @@ class FragmentoInfoCursos : AppCompatActivity() {
 
 
                     }
+
+
+
 
                     val imageView = findViewById<ImageView>(R.id.imageView)
 
