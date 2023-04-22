@@ -60,7 +60,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tvCardDescripcionPrograma"
             android:layout_alignParentStart="true"
-            android:layout_margin="12dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="12dp"
             android:drawableStart="@drawable/calendario_24"
             android:drawablePadding="4dp"
             android:text="fecha" />
@@ -87,8 +89,8 @@
             android:layout_below="@id/tvCardCalendarioPrograma"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
-            android:text="Ver más"
             android:backgroundTint="@color/accent"
+            android:text="Ver más"
             android:textSize="8sp" />
 
 
