@@ -4,9 +4,9 @@
     android:id="@+id/curso"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_margin="8dp"
     app:cardCornerRadius="20dp"
-    app:cardElevation="20dp"
-    android:layout_margin="8dp">
+    app:cardElevation="20dp">
 
 
     <RelativeLayout
@@ -23,17 +23,15 @@
             android:fontFamily="@font/roboto_slab"
             android:maxLines="1"
             android:text="Escritura"
-            android:textColor="@color/black"
             android:textSize="10sp" />
 
         <ImageView
             android:id="@+id/imagen_curso1"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-
-            android:scaleType="fitXY"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
             android:src="@drawable/curso2" />
 
         <TextView
@@ -134,10 +132,11 @@
             android:layout_marginStart="45dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="15dp"
-            android:text="Ver mas"
+            android:text="Ver más"
+            android:backgroundTint="@color/accent"
             android:textSize="8sp" />
 
-        </RelativeLayout>
+    </RelativeLayout>
 
 
 </androidx.cardview.widget.CardView>
