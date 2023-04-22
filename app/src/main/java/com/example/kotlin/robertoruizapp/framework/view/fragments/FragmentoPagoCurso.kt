@@ -52,7 +52,7 @@ class FragmentoPagoCurso : Fragment() {
         cursoID = requireActivity().intent.getStringExtra(Constants.CURSO_ID_EXTRA);
        // val status: String = "Pendiente"
 
-        val token: String = "Bearer" + LoginActivity.token
+        val token: String = "Bearer " + LoginActivity.token
 
         fun startPayment() {
             // Obtener la ruta real del archivo de imagen a partir de su Uri
