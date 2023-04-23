@@ -49,10 +49,11 @@ class FragmentoPagoCurso : Fragment() {
         val button_enviar: Button = root.findViewById(R.id.button_enviar)
         image_view = root.findViewById(R.id.image_view)
 
+
         cursoID = requireActivity().intent.getStringExtra(Constants.CURSO_ID_EXTRA);
        // val status: String = "Pendiente"
 
-        val token: String = "Bearer" + LoginActivity.token
+        val token: String = "Bearer " + LoginActivity.token
 
         fun startPayment() {
             // Obtener la ruta real del archivo de imagen a partir de su Uri
@@ -69,8 +70,8 @@ class FragmentoPagoCurso : Fragment() {
             // Crear un objeto MultipartBody.Part a partir del objeto RequestBody
             val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
 
-            val user = Pago(cursoID, imagePart)
-            viewModel.startPayment(token, user)
+            val user= Pago(cursoID, imagePart)
+            viewModel.startPayment(token, user, imagePart)
         }
 
 

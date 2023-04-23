@@ -5,8 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlin.robertoruizapp.data.network.model.ApiService
 import com.example.kotlin.robertoruizapp.data.network.model.NetworkModuleDI
-import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Inscription
+
 import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Pago
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,9 +22,9 @@ class PaymentViewModel: ViewModel() {
         return PaymentLiveData
     }
 
-    fun startPayment(token: String, course: Pago){
+    fun startPayment(token: String, course: Pago, file: MultipartBody.Part) {
         val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
-        val call = retroService.postPago(token,course)
+        val call = retroService.postPago(token,token, file, course)
         call.enqueue(object: Callback<Pago> {
             override fun onFailure(call: Call<Pago>, t: Throwable) {
                 Log.d("Falla de llamada", t.toString())

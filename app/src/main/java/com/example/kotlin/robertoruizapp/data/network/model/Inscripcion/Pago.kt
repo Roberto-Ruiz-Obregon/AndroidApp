@@ -5,5 +5,5 @@ import okhttp3.MultipartBody
 data class  Pago(
     val courseId: String?,
     //val status: String,
-    val billImageUrl: MultipartBody.Part
+    val billImageUrl: MultipartBody.Part?
 )
