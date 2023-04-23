@@ -70,7 +70,7 @@ class FragmentoHome : Fragment() {
         }
 
         binding.iconollamada.setOnClickListener(){
-            val phone  = "tel:" + binding.telefono.text.toString()
+            val phone  = "tel:" + "442  214 4020"
             startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(phone)))
 
         }

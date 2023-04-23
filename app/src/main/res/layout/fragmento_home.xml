@@ -130,7 +130,7 @@
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/correo"
+            android:text="Administracion@fundacionrro.org"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -151,7 +151,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/email"
             app:layout_constraintTop_toBottomOf="@+id/whaLogo"
-            app:layout_constraintVertical_bias="0.309" />
+            app:layout_constraintVertical_bias="0.35" />
 
         <ImageView
             android:id="@+id/imageView11"
@@ -188,7 +188,7 @@
             android:id="@+id/iconollamada"
             android:layout_width="23dp"
             android:layout_height="24dp"
-            android:layout_marginStart="44dp"
+            android:layout_marginStart="28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/email"
             app:layout_constraintTop_toBottomOf="@+id/whaLogo"
