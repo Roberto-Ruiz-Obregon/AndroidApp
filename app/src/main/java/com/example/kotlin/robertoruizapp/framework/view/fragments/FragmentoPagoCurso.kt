@@ -17,12 +17,19 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
+import com.example.kotlin.robertoruizapp.data.Repository
+import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
+import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document
 import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Pago
 import com.example.kotlin.robertoruizapp.databinding.FragmentoFormaDePagoBinding
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.PaymentViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
@@ -48,6 +55,7 @@ class FragmentoPagoCurso : Fragment() {
         val boton : Button = root.findViewById(R.id.choose_image_btn)
         val button_enviar: Button = root.findViewById(R.id.button_enviar)
         image_view = root.findViewById(R.id.image_view)
+
 
 
         cursoID = requireActivity().intent.getStringExtra(Constants.CURSO_ID_EXTRA);
@@ -97,10 +105,6 @@ class FragmentoPagoCurso : Fragment() {
         }
 
 
-
-
-
-
         boton.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, Companion.REQUEST_CODE_SELECT_IMAGE)
@@ -113,6 +117,8 @@ class FragmentoPagoCurso : Fragment() {
 
         return root
     }
+
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -132,8 +138,9 @@ class FragmentoPagoCurso : Fragment() {
     companion object {
         private const val REQUEST_CODE_SELECT_IMAGE = 100
     }
+
+
+
+
 }
 
-private fun MultipartBody.part(index: String): MultipartBody.Part {
-    TODO("Not yet implemented")
-}
