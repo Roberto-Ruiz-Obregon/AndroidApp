@@ -33,6 +33,7 @@ class MainActivity: AppCompatActivity() {
         exchangeCurrentFragment(FragmentoHome(), Constants.MENU_INICIO)
     }
 
+
     private fun initializeListeners(){
         binding.appBarMain.cursologo.setOnClickListener {
             selectMenuOption(Constants.MENU_CURSOS)

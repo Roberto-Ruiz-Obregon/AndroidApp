@@ -6,7 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +34,9 @@ class FragmentoCursos : Fragment() , CursoClickListener{
     private val binding get() = _binding!!
     private lateinit var viewModel: CursosFragmentoViewModel
     private lateinit var recyclerView: RecyclerView
+    private var progressBar: ProgressBar? = null
+
+    val finishedLoading = MutableLiveData<Boolean>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,18 +44,34 @@ class FragmentoCursos : Fragment() , CursoClickListener{
     ): View {
         viewModel = ViewModelProvider(this)[CursosFragmentoViewModel::class.java]
         _binding = FragmentoCursosBinding.inflate(inflater, container, false)
+        finishedLoading.postValue(false)
+        initializeObservers()
         getCourseList()
         val root: View = binding.root
         recyclerView = root.findViewById<RecyclerView>(R.id.recyclercursos)
+        progressBar = root.findViewById(R.id.pbFragmentBarraProgresoCursos)
+
         return root
     }
 
+    private fun initializeObservers() {
+        finishedLoading.observe(viewLifecycleOwner, Observer {finishedLoading ->
+            if(finishedLoading){
+                progressBarBye()
+            }
+        })
+    }
+    private fun progressBarBye() {
+        progressBar?.visibility = View.GONE
+    }
     private fun getCourseList(){
+
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
             val result: CursosObjeto? = repository.getCursos()
             Timber.tag("Salida").d(result?.data?.documents!![0].courseName)
             Timber.tag("Salida2").d(result.results.toString())
+
             CoroutineScope(Dispatchers.Main).launch {
                 val layoutManager = GridLayoutManager(requireContext(), 2)
                 val fragmentoInfoCursos = this@FragmentoCursos
@@ -59,6 +81,7 @@ class FragmentoCursos : Fragment() , CursoClickListener{
                 adapter.cursosAdapter(result.data?.documents) //!!
                 recyclerView.adapter = adapter
                 recyclerView.setHasFixedSize(true)
+                finishedLoading.postValue(true)
             }
         }
     }
