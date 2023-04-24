@@ -21,14 +21,13 @@ class PaymentViewModel: ViewModel() {
     fun getInscriptionObserver(): MutableLiveData<Pago?> {
         return PaymentLiveData
     }
-
-    fun startPayment(token: String, course: Pago, file: MultipartBody.Part) {
-        val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
-        val call = retroService.postPago(token,token, file, course)
-        call.enqueue(object: Callback<Pago> {
-            override fun onFailure(call: Call<Pago>, t: Throwable) {
-                Log.d("Falla de llamada", t.toString())
-                PaymentLiveData.postValue(null)
+    fun startPayment(token: String, course: MultipartBody?, parts: Pago) {
+            val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
+            val call = retroService.postPago(token,course, parts)
+            call.enqueue(object: Callback<Pago> {
+                override fun onFailure(call: Call<Pago>, t: Throwable) {
+                    Log.d("Falla de llamada", t.toString())
+                    PaymentLiveData.postValue(null)
             }
 
             override fun onResponse(call: Call<Pago>, response: Response<Pago>) {
@@ -40,7 +39,7 @@ class PaymentViewModel: ViewModel() {
                 }
             }
         })
-
     }
+
 
 }

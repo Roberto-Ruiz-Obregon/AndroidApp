@@ -2,7 +2,6 @@ package com.example.kotlin.robertoruizapp.framework.view.fragments
 
 import android.app.Activity
 import android.content.Intent
-import okhttp3.RequestBody
 import okhttp3.MultipartBody
 
 
@@ -24,9 +23,10 @@ import com.example.kotlin.robertoruizapp.databinding.FragmentoFormaDePagoBinding
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.PaymentViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
-import java.io.FileOutputStream
+
 
 class FragmentoPagoCurso : Fragment() {
     private var _binding: FragmentoFormaDePagoBinding? = null
@@ -55,24 +55,49 @@ class FragmentoPagoCurso : Fragment() {
 
         val token: String = "Bearer " + LoginActivity.token
 
+
+
+
+
         fun startPayment() {
-            // Obtener la ruta real del archivo de imagen a partir de su Uri
-            val imageFile = File(requireContext().cacheDir, "image.jpg")
-            val inputStream = requireContext().contentResolver.openInputStream(imagen_pago!!)
-            val outputStream = FileOutputStream(imageFile)
-            inputStream?.copyTo(outputStream)
-            inputStream?.close()
-            outputStream.close()
+            val file = File(requireContext().cacheDir, "image.jpg")
+            val requestBody = MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("fieldname", "image")
+                .addFormDataPart("originalname", file.name)
+                .addFormDataPart("encoding", "binary")
+                .addFormDataPart("mimetype", "image/jpeg")
+                .addFormDataPart("size", file.length().toString())
+                .addFormDataPart("destination", "/path/to/destination")
+                .addFormDataPart("filename", file.name)
+                .addFormDataPart("path", file.absolutePath)
+                .addFormDataPart(
+                    "buffer",
+                    file.name,
+                    file.asRequestBody("application/octet-stream".toMediaType())
+                )
+                .addFormDataPart("billImageUrl", "billImageUrlValue")
+                .addFormDataPart("cursoID", cursoID ?: "")
+                .build()
 
-            // Crear un objeto RequestBody a partir del archivo de imagen
-            val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), imageFile)
+            val user = Pago(
+                cursoID,
+                //"billImageUrlValue",
+                file.name,
+                "utf-8",
+                "image/jpeg",
+                file.length(),
+                file.parentFile.absolutePath,
+                file.name,
+                file.absolutePath
+            )
 
-            // Crear un objeto MultipartBody.Part a partir del objeto RequestBody
-            val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
+            viewModel.startPayment(token, requestBody, user)
 
-            val user= Pago(cursoID, imagePart)
-            viewModel.startPayment(token, user, imagePart)
         }
+
+
+
 
 
 
@@ -107,4 +132,8 @@ class FragmentoPagoCurso : Fragment() {
     companion object {
         private const val REQUEST_CODE_SELECT_IMAGE = 100
     }
+}
+
+private fun MultipartBody.part(index: String): MultipartBody.Part {
+    TODO("Not yet implemented")
 }

@@ -55,15 +55,15 @@ interface ApiService {
             @Body params: Inscription
         ): Call<Inscription>
 
-        @Multipart
-        @POST("payment/startPayment/{id}")
-        fun postPago(
-            @Path("id") id: String,
-            @Header("Authorization") authHeader: String,
-            @Part file: MultipartBody.Part,
-            @Part ("cursoID")params: Pago
-        ): Call<Pago>
+    @Multipart
+    @POST("payment/startPayment")
+    fun postPago(
+        @Header("Authorization") authHeader: String,
+        @Part("fieldname") fieldname: MultipartBody?,
+        @Part("cursoID") cursoID: Pago
+    ): Call<Pago>
 
 
 
-    }
+
+}
