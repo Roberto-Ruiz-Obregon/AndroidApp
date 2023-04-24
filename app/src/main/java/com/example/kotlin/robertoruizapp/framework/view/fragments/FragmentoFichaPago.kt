@@ -2,6 +2,7 @@ package com.example.kotlin.robertoruizapp.framework.view.fragments
 
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import com.example.kotlin.robertoruizapp.data.Repository
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document
 import com.example.kotlin.robertoruizapp.databinding.FragmentoFichapagoBinding
+import com.example.kotlin.robertoruizapp.framework.viewmodel.FichaPagoViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,7 +29,7 @@ import java.util.*
 class FragmentoFichaPago : Fragment() {
     private var _binding: FragmentoFichapagoBinding? = null
     private val binding get() = _binding ?: throw IllegalStateException("Binding is null.")
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: FichaPagoViewModel
     private lateinit var recyclerView: RecyclerView
     private var cursoID: String? = null  // Declaración de la variable
 
@@ -37,21 +39,19 @@ class FragmentoFichaPago : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this)[FichaPagoViewModel::class.java]
         _binding = FragmentoFichapagoBinding.inflate(inflater, container, false)
 
-        if (_binding == null) {
-            return inflater.inflate(R.layout.fragmento_fichapago, container, false)
-        }
 
         val root = binding.root
 
         //val intent = requireActivity().intent
-        //cursoID = intent.getStringExtra(Constants.CURSO_ID_EXTRA)
+        cursoID = requireActivity().intent.getStringExtra(Constants.CURSO_ID_EXTRA);
+
 
         // Carga los datos
-        //lateinit var data: List<Document>
-        //getCourseList()
+       // lateinit var data: List<Document>
+       // getCourseList()
 
 
         val boton : Button = root.findViewById(R.id.boton_comprobante)
@@ -86,11 +86,38 @@ class FragmentoFichaPago : Fragment() {
         return root
     }
 
+    /*
+    private fun getCourseList(){
+        CoroutineScope(Dispatchers.IO).launch {
+            val repository = Repository()
+            val result: CursosObjeto? = repository.getCursos()
+
+            CoroutineScope(Dispatchers.Main).launch{
+                val curso = cursoFromID(cursoID,result)
+                if (curso != null)
+                {
+                    Log.d("FragmentoFichaPago", "Resultado de getCursos(): $result")
+
+                    binding.montoCurso.text = "$" + curso.cost.toString()
+                    binding.numeroCuenta.text = "Cuenta:  " + "6464 5455 1145 1548"
+                    binding.referenciaCurso.text = "Referencia:  " + curso.courseName
+                }
+            }
+        }
+    }
+    private fun cursoFromID(cursoID: String?, result: CursosObjeto?): Document? {
+        for (curso in result!!.data.documents){
+            var cursoid = curso._id
+            if(cursoid.toString() == cursoID)
+                return curso
+        }
+        return null
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
+*/
 }
 
 

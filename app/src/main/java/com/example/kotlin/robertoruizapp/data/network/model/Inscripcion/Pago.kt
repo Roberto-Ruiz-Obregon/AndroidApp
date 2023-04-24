@@ -1,9 +1,13 @@
 package com.example.kotlin.robertoruizapp.data.network.model.Inscripcion
 
-import android.net.Uri
-
-data class  Pago (
+data class Pago(
     val courseId: String?,
-    val status: String,
-    val billImageUrl: Uri?
+    //val billImageUrl: String?,
+    val originalname: String?,
+    val encoding: String?,
+    val mimetype: String?,
+    val size: Long?,
+    val destination: String?,
+    val filename: String?,
+    val path: String?
 )

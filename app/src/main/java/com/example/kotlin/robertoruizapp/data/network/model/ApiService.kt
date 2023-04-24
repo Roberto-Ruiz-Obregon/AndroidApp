@@ -12,9 +12,12 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
+import okhttp3.MultipartBody
 import retrofit2.http.Headers
+import retrofit2.http.Multipart
+import retrofit2.http.Part
 
-    interface ApiService {
+interface ApiService {
 
         @POST("user/auth/signup")
         @Headers("Accept:application/json", "Content-Type:application/json")
@@ -52,10 +55,15 @@ import retrofit2.http.Headers
             @Body params: Inscription
         ): Call<Inscription>
 
-        @POST("payment/startPayment")
-        fun postPago(
-            @Header("Authorization") authHeader: String,
-            @Body params: Pago
-        ): Call<Pago>
+    @Multipart
+    @POST("payment/startPayment")
+    fun postPago(
+        @Header("Authorization") authHeader: String,
+        @Part("fieldname") fieldname: MultipartBody?,
+        @Part("cursoID") cursoID: Pago
+    ): Call<Pago>
 
-    }
+
+
+
+}
