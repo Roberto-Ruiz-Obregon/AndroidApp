@@ -8,6 +8,6 @@ class ProgramListRequirement {
     private val repository = ProgramRepository()
 
     suspend operator fun invoke(
-
-    ): Program? = repository.getProgramList()
+        programName: String, categorySelected: String
+    ): Program? = repository.getProgramList(programName, categorySelected)
 }

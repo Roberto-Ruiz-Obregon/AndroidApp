@@ -4,16 +4,27 @@ import com.example.kotlin.robertoruizapp.data.network.model.*
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileRequest
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileResponse
+import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
 import retrofit2.Call
 
 class Repository() {
     private lateinit var api: ApiService
 
-    suspend fun getCursos(): CursosObjeto?{
+    suspend fun getCursos(courseName: String, postalCode: String, modality: String, status: String, topic: String?): CursosObjeto?{
         api = NetworkModuleDI()
         return try{
-            api.getCursos()
+            api.getCursos(courseName, postalCode, modality, status, topic)
+        }catch (e:java.lang.Exception){
+            e.printStackTrace()
+            null
+        }
+    }
+
+    suspend fun getTopics(): TopicsObject?{
+        api = NetworkModuleDI()
+        return try{
+            api.getTopics()
         }catch (e:java.lang.Exception){
             e.printStackTrace()
             null

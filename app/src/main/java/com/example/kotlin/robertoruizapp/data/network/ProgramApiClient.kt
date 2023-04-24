@@ -6,10 +6,10 @@ import com.example.kotlin.robertoruizapp.data.network.model.program.Program
 class ProgramApiClient {
     private lateinit var api: ProgramAPIService
     //todo revisar si está todo listo
-    suspend fun getProgramList(): Program? {
+    suspend fun getProgramList(programName: String, categorySelected: String): Program? {
         api = NetworkModuleDI()
         return try {
-            api.getProgramList()
+            api.getProgramList(programName, categorySelected)
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
             null

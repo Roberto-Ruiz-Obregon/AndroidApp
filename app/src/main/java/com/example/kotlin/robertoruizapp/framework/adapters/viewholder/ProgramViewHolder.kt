@@ -59,6 +59,7 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
             binding.tvCardTituloPrograma.text = item.programName // Se le cambia el valor a la card
             binding.tvCardCalendarioPrograma.text =  formattedDate
             binding.tvCardDescripcionPrograma.text = item.description
+            binding.tvCardCategoryPrograma.text = item.category
 
             CoroutineScope(Dispatchers.Main).launch {
                 var urlImage = item.imageUrl
@@ -84,7 +85,7 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
 
         CoroutineScope(Dispatchers.IO).launch {
             val programListRequirement = ProgramListRequirement()
-            val result: Program? = programListRequirement()
+            val result: Program? = programListRequirement("", "")
             CoroutineScope(Dispatchers.Main).launch {
 
                 val urlImage = result?.data?.documents?.iterator()?.next()?.imageUrl
