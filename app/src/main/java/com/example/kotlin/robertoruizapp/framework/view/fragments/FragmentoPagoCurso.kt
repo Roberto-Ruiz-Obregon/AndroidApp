@@ -6,8 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.ACTION_PICK
 import android.graphics.Bitmap
-import okhttp3.MultipartBody
-
 
 
 import android.net.Uri
@@ -17,28 +15,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.MimeTypeMap
 import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
-import com.example.kotlin.robertoruizapp.data.Repository
-import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
-import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document
 import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Pago
 import com.example.kotlin.robertoruizapp.databinding.FragmentoFormaDePagoBinding
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.PaymentViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.ByteArrayOutputStream
 import java.io.File
-
+import java.io.FileOutputStream
 
 class FragmentoPagoCurso : Fragment() {
     private var _binding: FragmentoFormaDePagoBinding? = null
@@ -47,6 +38,7 @@ class FragmentoPagoCurso : Fragment() {
     private var cursoID : String? = null
     private lateinit var image_view: ImageView
     private var imagen_pago : Uri? = null
+    private var selectedImageFile: File? = null
 
 
     override fun onCreateView(
@@ -72,42 +64,23 @@ class FragmentoPagoCurso : Fragment() {
 
 
 
-        fun startPayment() {
-            val file = File(requireContext().cacheDir, "image.jpg")
-            val requestBody = MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("fieldname", "image")
-                .addFormDataPart("originalname", file.name)
-                .addFormDataPart("encoding", "binary")
-                .addFormDataPart("mimetype", "image/jpeg")
-                .addFormDataPart("size", file.length().toString())
-                .addFormDataPart("destination", "/path/to/destination")
-                .addFormDataPart("filename", file.name)
-                .addFormDataPart("path", file.absolutePath)
-                .addFormDataPart(
-                    "buffer",
-                    file.name,
-                    file.asRequestBody("application/octet-stream".toMediaType())
-                )
-                .addFormDataPart("billImageUrl", "billImageUrlValue")
-                .addFormDataPart("cursoID", cursoID ?: "")
-                .build()
+        fun startPayment(imageFile: File) {
+            val token: String = "Bearer " + LoginActivity.token
 
             val user = Pago(
                 cursoID,
-                //"billImageUrlValue",
-                file.name,
+                imageFile.name,
                 "utf-8",
                 "image/jpeg",
-                file.length(),
-                file.parentFile.absolutePath,
-                file.name,
-                file.absolutePath
+                imageFile.length(),
+                imageFile.parentFile.absolutePath,
+                imageFile.name,
+                imageFile.absolutePath
             )
 
-            viewModel.startPayment(token, requestBody, user)
-
+            viewModel.startPayment(token, imageFile, user)
         }
+
 
 
         boton.setOnClickListener {
@@ -133,9 +106,11 @@ class FragmentoPagoCurso : Fragment() {
         }
 
         button_enviar.setOnClickListener {
-            startPayment()
-            Log.d("inscribirme boton", "me clickeaste")
+            selectedImageFile?.let { file ->
+                startPayment(file)
+            }
         }
+
 
         return root
     }
@@ -160,14 +135,45 @@ class FragmentoPagoCurso : Fragment() {
             if (requestCode == 1) {
                 val imageBitmap = data?.extras?.get("data") as Bitmap
                 image_view.setImageBitmap(imageBitmap)
-                imagen_pago = getImageUri(requireContext(), imageBitmap)
+                selectedImageFile = bitmapToFile(requireContext(), imageBitmap)
             } else if (requestCode == 2) {
                 val selectedImageUri = data?.data
                 image_view.setImageURI(selectedImageUri)
-                imagen_pago = selectedImageUri
+                selectedImageFile = uriToFile(requireContext(), selectedImageUri)
             }
         }
     }
+
+
+    private fun bitmapToFile(context: Context, bitmap: Bitmap): File {
+        val filesDir = context.filesDir
+        val imageFile = File(filesDir, "image.jpg")
+
+        val os = FileOutputStream(imageFile)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
+        os.flush()
+        os.close()
+
+        return imageFile
+    }
+
+    private fun uriToFile(context: Context, uri: Uri?): File? {
+        uri?.let {
+            val resolver = context.contentResolver
+            val inputStream = resolver.openInputStream(it)
+            val type = resolver.getType(it)
+            val extension = MimeTypeMap.getSingleton().getExtensionFromMimeType(type)
+            val file = File(context.cacheDir, "image.$extension")
+            val os = FileOutputStream(file)
+            inputStream?.copyTo(os)
+            os.flush()
+            os.close()
+            inputStream?.close()
+            return file
+        }
+        return null
+    }
+
 
     private fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
         val bytes = ByteArrayOutputStream()
@@ -181,17 +187,15 @@ class FragmentoPagoCurso : Fragment() {
         return Uri.parse(path)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onDestroy() {
+        super.onDestroy()
+        Glide.with(requireContext()).clear(image_view)
+
     }
 
     companion object {
         private const val REQUEST_CODE_SELECT_IMAGE = 100
     }
-
-
-
 
 }
 

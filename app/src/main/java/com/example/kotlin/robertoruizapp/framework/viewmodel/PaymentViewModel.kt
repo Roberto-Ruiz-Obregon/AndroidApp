@@ -7,11 +7,11 @@ import com.example.kotlin.robertoruizapp.data.network.model.ApiService
 import com.example.kotlin.robertoruizapp.data.network.model.NetworkModuleDI
 
 import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Pago
-import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
+import java.io.File
 
 
 class PaymentViewModel: ViewModel() {
@@ -21,7 +21,7 @@ class PaymentViewModel: ViewModel() {
     fun getInscriptionObserver(): MutableLiveData<Pago?> {
         return PaymentLiveData
     }
-    fun startPayment(token: String, course: MultipartBody?, parts: Pago) {
+    fun startPayment(token: String, course: File, parts: Pago) {
             val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
             val call = retroService.postPago(token,course, parts)
             call.enqueue(object: Callback<Pago> {
