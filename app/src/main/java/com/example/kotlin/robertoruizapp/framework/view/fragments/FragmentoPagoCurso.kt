@@ -1,7 +1,11 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.content.Intent.ACTION_PICK
+import android.graphics.Bitmap
 import okhttp3.MultipartBody
 
 
@@ -32,6 +36,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.ByteArrayOutputStream
 import java.io.File
 
 
@@ -106,8 +111,25 @@ class FragmentoPagoCurso : Fragment() {
 
 
         boton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, Companion.REQUEST_CODE_SELECT_IMAGE)
+            val options = arrayOf<CharSequence>("Tomar foto", "Elegir de la galería", "Cancelar")
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Seleccionar una opción")
+            builder.setItems(options) { dialog, item ->
+                when {
+                    options[item] == "Tomar foto" -> {
+                        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                        startActivityForResult(intent, 1)
+                    }
+                    options[item] == "Elegir de la galería" -> {
+                        val intent = Intent(ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                        startActivityForResult(intent, 2)
+                    }
+                    options[item] == "Cancelar" -> {
+                        dialog.dismiss()
+                    }
+                }
+            }
+            builder.show()
         }
 
         button_enviar.setOnClickListener {
@@ -119,7 +141,7 @@ class FragmentoPagoCurso : Fragment() {
     }
 
 
-
+/*
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -128,6 +150,35 @@ class FragmentoPagoCurso : Fragment() {
             image_view.setImageURI(selectedImageUri)
             imagen_pago = selectedImageUri
         }
+    }
+*/
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == 1) {
+                val imageBitmap = data?.extras?.get("data") as Bitmap
+                image_view.setImageBitmap(imageBitmap)
+                imagen_pago = getImageUri(requireContext(), imageBitmap)
+            } else if (requestCode == 2) {
+                val selectedImageUri = data?.data
+                image_view.setImageURI(selectedImageUri)
+                imagen_pago = selectedImageUri
+            }
+        }
+    }
+
+    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path: String = MediaStore.Images.Media.insertImage(
+            inContext.contentResolver,
+            inImage,
+            "Title",
+            null
+        )
+        return Uri.parse(path)
     }
 
     override fun onDestroyView() {
