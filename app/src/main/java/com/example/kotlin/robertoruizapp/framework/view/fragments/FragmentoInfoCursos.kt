@@ -62,6 +62,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
                     binding.descripcionCurso.text = curso.description
                     binding.tipoModalidad.text = curso.modality
                     binding.nombrePonente.text = curso.teacher
+                    binding.ubicacionCurso.text = curso.address
                     //binding.fechaCurso.text = curso.startDate
 
                     val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
@@ -81,6 +82,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
 
                             val fragmentoNuevo = FragmentoInscripcionCurso()
                             supportFragmentManager.beginTransaction()
+
                                 .replace(R.id.InfoCurso, fragmentoNuevo)
                                 //.addToBackStack(null)
                                 .commit()
@@ -103,7 +105,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
                             val contenedor = findViewById<ViewGroup>(R.id.InfoCurso)
                             contenedor.removeAllViews() // Elimina todos los hijos del contenedor
 
-                            val fragmentoNuevo = FragmentoPagoCurso()
+                            val fragmentoNuevo = FragmentoFichaPago()
                             supportFragmentManager.beginTransaction()
                                 .replace(R.id.InfoCurso, fragmentoNuevo)
                                 //.addToBackStack(null)

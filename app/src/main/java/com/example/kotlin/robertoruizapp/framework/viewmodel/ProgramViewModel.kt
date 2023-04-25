@@ -13,16 +13,19 @@ import kotlinx.coroutines.launch
 
 class ProgramViewModel : ViewModel() {
     // [Cajita],
+    val finishedLoading = MutableLiveData<Boolean>()
     val programObjectLiveData = MutableLiveData<List<Document>>()
     private val programListRequirement = ProgramListRequirement()
 
     fun getProgramList(programName: String, categorySelected: String) {
+        finishedLoading.postValue(false)
         viewModelScope.launch(Dispatchers.IO) {
             val result: Program? = programListRequirement(programName, categorySelected)
             var programs: List<Document>? = result?.data?.documents
 
             CoroutineScope(Dispatchers.Main).launch{
                 programObjectLiveData.postValue(programs!!) // !! "Sé lo que estoy haciendo"
+                finishedLoading.postValue(true)
             }
         }
     }

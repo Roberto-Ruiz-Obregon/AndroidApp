@@ -1,5 +1,8 @@
 package com.example.kotlin.robertoruizapp.data.network.model
+
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
+import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Inscription
+import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Pago
 import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginRequest
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginResponse
@@ -13,55 +16,72 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
+import okhttp3.MultipartBody
 import retrofit2.http.Headers
 import retrofit2.http.Query
 import retrofit2.http.PATCH
+import retrofit2.http.Multipart
+import retrofit2.http.Part
 
 interface ApiService {
 
-        @POST("user/auth/signup")
-        @Headers("Accept:application/json", "Content-Type:application/json")
-        fun signUpUser(@Body params: SignUp): Call<SignUp>
+    @POST("user/auth/signup")
+    @Headers("Accept:application/json", "Content-Type:application/json")
+    fun signUpUser(@Body params: SignUp): Call<SignUp>
 
-        //https://us-central1-robertoruiz-eca78.cloudfunctions.net/api/course/
-        @GET("course")
-        suspend fun getCursos(
-            @Query("courseName[regex]") courseName: String,
-            @Query("postalCode[regex]") postalCode: String,
-            @Query("modality[regex]") modality: String,
-            @Query("status[regex]") status: String,
-            @Query("topics[in]") topic: String?
-        ): CursosObjeto
+    //https://us-central1-robertoruiz-eca78.cloudfunctions.net/api/course/
+    @GET("course")
+    suspend fun getCursos(
+        @Query("courseName[regex]") courseName: String,
+        @Query("postalCode[regex]") postalCode: String,
+        @Query("modality[regex]") modality: String,
+        @Query("status[regex]") status: String,
+        @Query("topics[in]") topic: String?
+    ): CursosObjeto
 
     @GET("topics")
     suspend fun getTopics(
 
     ): TopicsObject
 
-        @GET("user/{id}")
-        suspend fun getUserInfo(
-            @Path("id") id: String
-        ): Profile
+    @GET("user/{id}")
+    suspend fun getUserInfo(
+        @Path("id") id: String
+    ): Profile
 
-        @GET("user/auth/me")
-        suspend fun getMyInfo(
-            @Header("Cookie") jwt: String
-        ): Profile
+    @GET("user/auth/me")
+    suspend fun getMyInfo(
+        @Header("Cookie") jwt: String
+    ): Profile
 
-        @POST("user/auth/login")
-        fun postLogin(
-            @Body request: LoginRequest
-        ): Call<LoginResponse>
+    @POST("user/auth/login")
+    fun postLogin(
+        @Body request: LoginRequest
+    ): Call<LoginResponse>
 
-        @POST("user/auth/logout")
-        fun postLogout(
-            @Header("Authorization") authHeader: String
-        ): Call<Void>
+    @POST("user/auth/logout")
+    fun postLogout(
+        @Header("Authorization") authHeader: String
+    ): Call<Void>
 
-        // TODO: wip
-        @PATCH("user/auth/updateme")
-        suspend fun editMyInfo(
-                @Header("Authorization") jwt: String,
-                @Body request: EditProfileRequest
-        ): EditProfileResponse
+    // TODO: wip
+    @PATCH("user/auth/updateme")
+    suspend fun editMyInfo(
+        @Header("Authorization") jwt: String,
+        @Body request: EditProfileRequest
+    ): EditProfileResponse
+
+    @POST("inscription/inscribeTo")
+    fun postInscription(
+        @Header("Authorization") authHeader: String,
+        @Body params: Inscription
+    ): Call<Inscription>
+
+    @Multipart
+    @POST("payment/startPayment")
+    fun postPago(
+        @Header("Authorization") authHeader: String,
+        @Part("fieldname") fieldname: MultipartBody?,
+        @Part("cursoID") cursoID: Pago
+    ): Call<Pago>
 }
