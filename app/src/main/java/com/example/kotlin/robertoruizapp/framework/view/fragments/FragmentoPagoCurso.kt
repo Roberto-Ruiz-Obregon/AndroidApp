@@ -17,6 +17,7 @@ import android.view.ViewGroup
 import android.webkit.MimeTypeMap
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -102,10 +103,11 @@ class FragmentoPagoCurso : Fragment() {
         }
 
         button_enviar.setOnClickListener {
-            selectedImageFile?.let { file ->
-                startPayment(file)
-            }
-        }
+            if(selectedImageFile != null) {
+                startPayment(selectedImageFile!!)
+            } else {
+                Toast.makeText(context, "Por favor, seleccione una imagen primero", Toast.LENGTH_SHORT).show()
+            }}
 
 
         return root
