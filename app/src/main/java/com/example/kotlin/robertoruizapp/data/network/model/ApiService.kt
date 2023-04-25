@@ -15,7 +15,6 @@ import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.Part
-import java.io.File
 
 interface ApiService {
 
@@ -59,8 +58,8 @@ interface ApiService {
     @POST("payment/startPayment")
     fun postPago(
         @Header("Authorization") authHeader: String,
-        @Part("fieldname") fieldname: File,
-        @Part("cursoID") cursoID: Pago
+        @Part("fieldname") fieldname: Pago,
+        @Part("cursoId") cursoID: String?
     ): Call<Pago>
 
 

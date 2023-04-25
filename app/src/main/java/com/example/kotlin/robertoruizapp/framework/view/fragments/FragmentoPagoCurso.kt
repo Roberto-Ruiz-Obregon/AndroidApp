@@ -11,7 +11,6 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,14 +60,10 @@ class FragmentoPagoCurso : Fragment() {
         val token: String = "Bearer " + LoginActivity.token
 
 
-
-
-
         fun startPayment(imageFile: File) {
-            val token: String = "Bearer " + LoginActivity.token
 
             val user = Pago(
-                cursoID,
+
                 imageFile.name,
                 "utf-8",
                 "image/jpeg",
@@ -77,9 +72,10 @@ class FragmentoPagoCurso : Fragment() {
                 imageFile.name,
                 imageFile.absolutePath
             )
-
-            viewModel.startPayment(token, imageFile, user)
+            viewModel.startPayment(token, user, cursoID)
+            //viewModel.startPayment(token, imageFile, user.courseId)
         }
+
 
 
 
@@ -114,19 +110,6 @@ class FragmentoPagoCurso : Fragment() {
 
         return root
     }
-
-
-/*
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_CODE_SELECT_IMAGE && resultCode == Activity.RESULT_OK && data != null) {
-            val selectedImageUri = data.data
-            image_view.setImageURI(selectedImageUri)
-            imagen_pago = selectedImageUri
-        }
-    }
-*/
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

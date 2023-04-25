@@ -11,7 +11,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
-import java.io.File
 
 
 class PaymentViewModel: ViewModel() {
@@ -21,9 +20,11 @@ class PaymentViewModel: ViewModel() {
     fun getInscriptionObserver(): MutableLiveData<Pago?> {
         return PaymentLiveData
     }
-    fun startPayment(token: String, course: File, parts: Pago) {
+    fun startPayment(token: String, parts: Pago, course: String?) {
             val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
-            val call = retroService.postPago(token,course, parts)
+        val call = retroService.postPago(token, parts , course)
+
+        //val call = retroService.postPago(token, parts, course)
             call.enqueue(object: Callback<Pago> {
                 override fun onFailure(call: Call<Pago>, t: Throwable) {
                     Log.d("Falla de llamada", t.toString())

@@ -1,7 +1,7 @@
 package com.example.kotlin.robertoruizapp.data.network.model.Inscripcion
 
 data class Pago(
-    val courseId: String?,
+    //val courseId: String?,
     //val billImageUrl: String?,
     val originalname: String?,
     val encoding: String?,
