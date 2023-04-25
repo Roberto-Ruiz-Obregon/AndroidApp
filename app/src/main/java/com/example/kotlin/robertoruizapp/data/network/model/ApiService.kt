@@ -59,7 +59,7 @@ interface ApiService {
     fun postPago(
         @Header("Authorization") authHeader: String,
         @Part("fieldname") fieldname: Pago,
-        @Part("cursoId") cursoID: String?
+        @Part("courseId") cursoID: String?
     ): Call<Pago>
 
 
