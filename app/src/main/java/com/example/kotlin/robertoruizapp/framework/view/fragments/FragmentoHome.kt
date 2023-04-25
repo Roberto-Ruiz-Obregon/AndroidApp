@@ -26,7 +26,6 @@ class FragmentoHome : Fragment() {
     private var _binding: FragmentoHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
-    private lateinit var recyclerView: RecyclerView
 
 
     override fun onCreateView(

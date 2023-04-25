@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.kotlin.robertoruizapp.data.network.model.ApiService
 import com.example.kotlin.robertoruizapp.data.network.model.NetworkModuleDI
 import com.example.kotlin.robertoruizapp.databinding.FragmentoPerfilBinding
+import com.example.kotlin.robertoruizapp.framework.view.activities.EditProfileActivity
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.PerfilViewModel
 import com.example.kotlin.robertoruizapp.utils.PreferenceHelper
@@ -47,6 +48,12 @@ class FragmentoPerfil: Fragment() {
             performLogout()
         }
 
+        val btnEditProfile = binding.btnEditProfile
+
+        btnEditProfile.setOnClickListener {
+            editMyProfile()
+        }
+
         return root
     }
 
@@ -73,6 +80,11 @@ class FragmentoPerfil: Fragment() {
         call.enqueue(object: Callback<Void>{
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 clearSessionPreference()
+                Toast.makeText(
+                    this@FragmentoPerfil.requireActivity(),
+                    "Logout exitoso",
+                    Toast.LENGTH_SHORT
+                ).show()
                 passViewGoToLogin()
             }
 
@@ -85,6 +97,12 @@ class FragmentoPerfil: Fragment() {
             }
 
         })
+    }
+    // TODO
+    private fun editMyProfile(){
+        val intent = Intent()
+        intent.setClass(requireActivity(), EditProfileActivity::class.java)
+        requireActivity().startActivity(intent)
     }
 
     private fun clearSessionPreference(){

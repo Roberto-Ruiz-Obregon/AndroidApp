@@ -5,12 +5,14 @@
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_robertoruiz"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.RobertoRuizApp"
@@ -41,6 +43,8 @@
             </intent-filter>
         </activity>
 
+
+
         <!-- Activiy de Detalle Programas y Becas-->
         <activity android:name=".framework.view.activities.ProgramDetailActivity"
             android:exported="false"
@@ -52,6 +56,11 @@
             android:resource="@array/preloaded_fonts" />
         <activity
             android:name=".framework.view.activities.LoginActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".framework.view.activities.EditProfileActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             />

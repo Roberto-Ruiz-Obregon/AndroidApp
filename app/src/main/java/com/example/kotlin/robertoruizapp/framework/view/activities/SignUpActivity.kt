@@ -13,6 +13,7 @@ import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.framework.viewmodel.SignUpActivityViewModel
 import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
 
+
 class SignUpActivity : AppCompatActivity() {
     private lateinit var viewModel: SignUpActivityViewModel
 
@@ -24,7 +25,7 @@ class SignUpActivity : AppCompatActivity() {
         val gender = findViewById<Spinner>(R.id.spinnerSex)
         gender.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, generos)
 
-        val estudios = arrayOf("Ninguno", "Primaria", "Secundaria", "Preparatoria", "Universidad")
+        val estudios = arrayOf("Ninguno", "Primaria", "Secundaria", "Preparatoria", "Universidad", "Maestria", "Doctorado")
         val studies = findViewById<Spinner>(R.id.spinnerEducation)
         studies.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, estudios)
 
