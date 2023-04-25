@@ -81,7 +81,6 @@ class ProgramFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         spinModality.adapter = adModality
 
-        // Name input
         binding.findProgramName.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
 
@@ -113,6 +112,7 @@ class ProgramFragment : Fragment(), AdapterView.OnItemSelectedListener {
         recyclerView = root.findViewById(R.id.rvProgramas)
 
     }
+
 
     private fun initializeObservers() {
         viewModel.programObjectLiveData.observe(viewLifecycleOwner) { programs ->
