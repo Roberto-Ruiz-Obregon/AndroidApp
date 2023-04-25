@@ -85,7 +85,7 @@ class FragmentoInscripcionCurso :  Fragment() {
     private fun getCourseList(){
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
-            val result: CursosObjeto? = repository.getCursos()
+            val result: CursosObjeto? = repository.getCursosNoFilter()
 
             CoroutineScope(Dispatchers.Main).launch{
                 val curso = cursoFromID(cursoID,result)

@@ -1,5 +1,6 @@
 package com.example.kotlin.robertoruizapp.data
 
+import android.net.Network
 import com.example.kotlin.robertoruizapp.data.network.model.*
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileRequest
@@ -11,6 +12,15 @@ import retrofit2.Call
 class Repository() {
     private lateinit var api: ApiService
 
+    suspend fun getCursosNoFilter() : CursosObjeto? {
+        api = NetworkModuleDI()
+        return try{
+            api.getCursosNoFilter()
+        }catch (e:java.lang.Exception){
+            e.printStackTrace()
+            null
+        }
+    }
     suspend fun getCursos(courseName: String, postalCode: String, modality: String, status: String, topic: String?): CursosObjeto?{
         api = NetworkModuleDI()
         return try{

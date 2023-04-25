@@ -39,6 +39,10 @@ interface ApiService {
         @Query("topics[in]") topic: String?
     ): CursosObjeto
 
+    // Cursos Sin Filtros - HotFix
+    @GET("course")
+    suspend fun getCursosNoFilter() : CursosObjeto
+
     @GET("topics")
     suspend fun getTopics(
 

@@ -103,7 +103,7 @@
             android:padding="16dp"/>
         <Button
             android:id="@+id/buttonConfirm"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/primary"
             android:text="Cambiar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
