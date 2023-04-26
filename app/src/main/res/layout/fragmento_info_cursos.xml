@@ -43,8 +43,8 @@
         android:id="@+id/imagen_ponente"
         android:layout_width="33dp"
         android:layout_height="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="8dp"
         android:paddingLeft="8sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombre_curso_info"
@@ -55,8 +55,8 @@
         android:id="@+id/nombre_ponente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
 
         android:fontFamily="@font/roboto"
         android:text=" José Fernandez"
@@ -171,26 +171,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="14dp"
+
         android:fontFamily="@font/roboto"
         android:text="Querétaro"
-
+        app:layout_constraintBottom_toTopOf="@+id/descripcion_curso"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/nombre_curso_info"
+        app:layout_constraintTop_toBottomOf="@+id/nombre_ponente"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="20dp"
         android:layout_height="44dp"
-        android:layout_marginStart="5dp"
 
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/descripcion_curso"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nombre_ponente"
-        app:layout_constraintTop_toBottomOf="@+id/nombre_curso_info"
+        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombre_ponente"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ping" />
 
     <ImageView
