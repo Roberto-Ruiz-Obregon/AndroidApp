@@ -5,7 +5,7 @@ import com.example.kotlin.robertoruizapp.data.network.model.program.Document
 import com.example.kotlin.robertoruizapp.data.network.model.program.Program
 
 /**
- * ProgramInfoRequirement which has operator invoke method
+ * ProgramInfoRequirement class which has operator invoke method
  *
  */
 class ProgramInfoRequirement {
