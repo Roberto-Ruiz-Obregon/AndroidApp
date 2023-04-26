@@ -21,9 +21,20 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * TODO
+ *
+ * @property binding
+ */
 class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView.ViewHolder
     (binding.root) {
 
+    /**
+     * TODO
+     *
+     * @param item
+     * @param context
+     */
     fun bind(item: Document, context: Context) {
 
         if(item.createdAt.isNullOrEmpty()) {
@@ -80,6 +91,13 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
 
     }
 
+    /**
+     * TODO
+     *
+     * @param url
+     * @param imageView
+     * @param context
+     */
     private fun getProgramInfo(url: String, imageView: ImageView, context: Context) {
 
 
@@ -101,8 +119,14 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
         }
     }
 
+    /**
+     * TODO:
+     *
+     * @param url
+     * @param context
+     */
     private fun passViewGoToProgramDetail(url: String, context: Context) {
-        var intent: Intent = Intent(context, ProgramDetailActivity::class.java)
+        var intent = Intent(context, ProgramDetailActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         intent.putExtra(Constants.ID_PROGRAM, url)
         context.startActivity(intent)

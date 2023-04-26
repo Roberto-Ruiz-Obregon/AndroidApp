@@ -5,12 +5,30 @@ import com.example.kotlin.robertoruizapp.data.network.ProgramApiClient
 import com.example.kotlin.robertoruizapp.data.network.model.program.Document
 import com.example.kotlin.robertoruizapp.data.network.model.program.Program
 
+/**
+ *
+ *
+ */
 class ProgramRepository {
 
     private lateinit var api: ProgramAPIService
     private val apiProgram = ProgramApiClient()
 
+    /**
+     * TODO
+     *
+     * @param programName
+     * @param categorySelected
+     * @return
+     */
     suspend fun getProgramList(programName: String, categorySelected: String): Program? = apiProgram.getProgramList(programName, categorySelected)
+
+    /**
+     * TODO
+     *
+     * @param numberProgram
+     * @return
+     */
     suspend fun getProgramInfo(numberProgram: String): Program? =
         apiProgram.getProgramInfo(numberProgram)
 }
