@@ -102,7 +102,7 @@
         app:layout_constraintHorizontal_bias="0.804"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_cobro"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.036"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -111,10 +111,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto"
-        android:text="Fecha:"
+        android:text="Fecha de inicio:"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintHorizontal_bias="0.13"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/icon_calendario"
         tools:ignore="MissingConstraints" />
@@ -153,7 +153,7 @@
         android:id="@+id/descripcion_curso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="96dp"
         android:fontFamily="@font/roboto"
         android:paddingLeft="20sp"
         android:paddingRight="20sp"
@@ -236,11 +236,35 @@
         android:id="@+id/imageView4"
         android:layout_width="60dp"
         android:layout_height="35dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.834"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descripcion_curso"
         app:srcCompat="@drawable/pago" />
+
+    <TextView
+        android:id="@+id/Fecha_fin_Titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Fecha de Fin"
+        android:textStyle="bold"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fecha_curso" />
+
+    <TextView
+        android:id="@+id/fechafin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="25 de Mayo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Fecha_fin_Titulo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

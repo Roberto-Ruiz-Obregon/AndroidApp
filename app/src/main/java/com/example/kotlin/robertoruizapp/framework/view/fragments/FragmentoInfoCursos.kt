@@ -78,9 +78,12 @@ class FragmentoInfoCursos : AppCompatActivity() {
                     val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
                     val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                     val date = inputFormat.parse(curso.startDate)
+                    val enddate = inputFormat.parse(curso.endDate)
                     val formattedDate = outputFormat.format(date)
+                    val endformattedDate = outputFormat.format(enddate)
 
                     binding.fechaCurso.text = formattedDate
+                    binding.fechafin.text = endformattedDate
 
                     if (curso.cost.toString() == "0") {
                         binding.tipoPago.text = "Gratuito"
