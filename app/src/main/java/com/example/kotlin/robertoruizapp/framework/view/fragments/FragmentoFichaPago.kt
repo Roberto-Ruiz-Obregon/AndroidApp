@@ -50,7 +50,7 @@ class FragmentoFichaPago : Fragment() {
 
 
         // Carga los datos
-       // lateinit var data: List<Document>
+      // lateinit var data: List<Document>
        // getCourseList()
 
 
@@ -86,7 +86,7 @@ class FragmentoFichaPago : Fragment() {
         return root
     }
 
-    /*
+/*
     private fun getCourseList(){
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
@@ -113,11 +113,13 @@ class FragmentoFichaPago : Fragment() {
         }
         return null
     }
+
+    */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-*/
+
 }
 
 
