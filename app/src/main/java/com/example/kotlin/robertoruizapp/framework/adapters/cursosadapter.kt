@@ -25,8 +25,10 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
 
     }
 
-    fun cursosResults (results: Int) {
-        this.results = results
+    fun cursosResults (results: Int?) {
+        if (results != null) {
+            this?.results = results
+        }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int):ViewHolder {
@@ -73,6 +75,8 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
         viewHolder.botoncurso.setOnClickListener(){
             clickListener.onClick(temp)
         }
+
+
 
 
 
