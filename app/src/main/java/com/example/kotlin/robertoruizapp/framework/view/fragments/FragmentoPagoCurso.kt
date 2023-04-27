@@ -1,6 +1,8 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
 import android.Manifest
+import android.Manifest.permission
+import android.Manifest.permission.*
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
@@ -8,9 +10,9 @@ import android.content.Intent
 import android.content.Intent.ACTION_PICK
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.Manifest.permission.READ_EXTERNAL_STORAGE
 
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -34,6 +36,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 
 
@@ -66,14 +69,8 @@ class FragmentoPagoCurso : Fragment() {
         checkPermissions()
 
         fun startPayment(imageFile: File) {
-
-            // Crear un RequestBody a partir del archivo de imagen
-            val requestFile = imageFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
-
-            // Llamar al método startPayment en el ViewModel
-            viewModel.startPayment(token, requestFile, cursoID)
-
-
+            val requestFile = fileToRequestBody(imageFile)
+            viewModel.startPayment(token, requestFile, cursoID?.trim())
         }
 
 
@@ -111,6 +108,12 @@ class FragmentoPagoCurso : Fragment() {
     }
 
 
+    private fun fileToRequestBody(file: File): RequestBody {
+        val MEDIA_TYPE_JPG = "image/jpeg".toMediaTypeOrNull()
+        return file.asRequestBody(MEDIA_TYPE_JPG)
+    }
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
@@ -129,19 +132,6 @@ class FragmentoPagoCurso : Fragment() {
         }
     }
 
-
-
-    private fun bitmapToFile(context: Context, bitmap: Bitmap): File {
-        val filesDir = context.filesDir
-        val imageFile = File(filesDir, "image.jpg")
-
-        val os = FileOutputStream(imageFile)
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os)
-        os.flush()
-        os.close()
-
-        return imageFile
-    }
 
     private fun uriToFile(context: Context, uri: Uri?): File? {
         uri?.let {
@@ -180,31 +170,40 @@ class FragmentoPagoCurso : Fragment() {
 
     // SOLICITAR PERMISOS
 
+
+
     private fun checkPermissions() {
-        val permissions = arrayOf(
-            Manifest.permission.CAMERA,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        val requiredPermissions = arrayOf(
+            CAMERA,
+            READ_EXTERNAL_STORAGE,
+            WRITE_EXTERNAL_STORAGE
         )
 
-        val notGrantedPermissions = mutableListOf<String>()
-        for (permission in permissions) {
-            if (ContextCompat.checkSelfPermission(requireContext(), permission) !=
-                PackageManager.PERMISSION_GRANTED
-            ) {
-                notGrantedPermissions.add(permission)
-            }
+        val ungrantedPermissions = requiredPermissions.filter {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                it
+            ) != PackageManager.PERMISSION_GRANTED
         }
 
-        if (notGrantedPermissions.isNotEmpty()) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                notGrantedPermissions.toTypedArray(),
-                REQUEST_CODE_PERMISSIONS
-            )
+        if (ungrantedPermissions.isNotEmpty()) {
+            requestPermissions()
         }
     }
 
+
+
+    private fun requestPermissions() {
+        ActivityCompat.requestPermissions(
+            requireActivity(),
+            arrayOf(
+                CAMERA,
+                READ_EXTERNAL_STORAGE,
+                WRITE_EXTERNAL_STORAGE
+            ),
+            REQUEST_CODE_PERMISSIONS
+        )
+    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -215,10 +214,8 @@ class FragmentoPagoCurso : Fragment() {
 
         when (requestCode) {
             REQUEST_CODE_PERMISSIONS -> {
-                if (grantResults.isNotEmpty() &&
-                    grantResults.all { it == PackageManager.PERMISSION_GRANTED }
-                ) {
-                    // Todos los permisos fueron concedidos
+                if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
+
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -230,16 +227,10 @@ class FragmentoPagoCurso : Fragment() {
         }
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
         Glide.with(requireContext()).clear(image_view)
 
-    }
-
-    companion object {
-        private const val REQUEST_CODE_SELECT_IMAGE = 100
-        private const val REQUEST_CODE_PERMISSIONS = 101
     }
 
 
