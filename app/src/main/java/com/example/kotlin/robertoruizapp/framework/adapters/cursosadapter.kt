@@ -18,14 +18,14 @@ import java.util.*
 class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter<cursosadapter.ViewHolder>() {
 
     lateinit var data : List<Document>
-    var results : Int = 0
+    var results : Int? = 0
 
     fun cursosAdapter (data: List<Document>) {
             this.data = data
 
     }
 
-    fun cursosResults (results: Int) {
+    fun cursosResults (results: Int?) {
         this.results = results
     }
 
@@ -79,8 +79,8 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
     }
 
     override fun getItemCount(): Int {
-        var courses: Int = results
-        return courses
+        var courses: Int? = results
+        return courses!!
     }
 
 

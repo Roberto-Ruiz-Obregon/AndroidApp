@@ -31,10 +31,12 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
     (binding.root) {
 
     /**
-     * TODO
+     * Create the binding from the JSON [Document] as a result of the API request
+     * to the parts of the view at ProgramFragment. If some data is missing default
+     * information is displayed
      *
-     * @param item
-     * @param context
+     * @param item the information provided from API in the JSON [Document]
+     * @param context Context of the  view
      */
     fun bind(item: Document, context: Context) {
 
@@ -93,11 +95,11 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
     }
 
     /**
-     * TODO
+     * gets information about Program to load the image of the card with Glide
      *
-     * @param url
-     * @param imageView
-     * @param context
+     * @param url URL of the said program that includes de Image attribute
+     * @param imageView the widget used in the layout
+     * @param context context of the view
      */
     private fun getProgramInfo(url: String, imageView: ImageView, context: Context) {
 
@@ -121,15 +123,16 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
     }
 
     /**
-     * TODO:
+     * function that passes the information of each program to a new activity
      *
-     * @param url
-     * @param context
+     * @param programID the ID of the program to get information
+     * @param context view context for the activity
      */
-    private fun passViewGoToProgramDetail(url: String, context: Context) {
+    private fun passViewGoToProgramDetail(programID: String, context: Context) {
         val intent = Intent(context, ProgramDetailActivity::class.java)
+
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-        intent.putExtra(Constants.ID_PROGRAM, url)
+        intent.putExtra(Constants.ID_PROGRAM, programID)
         context.startActivity(intent)
     }
 }

@@ -21,7 +21,7 @@ class ProgramViewModel : ViewModel() {
         finishedLoading.postValue(false)
         viewModelScope.launch(Dispatchers.IO) {
             val result: Program? = programListRequirement(programName, categorySelected)
-            var programs: List<Document>? = result?.data?.documents
+            val programs: List<Document>? = result?.data?.documents
 
             CoroutineScope(Dispatchers.Main).launch{
                 programObjectLiveData.postValue(programs!!) // !! "Sé lo que estoy haciendo"

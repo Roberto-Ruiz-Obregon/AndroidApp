@@ -230,6 +230,7 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
 
                 recyclerView.layoutManager = layoutManager
                 val adapter = cursosadapter(fragmentoInfoCursos)
+
                 adapter.cursosResults(result!!.results)
                 result.data?.documents?.let { adapter.cursosAdapter(it) } //!!
                 recyclerView.adapter = adapter
