@@ -22,10 +22,15 @@ class PaymentViewModel: ViewModel() {
     fun getInscriptionObserver(): MutableLiveData<Pago?> {
         return PaymentLiveData
     }
+
     fun startPayment(token: String, parts: RequestBody, course: String?) {
         val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
         val imagePart = MultipartBody.Part.createFormData("image", "image.jpg", parts)
-        val call = retroService.postPago(token, imagePart , course)
+        Timber.tag("PaymentViewModel").d("Token: $token")
+        Timber.tag("PaymentViewModel").d("Image part: $imagePart")
+        Timber.tag("PaymentViewModel").d("Course ID: ${course?.trim()}")
+
+        val call = retroService.postPago(token, imagePart , course?.trim())
 
         //val call = retroService.postPago(token, parts, course)
             call.enqueue(object: Callback<Pago> {

@@ -5,6 +5,7 @@ import android.Manifest.permission
 import android.Manifest.permission.*
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.ACTION_PICK
@@ -16,6 +17,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,13 +34,14 @@ import com.example.kotlin.robertoruizapp.databinding.FragmentoFormaDePagoBinding
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.PaymentViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants
+import com.google.gson.Gson
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
-
+import timber.log.Timber
 
 
 class FragmentoPagoCurso : Fragment() {
@@ -63,14 +66,19 @@ class FragmentoPagoCurso : Fragment() {
         val boton : Button = root.findViewById(R.id.choose_image_btn)
         val button_enviar: Button = root.findViewById(R.id.button_enviar)
         image_view = root.findViewById(R.id.image_view)
-        cursoID = requireActivity().intent.getStringExtra(Constants.CURSO_ID_EXTRA);
+        cursoID = requireActivity().intent.getStringExtra(Constants.CURSO_ID_EXTRA)?.trim()
         val token: String = "Bearer " + LoginActivity.token
 
         checkPermissions()
 
         fun startPayment(imageFile: File) {
             val requestFile = fileToRequestBody(imageFile)
-            viewModel.startPayment(token, requestFile, cursoID?.trim())
+            val courseIdWithoutQuotes = cursoID?.trim()?.replace("\"", "")
+
+           // viewModel.startPayment(token, requestFile, cursoID?.trim())
+            viewModel.startPayment(token, requestFile, courseIdWithoutQuotes)
+
+
         }
 
 
@@ -120,16 +128,42 @@ class FragmentoPagoCurso : Fragment() {
             if (requestCode == 1) {
                 val imageBitmap = data?.extras?.get("data") as Bitmap
                 image_view.setImageBitmap(imageBitmap)
-                val imageUri = getImageUri(requireContext(), imageBitmap)
-                imagen_pago = imageUri
-                selectedImageFile = File(imageUri.path!!)
+                val imageUri = saveImageToGallery(requireContext(), imageBitmap)
+                selectedImageFile = imageUri?.let { uriToFile(requireContext(), it) }
             } else if (requestCode == 2) {
                 val selectedImageUri = data?.data
                 image_view.setImageURI(selectedImageUri)
-                imagen_pago = selectedImageUri
-                selectedImageFile = uriToFile(requireContext(), selectedImageUri)
+                selectedImageFile = selectedImageUri?.let { uriToFile(requireContext(), it) }
             }
         }
+    }
+
+    private fun saveImageToGallery(context: Context, bitmap: Bitmap): Uri? {
+        val contentValues = ContentValues().apply {
+            put(MediaStore.Images.Media.DISPLAY_NAME, "your_image_name.jpg")
+            put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                put(MediaStore.Images.Media.IS_PENDING, 1)
+            }
+        }
+
+        val imageUri = context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+
+        imageUri?.let { uri ->
+            context.contentResolver.openOutputStream(uri).use { outputStream ->
+                outputStream?.let {
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
+                }
+            }
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                contentValues.clear()
+                contentValues.put(MediaStore.Images.Media.IS_PENDING, 0)
+                context.contentResolver.update(uri, contentValues, null, null)
+            }
+        }
+
+        return imageUri
     }
 
 
@@ -226,6 +260,8 @@ class FragmentoPagoCurso : Fragment() {
             }
         }
     }
+
+
 
     override fun onDestroy() {
         super.onDestroy()
