@@ -1,17 +1,16 @@
 package com.example.kotlin.robertoruizapp.framework.view.activities
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileRequest
 import com.example.kotlin.robertoruizapp.framework.viewmodel.EditProfileViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class EditProfileActivity : AppCompatActivity() {
     private lateinit var viewModel: EditProfileViewModel
@@ -55,6 +54,8 @@ class EditProfileActivity : AppCompatActivity() {
         initViewModel()
         val btnConfirm = findViewById<Button>(R.id.buttonConfirm)
         val btnCancel = findViewById<Button>(R.id.buttonCancel)
+        val btnDelete = findViewById<Button>(R.id.buttonDelete)
+
         fun editUserProfile() {
             val ageInt: Int = edad.text.toString().toIntOrNull() ?: 0
             val pcInt: Int = postalCode.text.toString().toIntOrNull() ?: 0
@@ -76,8 +77,27 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         btnCancel.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+        }
+
+        btnDelete.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle(R.string.delete_dialog_title)
+                .setMessage(R.string.delete_dialog_message)
+                .setPositiveButton(
+                    "Aceptar"
+                ) { dialog, whichButton ->
+                    Toast.makeText(
+                        this,
+                        "Perfil borrado",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    // User clicked OK button
+                    // erase information
+                    viewModel.deleteMyInfo()
+                }
+                .setNegativeButton("Cancelar", null).show()
         }
     }
 }

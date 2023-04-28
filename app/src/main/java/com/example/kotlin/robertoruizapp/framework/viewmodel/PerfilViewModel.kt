@@ -39,5 +39,15 @@ class PerfilViewModel : ViewModel() {
             }
         }
     }
+    fun deleteMyInfo() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val repository = Repository()
+            val result: Profile? = repository.deleteMyInfo("Bearer $token")
+            Log.d("Salida", result.toString())
+            CoroutineScope(Dispatchers.Main).launch {
+                userLiveData.postValue(result)
+            }
+        }
+    }
 
 }

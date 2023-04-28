@@ -29,5 +29,13 @@ class EditProfileViewModel : ViewModel() {
             }
         }
 
+    fun deleteMyInfo() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val repository = Repository()
+            val result: Profile? = repository.deleteMyInfo("Bearer ${LoginActivity.token}")
+            Log.d("Datos usuario borrado", result.toString())
+        }
+    }
+
 }
 

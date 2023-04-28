@@ -88,4 +88,9 @@ interface ApiService {
         @Part("fieldname") fieldname: MultipartBody?,
         @Part("cursoID") cursoID: Pago
     ): Call<Pago>
+
+    @GET("user/auth/deleteme")
+    suspend fun deleteMyInfo(
+        @Header("Authorization") authHeader: String
+    ): Profile
 }

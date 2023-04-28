@@ -67,6 +67,21 @@ class Repository() {
     }
 
     /**
+     * Deletes the user [Profile] using their [jwt]
+     * @param [jwt] Authorization header of the user
+     * @return the API response in [Profile]
+     */
+    suspend fun deleteMyInfo(authHeader:String): Profile?{
+        api = NetworkModuleDI()
+        return try{
+            api.deleteMyInfo(authHeader)
+        }catch (e:java.lang.Exception){
+            e.printStackTrace()
+            null
+        }
+    }
+
+    /**
      * Edits the user [Profile]
      * @param [jwt] Authorization header of the user
      * @param [request] Changed fields for the user's profile using a [EditProfileRequest]
