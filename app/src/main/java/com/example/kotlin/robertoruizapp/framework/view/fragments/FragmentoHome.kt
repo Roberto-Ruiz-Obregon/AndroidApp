@@ -68,8 +68,19 @@ class FragmentoHome : Fragment() {
             startActivity(openURL)
         }
 
-        binding.iconollamada.setOnClickListener(){
+        binding.telefono1.setOnClickListener(){
             val phone  = "tel:" + "442  214 4020"
+            startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(phone)))
+
+        }
+
+        binding.telefono2.setOnClickListener(){
+            val phone  = "tel:" + "442  214 2380"
+            startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(phone)))
+
+        }
+        binding.telefono3.setOnClickListener(){
+            val phone  = "tel:" + "442  214 3033"
             startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(phone)))
 
         }
