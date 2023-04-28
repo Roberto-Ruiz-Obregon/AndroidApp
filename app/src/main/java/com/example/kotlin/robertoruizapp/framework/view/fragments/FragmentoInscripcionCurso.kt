@@ -96,9 +96,6 @@ class FragmentoInscripcionCurso :  Fragment(){
             val transaction = (context as AppCompatActivity).supportFragmentManager.beginTransaction()
 
             transaction.replace(R.id.Inscripcion, fragmentoNuevo)
-            transaction.commit()
-
-            transaction.replace(R.id.Inscripcion, fragmentoNuevo)
             transaction.addToBackStack(null)
             transaction.commit()
         }
