@@ -1,10 +1,8 @@
-package com.example.kotlin.robertoruizapp.framework.view.fragments
+package com.example.kotlin.robertoruizapp.framework.view.activities
 
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
-import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +12,8 @@ import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.data.Repository
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document
-import com.example.kotlin.robertoruizapp.databinding.FragmentoInfoCursosBinding
+import com.example.kotlin.robertoruizapp.databinding.ActivityInfoMisCursosBinding
+
 import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,8 +21,8 @@ import kotlinx.coroutines.launch
 
 import java.util.*
 
-class FragmentoInfoCursos : AppCompatActivity() {
-    private lateinit var binding: FragmentoInfoCursosBinding
+class InfoMisCursos : AppCompatActivity() {
+    private lateinit var binding: ActivityInfoMisCursosBinding
     private var cursoID : String? = null
     private lateinit var currentFragment: Fragment
     @RequiresApi(Build.VERSION_CODES.N)
@@ -39,7 +38,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
     }
 
     private fun initializeBinding() {
-        binding = FragmentoInfoCursosBinding.inflate(layoutInflater)
+        binding = ActivityInfoMisCursosBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
@@ -60,11 +59,8 @@ class FragmentoInfoCursos : AppCompatActivity() {
                     binding.nombrePonente.text = curso.teacher
 
                     if (curso.modality == "Remoto"){
-                        binding.ubicacionCurso.text = "Curso Online"
-                        /*
-                        Para que cargue el link del zoom se usa esta linea (Se pone despues de que un usuario se inscribe)
+                        //binding.ubicacionCurso.text = "Curso Online"
                         binding.ubicacionCurso.text = curso.accessLink
-                        */
                     }
                     else{
                         binding.ubicacionCurso.text = curso.address
@@ -81,61 +77,10 @@ class FragmentoInfoCursos : AppCompatActivity() {
                     binding.fechaCurso.text = formattedDate
                     binding.fechafin.text = endformattedDate
 
-                    if (curso.cost.toString() == "0") {
-                        binding.tipoPago.text = "Gratuito"
-                        val boton = findViewById<Button>(R.id.button_inscribirme)
-                        boton.setText("Inscribirme")
-                        boton.setOnClickListener{
-                            val contenedor = findViewById<ViewGroup>(R.id.InfoCurso)
-                            contenedor.removeAllViews() // Elimina todos los hijos del contenedor
-
-                            val fragmentoNuevo = FragmentoInscripcionCurso()
-                            supportFragmentManager.beginTransaction()
-
-                                .replace(R.id.InfoCurso, fragmentoNuevo)
-                                //.addToBackStack(null)
-                                .commit()
-
-
-                            supportFragmentManager.beginTransaction()
-                                .replace(R.id.InfoCurso, fragmentoNuevo)
-                                .addToBackStack(null)
-                                .commit()
-
-
-                        }
-
-                    }
-                    else{
-                        binding.tipoPago.text = "$" + curso.cost.toString()
-                        val boton = findViewById<Button>(R.id.button_inscribirme)
-                        boton.setText("Pagar")
-                        boton.setOnClickListener{
-                            val contenedor = findViewById<ViewGroup>(R.id.InfoCurso)
-                            contenedor.removeAllViews() // Elimina todos los hijos del contenedor
-
-                            val fragmentoNuevo = FragmentoFichaPago()
-                            supportFragmentManager.beginTransaction()
-                                .replace(R.id.InfoCurso, fragmentoNuevo)
-                                //.addToBackStack(null)
-                                .commit()
-
-
-                            supportFragmentManager.beginTransaction()
-                                .replace(R.id.InfoCurso, fragmentoNuevo)
-                                .addToBackStack(null)
-                                .commit()
-
-
-                        }
-
-
-
-                    }
 
                     val imageView = findViewById<ImageView>(R.id.imageView)
 
-                    Glide.with(this@FragmentoInfoCursos)
+                    Glide.with(this@InfoMisCursos)
                         .load(curso.imageUrl)
                         .into(imageView)
 

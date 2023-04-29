@@ -221,16 +221,6 @@
         app:layout_constraintTop_toBottomOf="@+id/descripcion_curso"
         app:srcCompat="@drawable/ping" />
 
-    <Button
-        android:id="@+id/button_inscribirme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Inscribirme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipo_modalidad"
-        app:layout_constraintVertical_bias="0.517" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -242,5 +232,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descripcion_curso"
         app:srcCompat="@drawable/pago" />
+    <TextView
+        android:id="@+id/Fecha_fin_Titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Fecha de Fin"
+        android:textStyle="bold"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fecha_curso" />
+
+    <TextView
+        android:id="@+id/fechafin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="25 de Mayo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Fecha_fin_Titulo" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

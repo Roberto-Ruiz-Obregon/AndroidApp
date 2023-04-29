@@ -31,6 +31,10 @@
             android:exported="true"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".framework.view.activities.InfoMisCursos"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <!-- Pantalla de Carga de FRRO -->
         <activity
             android:name=".framework.view.activities.SplashScreenActivity"

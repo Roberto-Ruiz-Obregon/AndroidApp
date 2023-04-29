@@ -31,6 +31,7 @@ import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
 import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.databinding.FragmentoMisCursosBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.miscursosadapter
+import com.example.kotlin.robertoruizapp.framework.view.activities.InfoMisCursos
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
@@ -109,7 +110,7 @@ class FragmentoMisCursos : Fragment(), CursoClickListener {
     }
 
     override fun onClick(document: CourseDocument) {
-        val intent = Intent(requireContext(), FragmentoInfoCursos::class.java)
+        val intent = Intent(requireContext(), InfoMisCursos::class.java)
         // Imprime el valor de document._id en el Logcat
         Log.d("Salida3", "Document ID: ${document._id}")
         intent.putExtra(CURSO_ID_EXTRA, document._id)
