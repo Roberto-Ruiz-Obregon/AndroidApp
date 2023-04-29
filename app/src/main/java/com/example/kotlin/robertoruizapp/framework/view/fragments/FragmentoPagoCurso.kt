@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -34,7 +35,10 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
-
+/**
+ * FragmentoPagoCurso class that manages the fragment actions
+ *
+ */
 class FragmentoPagoCurso : Fragment() {
     private var _binding: FragmentoFormaDePagoBinding? = null
     private val binding get() = _binding!!
@@ -43,7 +47,15 @@ class FragmentoPagoCurso : Fragment() {
     private lateinit var image_view: ImageView
     private var imagen_pago : Uri? = null
 
-
+    /**
+     * When the fragment is created sets up binding, viewmodel and progress bar
+     *
+     * @param inflater How the layout wil be created
+     * @param container what viewmgroup the fragment belongs to
+     * @param savedInstanceState the state of the activity / fragment
+     *
+     * @return [View] object containing the information about the fragment
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -119,7 +131,13 @@ class FragmentoPagoCurso : Fragment() {
     }
 
 
-
+    /**
+     * If the requestCode and result code are equal selected image is loaded
+     *
+     * @param requestCode request code of companion Object
+     * @param resultCode result code of the Activity
+     * @param data information of the Course
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -130,11 +148,20 @@ class FragmentoPagoCurso : Fragment() {
         }
     }
 
+    /**
+     * Sets the binding to Null after view is Destroyed
+     *
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
+    /**
+     * Companion object for Select Image
+     *
+     * @constructor Create empty Companion wit private val for Request code select image
+     */
     companion object {
         private const val REQUEST_CODE_SELECT_IMAGE = 100
     }
