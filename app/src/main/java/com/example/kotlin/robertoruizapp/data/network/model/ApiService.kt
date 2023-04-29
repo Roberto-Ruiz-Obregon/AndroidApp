@@ -16,6 +16,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
+import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Result
 import okhttp3.MultipartBody
 import retrofit2.http.Headers
 import retrofit2.http.Query
@@ -84,7 +85,7 @@ interface ApiService {
     fun postInscription(
         @Header("Authorization") authHeader: String,
         @Body params: Inscription
-    ): Call<Inscription>
+    ): Call<Result>
 
     @Multipart
     @POST("payment/startPayment")

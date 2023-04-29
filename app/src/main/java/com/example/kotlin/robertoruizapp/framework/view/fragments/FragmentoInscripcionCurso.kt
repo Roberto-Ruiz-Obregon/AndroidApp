@@ -10,15 +10,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.data.Repository
+import com.example.kotlin.robertoruizapp.data.network.model.ApiService
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document
+import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Document as InscripcionDocument
+import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Data
 import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Inscription
+import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Result
+import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginRequest
+import com.example.kotlin.robertoruizapp.data.network.model.NetworkModuleDI
 import com.example.kotlin.robertoruizapp.databinding.FragmentoInscripcionBinding
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.InscriptionViewModel
@@ -27,6 +35,7 @@ import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.util.*
 
 class FragmentoInscripcionCurso :  Fragment() {
@@ -52,29 +61,42 @@ class FragmentoInscripcionCurso :  Fragment() {
         cursoID = requireActivity().intent.getStringExtra(Constants.CURSO_ID_EXTRA);
 
         // Carga los datos
-        lateinit var data: List<Document>
         getCourseList()
-
 
         val btnInscribirse = root.findViewById<Button>(R.id.button)
 
         val token: String = "Bearer " + LoginActivity.token
         fun EnrollUser() {
 
-            //Este es un ejemplo de un curso
-            //TODO extraer info de curso en vista de Inscripción
-          //  val cursoId: String = "64386615c8ec2f0bc8b9dee3"
-
             val user = Inscription(
                 cursoID
             )
             viewModel.enrollUser(token, user)
+            val confirmation = viewModel.getInscriptionObserver()
 
+            confirmation.observe(viewLifecycleOwner){
+                if (it?.status == "success") {
+                    goToNewFragment()
+
+                } else {
+                    if (it?.message == "Ya te haz inscrito a este curso."){
+                        makeToast("Ya estas inscrito a este curso")
+                    }
+                    if(it?.message == "Este curso ya ha iniciado, no puedes inscribirte."){
+                        makeToast("Este curso ya ha iniciado")
+                    }
+                    if(it?.message == "No haz iniciado sesion, por favor inicia sesion para obtener acceso."){
+                        makeToast("No haz iniciado sesión, por favor inicia sesión para poder inscribirte")
+                    }
+                    else{
+                        makeToast("Error al inscribirse")
+                    }
+                }
+            }
         }
 
         btnInscribirse.setOnClickListener {
             EnrollUser()
-            Log.d("inscribirme boton", "me clickeaste")
 
         }
 
@@ -111,8 +133,23 @@ class FragmentoInscripcionCurso :  Fragment() {
         }
         return null
     }
+    private fun goToNewFragment() {
 
+        val contenedor = (context as FragmentActivity).findViewById<ViewGroup>(R.id.Inscripcion)
+        contenedor.removeAllViews()
 
+        val fragmentoNuevo = FragmentoInscripcionExitosa()
+        val transaction = (context as FragmentActivity).supportFragmentManager.beginTransaction()
+
+        transaction.replace(R.id.Inscripcion, fragmentoNuevo)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+    fun Fragment.makeToast(text: String,duration: Int = Toast.LENGTH_LONG) {
+        activity?.let {
+            Toast.makeText(it, text, duration).show()
+        }
+    }
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
