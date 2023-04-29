@@ -50,7 +50,7 @@ class miscursosadapter(val clickListener: CursoClickListener): RecyclerView.Adap
             viewHolder.startDate.text = formattedDate
         }
         else {
-            viewHolder.status.text = temp.status
+            viewHolder.startDate.text = "00/00/00"
             //viewHolder.status.text = "00/00/00"
         }
         viewHolder.courseName.text = temp.courseName
@@ -83,9 +83,7 @@ class miscursosadapter(val clickListener: CursoClickListener): RecyclerView.Adap
         val courseName: TextView
         val description: TextView
         val startDate: TextView
-        //val endDate: Date
         val modality: TextView
-        val status: TextView
         val botoncurso: Button
         val Imagen_curso: ImageView
 
@@ -98,9 +96,7 @@ class miscursosadapter(val clickListener: CursoClickListener): RecyclerView.Adap
             courseName =  itemView.findViewById(R.id.mi_titulo)
             description =  itemView.findViewById(R.id.mi_descripcion)
             startDate =  itemView.findViewById(R.id.mi_fecha)
-            // endDate =  itemView.findViewById(R.id.course_Name)
-            status =  itemView.findViewById(R.id.cobro_curso)
-            modality =  itemView.findViewById(R.id.locacion_curso1)
+            modality =  itemView.findViewById(R.id.mi_modalidad)
 
         }
     }

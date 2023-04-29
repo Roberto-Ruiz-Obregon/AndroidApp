@@ -29,6 +29,7 @@ import com.example.kotlin.robertoruizapp.data.network.model.Topic.Document as To
 import com.example.kotlin.robertoruizapp.data.Repository
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
 import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
+import com.example.kotlin.robertoruizapp.databinding.FragmentoMisCursosBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.miscursosadapter
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
@@ -38,7 +39,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class FragmentoMisCursos : Fragment(), CursoClickListener {
-    private var _binding: FragmentoCursosBinding? = null
+    private var _binding: FragmentoMisCursosBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: CursosFragmentoViewModel
     private lateinit var recyclerView: RecyclerView
@@ -53,13 +54,17 @@ class FragmentoMisCursos : Fragment(), CursoClickListener {
         savedInstanceState: Bundle?
     ): View {
         viewModel = ViewModelProvider(this)[CursosFragmentoViewModel::class.java]
-        _binding = FragmentoCursosBinding.inflate(inflater, container, false)
+        _binding = FragmentoMisCursosBinding.inflate(inflater, container, false)
         finishedLoading.postValue(false)
         initializeObservers()
-        getmyCourseList()
+
+        getMyCourseList()
 
         val root: View = binding.root
+        Log.d("Recycler1", "Antes de llamar al recycler")
+        
         recyclerView = root.findViewById(R.id.recycler_mis_cursos)
+
 
 
 
@@ -82,7 +87,7 @@ class FragmentoMisCursos : Fragment(), CursoClickListener {
     }
 
     val token: String = "Bearer " + LoginActivity.token
-    private fun getmyCourseList() {
+    private fun getMyCourseList() {
 
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
