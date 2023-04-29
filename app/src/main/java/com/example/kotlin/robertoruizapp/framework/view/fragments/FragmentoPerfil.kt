@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.data.network.model.ApiService
@@ -59,7 +60,7 @@ class FragmentoPerfil: Fragment() {
         val imageButton = binding.misCursosBoton
 
         imageButton.setOnClickListener {
-            openmiscursos()
+            goToNewFragment()
         }
 
         return root
@@ -128,13 +129,19 @@ class FragmentoPerfil: Fragment() {
         requireActivity().startActivity(intent)
     }
 
-    private fun openmiscursos() {
-        val fragment = FragmentoMisCursos()
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.frag_perfil, fragment)
-            .addToBackStack(null)
-            .commit()
-        Log.d("Mi boton", "me clickeaste")
+
+
+    private fun goToNewFragment() {
+
+        val contenedor = (context as FragmentActivity).findViewById<ViewGroup>(R.id.frag_perfil)
+        contenedor.removeAllViews()
+
+        val fragmentoNuevo = FragmentoMisCursos()
+        val transaction = (context as FragmentActivity).supportFragmentManager.beginTransaction()
+
+        transaction.replace(R.id.frag_perfil, fragmentoNuevo)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 }
