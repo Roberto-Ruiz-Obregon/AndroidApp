@@ -85,7 +85,7 @@ class FragmentoMisCursos : Fragment(), CursoClickListener {
 
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
-            val result: Profile? = repository.getMyCourses(token)
+            val result: CursosObjeto? = repository.getMyCourses(token)
 
             CoroutineScope(Dispatchers.Main).launch {
                 val layoutManager = GridLayoutManager(requireContext(), 2)
@@ -93,7 +93,7 @@ class FragmentoMisCursos : Fragment(), CursoClickListener {
 
                 recyclerView.layoutManager = layoutManager
                 val adapter = miscursosadapter(fragmentoInfoCursos)
-                adapter.cursosResults(result!!.results)
+                adapter.miscursosResults(result!!.results)
                 result.data?.documents?.let { adapter.miscursosAdapter(it) } //!!
                 recyclerView.adapter = adapter
                 recyclerView.setHasFixedSize(true)

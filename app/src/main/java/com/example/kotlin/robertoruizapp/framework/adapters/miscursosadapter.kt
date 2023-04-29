@@ -25,7 +25,7 @@ class miscursosadapter(val clickListener: CursoClickListener): RecyclerView.Adap
 
     }
 
-    fun cursosResults (results: Int) {
+    fun miscursosResults (results: Int) {
         this.results = results
     }
 
