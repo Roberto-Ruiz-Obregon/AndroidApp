@@ -75,6 +75,11 @@ interface ApiService {
         @Body request: EditProfileRequest
     ): EditProfileResponse
 
+    @GET("user/auth/mycourses")
+    suspend fun getMyCourses(
+        @Header("Authorization") jwt: String
+    ): Profile
+
     @POST("inscription/inscribeTo")
     fun postInscription(
         @Header("Authorization") authHeader: String,
