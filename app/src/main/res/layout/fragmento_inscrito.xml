@@ -40,10 +40,10 @@
         android:textColor="#009106"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintHorizontal_bias="0.539"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.46" />
+        app:layout_constraintVertical_bias="0.39" />
 
     <TextView
         android:id="@+id/textView27"
@@ -53,23 +53,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintHorizontal_bias="0.558"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
-
-    <TextView
-        android:id="@+id/textView31"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fecha"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.563"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.529"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.333" />
 
     <ImageView
         android:id="@+id/ivDetailProgramCalendario"
@@ -79,11 +66,111 @@
         android:layout_alignParentTop="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.336"
+        app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.543"
+        app:layout_constraintVertical_bias="0.471"
         app:srcCompat="@drawable/calendario_24"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/Fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="15/02/23"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.365"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.492" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha de Inicio:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.453"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/fecha_fin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="17/05/23"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.359"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.569" />
+
+    <TextView
+        android:id="@+id/Horario"
+        android:layout_width="226dp"
+        android:layout_height="27dp"
+        android:text="Lunes a Viernes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <TextView
+        android:id="@+id/fecha_fin_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha de fin:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.376"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.532"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Horario:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.615"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/modalidad_icon2"
+        android:layout_width="60dp"
+        android:layout_height="57dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.702"
+        app:srcCompat="@drawable/ping" />
+
+    <TextView
+        android:id="@+id/Modalidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.362"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.72"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -93,10 +180,10 @@
         android:text="Modalidad"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.608"
+        app:layout_constraintHorizontal_bias="0.373"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.64"
+        app:layout_constraintVertical_bias="0.671"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -114,7 +201,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView33"
+        android:id="@+id/Aviso_zoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="*Ingresa a la sesión de zoom con tu nombre para que se te permita el acceso"
@@ -139,36 +226,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.817" />
 
-    <TextView
-        android:id="@+id/Fecha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565" />
-
-    <TextView
-        android:id="@+id/Modalidad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69"
-        tools:ignore="MissingConstraints" />
-
     <Button
         android:id="@+id/buttonRegreso"
-        android:layout_width="201dp"
-        android:layout_height="38dp"
-        android:text="Volver a todos los cursos"
+        android:layout_width="266dp"
+        android:layout_height="42dp"
+        android:text="Ir a mis cursos"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

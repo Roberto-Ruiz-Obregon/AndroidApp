@@ -79,20 +79,25 @@ class FragmentoInscripcionExitosa : Fragment(){
                 {
                     _binding.textView27.text = curso.courseName
                     _binding.Modalidad.text = curso.modality
+                    _binding.Horario.text = curso.schedule
                     if (curso.modality == "Remoto"){
                         _binding.textView34.text = curso.accessLink
+                        _binding.AvisoZoom.text = "*Ingresa a la sesión de zoom con tu nombre para que se te permita el acceso"
                     }
                     else{
                         _binding.textView34.text = curso.address
+                        _binding.AvisoZoom.text = ""
                     }
-
 
                     val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
                     val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                     val date = inputFormat.parse(curso.startDate)
+                    val enddate = inputFormat.parse(curso.endDate)
                     val formattedDate = outputFormat.format(date)
+                    val endformattedDate = outputFormat.format(enddate)
 
                     _binding.Fecha.text = formattedDate
+                    _binding.fechaFin.text = endformattedDate
 
                     Glide.with(requireContext())
                         .load(curso.imageUrl)
@@ -117,7 +122,7 @@ class FragmentoInscripcionExitosa : Fragment(){
         val contenedor = (context as FragmentActivity).findViewById<ViewGroup>(R.id.Inscrito)
         contenedor.removeAllViews()
 
-        val fragmentoNuevo = FragmentoCursos()
+        val fragmentoNuevo = FragmentoMisCursos()
         val transaction = (context as FragmentActivity).supportFragmentManager.beginTransaction()
 
         transaction.replace(R.id.Inscrito, fragmentoNuevo)
