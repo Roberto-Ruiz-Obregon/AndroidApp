@@ -128,7 +128,7 @@ class FragmentoPerfil: Fragment() {
     }
 
     private fun openmiscursos() {
-        val fragment = FragmentoCursos()
+        val fragment = FragmentoMisCursos()
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.frag_perfil, fragment)
             .addToBackStack(null)

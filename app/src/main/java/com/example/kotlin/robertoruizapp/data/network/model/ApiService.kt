@@ -78,7 +78,7 @@ interface ApiService {
     @GET("user/auth/mycourses")
     suspend fun getMyCourses(
         @Header("Authorization") jwt: String
-    ): Profile
+    ):CursosObjeto
 
     @POST("inscription/inscribeTo")
     fun postInscription(
