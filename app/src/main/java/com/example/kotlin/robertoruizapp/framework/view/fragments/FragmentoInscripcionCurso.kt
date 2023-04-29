@@ -30,6 +30,7 @@ import com.example.kotlin.robertoruizapp.data.network.model.NetworkModuleDI
 import com.example.kotlin.robertoruizapp.databinding.FragmentoInscripcionBinding
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.InscriptionViewModel
+import com.example.kotlin.robertoruizapp.framework.viewmodel.PerfilViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants
 import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
@@ -43,6 +44,7 @@ class FragmentoInscripcionCurso :  Fragment() {
     private val binding get() = _binding!!
     private var cursoID : String? = null
     private lateinit var viewModel: InscriptionViewModel
+    private lateinit var viewModelP: PerfilViewModel
 
     @RequiresApi(Build.VERSION_CODES.N)
     //private lateinit var recyclerView: RecyclerView
@@ -133,6 +135,21 @@ class FragmentoInscripcionCurso :  Fragment() {
         }
         return null
     }
+
+    private fun initUI() {
+        viewModelP.getMyInfo()
+        viewModelP.userLiveData.observe(viewLifecycleOwner) { user ->
+            if (user != null) {
+                binding.piNombre.text = user.data.document.name.toString()
+                binding.piEdad.text = user.data.document.age.toString()
+                binding.piSexo.text = user.data.document.gender
+                binding.piCorreo.text = user.data.document.email
+                binding.piAcademico.text = user.data.document.educationLevel
+                binding.piOcupacion.text = user.data.document.job
+            }
+        }
+    }
+
     private fun goToNewFragment() {
 
         val contenedor = (context as FragmentActivity).findViewById<ViewGroup>(R.id.Inscripcion)
