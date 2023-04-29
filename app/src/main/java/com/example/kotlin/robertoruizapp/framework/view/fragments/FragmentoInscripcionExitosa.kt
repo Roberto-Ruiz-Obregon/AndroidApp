@@ -54,7 +54,7 @@ class FragmentoInscripcionExitosa : Fragment(){
         lateinit var data: List<Document>
         getCourseList()
 
-        val token: String = "Bearer " + LoginActivity.token
+        //val token: String = "Bearer " + LoginActivity.token
 
 
         return root
@@ -70,16 +70,27 @@ class FragmentoInscripcionExitosa : Fragment(){
                 val curso = cursoFromID(cursoID,result)
                 if (curso != null)
                 {
+                    _binding.textView27.text = curso.courseName
+                    _binding.textView32.text = curso.modality
+                    _binding.textView34.text = curso.accessLink
 
+                    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+                    val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                    val date = inputFormat.parse(curso.startDate)
+                    val formattedDate = outputFormat.format(date)
+
+                    _binding.textView31.text = formattedDate
 
                     Glide.with(requireContext())
-                        //.load(curso.imageUrl)
-                        //.into(_binding.ivDetailProgramImagen)
+                        .load(curso.imageUrl)
+                        .into(_binding.ivDetailProgramImagen)
 
                 }
             }
         }
     }
+
+
     private fun cursoFromID(cursoID: String?, result: CursosObjeto?): Document? {
         for (curso in result?.data?.documents!!){
             var cursoid = curso._id
@@ -90,72 +101,4 @@ class FragmentoInscripcionExitosa : Fragment(){
     }
 
 
-
-    /*
-    @RequiresApi(Build.VERSION_CODES.N)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initializeBinding()
-        resultID = requireActivity().intent.getStringExtra(Constants.CURSO_ID_EXTRA)
-
-        // Carga los datos
-        lateinit var data: List<Document>
-        getCourseList()
-
-    }
-
-    private fun initializeBinding() {
-        binding = FragmentoInscritoBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-    }
-
-    @RequiresApi(Build.VERSION_CODES.N)
-    private fun getCourseList(){
-        CoroutineScope(Dispatchers.IO).launch {
-            Log.d("MENSAJEEE", "ME VENGOOOOOOO")
-            val repository = Repository()
-            val result: CursosObjeto? = repository.getCursosNoFilter()
-
-            CoroutineScope(Dispatchers.Main).launch{
-                val curso = cursoFromID(resultID,result)
-                if (curso != null)
-                {
-                    binding.textView27.text = curso.courseName
-                    binding.textView32.text = curso.modality
-                    binding.textView34.text = curso.accessLink
-
-                    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-                    val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                    val date = inputFormat.parse(curso.startDate)
-                    val formattedDate = outputFormat.format(date)
-
-                    binding.textView31.text = formattedDate
-
-
-
-                    }
-
-                    val imageView = findViewById<ImageView>(R.id.ivDetailProgramImagen)
-
-                    Glide.with(this@FragmentoInscripcionExitosa)
-                        .load(curso)
-                        .into(imageView)
-
-                }
-            }
-        }
-
-    private fun cursoFromID(resultID: String?, result: CursosObjeto?): Document? {
-        for (curso in result!!.data.documents) {
-            var cursoid = curso._id
-            if(cursoid == resultID){
-                Log.d("CursoFROM_ID", cursoid + "and" + resultID)
-                return curso
-            }
-        }
-        return null
-    }
-
-     */
 }
