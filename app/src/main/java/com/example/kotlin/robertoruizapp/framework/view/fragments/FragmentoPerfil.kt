@@ -2,6 +2,7 @@ package com.example.kotlin.robertoruizapp.framework.view.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -133,6 +134,7 @@ class FragmentoPerfil: Fragment() {
             .replace(R.id.frag_perfil, fragment)
             .addToBackStack(null)
             .commit()
+        Log.d("Mi boton", "me clickeaste")
     }
 
 }

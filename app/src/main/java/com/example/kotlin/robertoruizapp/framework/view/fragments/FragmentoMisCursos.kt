@@ -44,9 +44,9 @@ class FragmentoMisCursos : Fragment(), CursoClickListener {
     private lateinit var recyclerView: RecyclerView
 
 
-    private var progressBar: ProgressBar? = null
+     private var progressBar: ProgressBar? = null
 
-    val finishedLoading = MutableLiveData<Boolean>()
+     val finishedLoading = MutableLiveData<Boolean>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -55,11 +55,12 @@ class FragmentoMisCursos : Fragment(), CursoClickListener {
         viewModel = ViewModelProvider(this)[CursosFragmentoViewModel::class.java]
         _binding = FragmentoCursosBinding.inflate(inflater, container, false)
         finishedLoading.postValue(false)
-        //initializeObservers()
+        initializeObservers()
         getmyCourseList()
 
         val root: View = binding.root
-        recyclerView = root.findViewById<RecyclerView>(R.id.recycler_mis_cursos)
+        recyclerView = root.findViewById(R.id.recycler_mis_cursos)
+
 
 
         progressBar = root.findViewById(R.id.pbFragmentBarraProgresoCursos)
@@ -67,7 +68,7 @@ class FragmentoMisCursos : Fragment(), CursoClickListener {
         return root
     }
 
-    /*
+
     private fun initializeObservers() {
         finishedLoading.observe(viewLifecycleOwner, Observer { finishedLoading ->
             if (finishedLoading) {
@@ -79,7 +80,7 @@ class FragmentoMisCursos : Fragment(), CursoClickListener {
     private fun progressBarBye() {
         progressBar?.visibility = View.GONE
     }
-*/
+
     val token: String = "Bearer " + LoginActivity.token
     private fun getmyCourseList() {
 
