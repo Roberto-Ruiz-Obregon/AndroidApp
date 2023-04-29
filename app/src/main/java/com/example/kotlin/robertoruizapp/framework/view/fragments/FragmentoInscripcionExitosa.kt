@@ -13,6 +13,7 @@ import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
@@ -23,6 +24,7 @@ import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Inscript
 import com.example.kotlin.robertoruizapp.databinding.FragmentoInscripcionBinding
 import com.example.kotlin.robertoruizapp.databinding.FragmentoInscritoBinding
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
+import com.example.kotlin.robertoruizapp.framework.view.activities.MainActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.InscriptionViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants
 import kotlinx.coroutines.CoroutineScope
@@ -56,6 +58,11 @@ class FragmentoInscripcionExitosa : Fragment(){
 
         //val token: String = "Bearer " + LoginActivity.token
 
+        val btnRegreso = root.findViewById<Button>(R.id.buttonRegreso)
+
+        btnRegreso.setOnClickListener {
+            goToNewFragment()
+        }
 
         return root
     }
@@ -71,7 +78,7 @@ class FragmentoInscripcionExitosa : Fragment(){
                 if (curso != null)
                 {
                     _binding.textView27.text = curso.courseName
-                    _binding.textView32.text = curso.modality
+                    _binding.Modalidad.text = curso.modality
                     _binding.textView34.text = curso.accessLink
 
                     val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
@@ -79,7 +86,7 @@ class FragmentoInscripcionExitosa : Fragment(){
                     val date = inputFormat.parse(curso.startDate)
                     val formattedDate = outputFormat.format(date)
 
-                    _binding.textView31.text = formattedDate
+                    _binding.Fecha.text = formattedDate
 
                     Glide.with(requireContext())
                         .load(curso.imageUrl)
@@ -90,7 +97,6 @@ class FragmentoInscripcionExitosa : Fragment(){
         }
     }
 
-
     private fun cursoFromID(cursoID: String?, result: CursosObjeto?): Document? {
         for (curso in result?.data?.documents!!){
             var cursoid = curso._id
@@ -98,6 +104,19 @@ class FragmentoInscripcionExitosa : Fragment(){
                 return curso
         }
         return null
+    }
+
+    private fun goToNewFragment() {
+
+        val contenedor = (context as FragmentActivity).findViewById<ViewGroup>(R.id.Inscrito)
+        contenedor.removeAllViews()
+
+        val fragmentoNuevo = FragmentoCursos()
+        val transaction = (context as FragmentActivity).supportFragmentManager.beginTransaction()
+
+        transaction.replace(R.id.Inscrito, fragmentoNuevo)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
 

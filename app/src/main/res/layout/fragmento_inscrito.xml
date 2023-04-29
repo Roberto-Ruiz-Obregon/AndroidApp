@@ -50,12 +50,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Curso de Escritura"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.415" />
+        app:layout_constraintVertical_bias="0.405" />
 
     <TextView
         android:id="@+id/textView31"
@@ -139,7 +140,7 @@
         app:layout_constraintVertical_bias="0.817" />
 
     <TextView
-        android:id="@+id/textView35"
+        android:id="@+id/Fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -151,7 +152,7 @@
         app:layout_constraintVertical_bias="0.565" />
 
     <TextView
-        android:id="@+id/textView36"
+        android:id="@+id/Modalidad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -161,6 +162,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.69"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonRegreso"
+        android:layout_width="201dp"
+        android:layout_height="38dp"
+        android:text="Volver a todos los cursos"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivDetailProgramImagen"
+        app:layout_constraintVertical_bias="0.956"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

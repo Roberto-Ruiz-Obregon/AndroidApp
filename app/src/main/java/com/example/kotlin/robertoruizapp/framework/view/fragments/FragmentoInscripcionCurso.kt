@@ -60,10 +60,8 @@ class FragmentoInscripcionCurso :  Fragment() {
         val root: View = binding.root
         cursoID = requireActivity().intent.getStringExtra(Constants.CURSO_ID_EXTRA);
 
-
         // Carga los datos
         getCourseList()
-
 
         val btnInscribirse = root.findViewById<Button>(R.id.button)
 
@@ -74,14 +72,25 @@ class FragmentoInscripcionCurso :  Fragment() {
                 cursoID
             )
             viewModel.enrollUser(token, user)
-            val xd = viewModel.getInscriptionObserver()
+            val confirmation = viewModel.getInscriptionObserver()
 
-            xd.observe(viewLifecycleOwner){
+            confirmation.observe(viewLifecycleOwner){
                 if (it?.status == "success") {
                     goToNewFragment()
 
                 } else {
-                    makeToast("Error al inscribirse")
+                    if (it?.message == "Ya te haz inscrito a este curso."){
+                        makeToast("Ya estas inscrito a este curso")
+                    }
+                    if(it?.message == "Este curso ya ha iniciado, no puedes inscribirte."){
+                        makeToast("Este curso ya ha iniciado")
+                    }
+                    if(it?.message == "No haz iniciado sesion, por favor inicia sesion para obtener acceso."){
+                        makeToast("No haz iniciado sesión, por favor inicia sesión para poder inscribirte")
+                    }
+                    else{
+                        makeToast("Error al inscribirse")
+                    }
                 }
             }
         }
@@ -141,7 +150,6 @@ class FragmentoInscripcionCurso :  Fragment() {
             Toast.makeText(it, text, duration).show()
         }
     }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
