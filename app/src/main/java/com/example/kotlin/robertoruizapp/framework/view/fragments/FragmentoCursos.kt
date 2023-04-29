@@ -11,34 +11,36 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.R
+import com.example.kotlin.robertoruizapp.data.Repository
+import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
+import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
 import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
-import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
-import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document as CourseDocument
-import com.example.kotlin.robertoruizapp.data.network.model.Topic.Document as TopicsDocument
-import com.example.kotlin.robertoruizapp.data.Repository
-import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import timber.log.Timber
+import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document as CourseDocument
+import com.example.kotlin.robertoruizapp.data.network.model.Topic.Document as TopicsDocument
 
 class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
     private var _binding: FragmentoCursosBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: CursosFragmentoViewModel
     private lateinit var recyclerView: RecyclerView
+    private lateinit var recommendedCoursesBtn: Button
     private var topics: MutableList<String> = mutableListOf<String>("")
     private var status: Array<String?> = arrayOf<String?>("", "Gratuito", "Pagado")
     private var modality: Array<String?> = arrayOf<String?>("", "Remoto", "Presencial")
@@ -65,6 +67,9 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
 
         val root: View = binding.root
         recyclerView = root.findViewById<RecyclerView>(R.id.recyclercursos)
+
+        recommendedCoursesBtn = root.findViewById<Button>(R.id.recommendedCoursesBtn)
+        recommendedCoursesBtn.setOnTouchListener { v, event -> onClickRecommendedCourses() }
 
         setInputs()
 
@@ -252,5 +257,17 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun exchangeCurrentFragment(newFragment: Fragment, newMenuOption:String){
+        currentFragment = newFragment
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_fragment_content_main,currentFragment)
+            .commit()
+        currentMenuOption = newMenuOption
+    }
+
+    fun onClickRecommendedCourses() {
+
     }
 }
