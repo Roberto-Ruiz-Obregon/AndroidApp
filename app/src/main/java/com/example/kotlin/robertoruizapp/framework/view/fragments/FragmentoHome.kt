@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.mypokedexapp.viewmodel.MainViewModel
@@ -40,6 +41,11 @@ class FragmentoHome : Fragment() {
         initializeListeners()
         //initializeComponents(root)
         //initializeObservers()
+        val imageView = binding.fondoImagen
+
+        imageView.setOnClickListener {
+            goToNewFragment()
+        }
         return root
     }
 
@@ -85,6 +91,20 @@ class FragmentoHome : Fragment() {
 
         }
     }
+
+    private fun goToNewFragment() {
+
+        val contenedor = (context as FragmentActivity).findViewById<ViewGroup>(R.id.frag_home)
+        contenedor.removeAllViews()
+
+        val fragmentoNuevo = FragmentoMisCursos()
+        val transaction = (context as FragmentActivity).supportFragmentManager.beginTransaction()
+
+        transaction.replace(R.id.frag_home, fragmentoNuevo)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
