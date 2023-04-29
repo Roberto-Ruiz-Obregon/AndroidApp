@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imagen" />
 
     <TextView
-        android:id="@+id/text1"
+        android:id="@+id/pi_nombre"
         android:layout_width="130dp"
         android:layout_height="24dp"
         android:layout_marginTop="16dp"
@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
 
     <TextView
-        android:id="@+id/text22"
+        android:id="@+id/pi_edad"
         android:layout_width="37dp"
         android:layout_height="23dp"
         android:layout_marginTop="56dp"
@@ -106,7 +106,7 @@
         app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
 
     <TextView
-        android:id="@+id/P_correo"
+        android:id="@+id/pi_municipio"
         android:layout_width="61dp"
         android:layout_height="22dp"
         android:layout_marginTop="144dp"
@@ -118,7 +118,7 @@
         app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/pi_sexo"
         android:layout_width="73dp"
         android:layout_height="23dp"
         android:layout_marginTop="100dp"
@@ -142,7 +142,7 @@
         app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/pi_academico"
         android:layout_width="89dp"
         android:layout_height="30dp"
         android:layout_marginTop="184dp"
@@ -187,7 +187,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/pi_academico"
         app:layout_constraintVertical_bias="0.228" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
