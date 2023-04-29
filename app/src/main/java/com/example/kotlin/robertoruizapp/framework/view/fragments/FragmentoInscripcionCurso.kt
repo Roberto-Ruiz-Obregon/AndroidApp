@@ -58,12 +58,14 @@ class FragmentoInscripcionCurso :  Fragment() {
     ): View {
         Log.d("check", "Entrando a vista")
         viewModel = ViewModelProvider(this)[InscriptionViewModel::class.java]
+        viewModelP = ViewModelProvider(this)[PerfilViewModel::class.java]
         _binding = FragmentoInscripcionBinding.inflate(inflater, container, false)
         val root: View = binding.root
         cursoID = requireActivity().intent.getStringExtra(Constants.CURSO_ID_EXTRA);
 
         // Carga los datos
         getCourseList()
+        initUI()
 
         val btnInscribirse = root.findViewById<Button>(R.id.button)
 
@@ -118,6 +120,7 @@ class FragmentoInscripcionCurso :  Fragment() {
                     binding.Titulo.text = curso.courseName
                     binding.textoCurso.text = curso.description
                     binding.nombrePonente.text = curso.teacher
+
 
                     Glide.with(requireContext())
                         .load(curso.imageUrl)
