@@ -1,36 +1,29 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.R
-import com.example.kotlin.robertoruizapp.data.Repository
-import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.data.network.model.program.Document
-import com.example.kotlin.robertoruizapp.data.network.model.program.Program
 import com.example.kotlin.robertoruizapp.databinding.FragmentProgramasBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.ProgramAdapter
 import com.example.kotlin.robertoruizapp.framework.viewmodel.ProgramViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
-
+/**
+ * ProgramFragment class that manages the fragment actions
+ *
+ */
 class ProgramFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var _binding: FragmentProgramasBinding? = null
     private val binding get() = _binding!!
@@ -39,13 +32,22 @@ class ProgramFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var viewModel: ProgramViewModel
     private lateinit var recyclerView: RecyclerView
     private val adapter: ProgramAdapter = ProgramAdapter()
+    private var categorySelected = ""
+    private var programName = ""
     private var categories: Array<String?> = arrayOf<String?>(
         "",
         "Beca", "Evento", "Apoyo", "Programa", "Otro"
     )
-    private var categorySelected = ""
-    private var programName = ""
 
+    /**
+     * When the fragment is created sets up binding, viewmodel and progress bar
+     *
+     * @param inflater How the layout wil be created
+     * @param container what viewmgroup the fragment belongs to
+     * @param savedInstanceState the state of the activity / fragment
+     *
+     * @return [View] object containing the information about the fragment
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,6 +67,10 @@ class ProgramFragment : Fragment(), AdapterView.OnItemSelectedListener {
         return root
     }
 
+    /**
+     * Sets the inputs that are displayed in the view and calls the appropriate method
+     * according to the situation specified
+     */
     private fun setInputs() {
         // Spinner category
         val spinModality = binding.spinnerCategory
@@ -88,32 +94,57 @@ class ProgramFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 programName = s.toString()
-                Log.d("EDITTEXT", "NAME: ${programName}")
                 getProgramList()
             }
         })
     }
 
+    /**
+     * Gets the list of [Program] that matches the categoryselected variable
+     *
+     */
     private fun getProgramList() {
         viewModel.getProgramList(programName, categorySelected)
     }
 
+    /**
+     * When an Item is selected in the spinner, the category selected variable is updated
+     * and calls the getProgramList() method
+     *
+     * @param parent AdapterView of the parent
+     * @param view View of the parent
+     * @param position an Integer
+     * @param id id of the item
+     */
     override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
         categorySelected = binding.spinnerCategory.selectedItem.toString()
-        Log.d("SPINNER", "Selected: ${categorySelected}")
         getProgramList()
     }
 
+    /**
+     * When no category is selected program list is displayed as normal
+     *
+     * @param parent the View of the parent
+     */
     override fun onNothingSelected(parent: AdapterView<*>?) {
         getProgramList()
     }
 
+    /**
+     * Initializes the components used in the fragment, in this case is the [RecyclerView]
+     *
+     * @param root the root [View]
+     */
     private fun initializeComponents(root: View) {
         recyclerView = root.findViewById(R.id.rvProgramas)
 
     }
 
-
+    /**
+     * Initializes the Observers used in the fragment to update
+     * mutable live data objects. The RecyclerView and ProgressBar
+     *
+     */
     private fun initializeObservers() {
         viewModel.programObjectLiveData.observe(viewLifecycleOwner) { programs ->
             setUpRecyclerView(programs)
@@ -125,10 +156,20 @@ class ProgramFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
     }
 
+    /**
+     * Changes the display of the ProgessBar to GONE state
+     *
+     */
     private fun progressBarBye() {
         progressBar?.visibility = GONE
     }
 
+    /**
+     * Sets the layout of the [RecyclerView] into the Fragment and
+     * receives the data that will be displayed
+     *
+     * @param dataForList list of [Document] objects
+     */
     private fun setUpRecyclerView(dataForList: List<Document>) {
         recyclerView.setHasFixedSize(true)
 
@@ -141,6 +182,10 @@ class ProgramFragment : Fragment(), AdapterView.OnItemSelectedListener {
         recyclerView.adapter = adapter
     }
 
+    /**
+     * Sets the binding to Null after the fragment is destoroyed
+     *
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

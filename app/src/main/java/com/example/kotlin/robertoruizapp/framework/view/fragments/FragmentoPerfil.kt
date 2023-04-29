@@ -21,7 +21,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
+/**
+ * FragmentPerfil class that manages the fragment actions
+ *
+ */
 class FragmentoPerfil: Fragment() {
     private var _binding : FragmentoPerfilBinding? = null
     private val binding get() = _binding!!
