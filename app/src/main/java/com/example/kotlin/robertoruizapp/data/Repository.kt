@@ -9,9 +9,18 @@ import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
 import retrofit2.Call
 
+/**
+ * Repository class that has the methods to call the [NetworkModuleDI]
+ *
+ */
 class Repository() {
     private lateinit var api: ApiService
 
+    /**
+     * Gets the [CursosObjeto] calling the [NetworkModuleDI]
+     *
+     * @return the call to the [NetworkModuleDI] method [getCursosNoFilter]
+     */
     suspend fun getCursosNoFilter() : CursosObjeto? {
         api = NetworkModuleDI()
         return try{
@@ -21,6 +30,18 @@ class Repository() {
             null
         }
     }
+
+    /**
+     * gets the [CursosObjeto] calling the [NetworkModuleDI]
+     *
+     * @param courseName the name of the course
+     * @param postalCode postal code of course
+     * @param modality how the course is presented
+     * @param status status of the course
+     * @param topic the about of the course
+     *
+     * @return [CursosObjeto] object
+     */
     suspend fun getCursos(courseName: String, postalCode: String, modality: String, status: String, topic: String?): CursosObjeto?{
         api = NetworkModuleDI()
         return try{
@@ -31,6 +52,11 @@ class Repository() {
         }
     }
 
+    /**
+     * Gets the [TopicsObject] from [NetworkModuleDI]
+     *
+     * @return [TopicsObject] object
+     */
     suspend fun getTopics(): TopicsObject?{
         api = NetworkModuleDI()
         return try{
@@ -41,6 +67,13 @@ class Repository() {
         }
     }
 
+    /**
+     * Gets the [Profile] of the user calling [NetworkModuleDI]
+     *
+     * @param id of the user to get information
+     *
+     * @return [Profile] object
+     */
     suspend fun getUserInfo(id:String): Profile?{
         api = NetworkModuleDI()
         return try{
