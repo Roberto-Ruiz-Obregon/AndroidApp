@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.data.network.model.ApiService
 import com.example.kotlin.robertoruizapp.data.network.model.NetworkModuleDI
 import com.example.kotlin.robertoruizapp.databinding.FragmentoPerfilBinding
@@ -52,6 +53,12 @@ class FragmentoPerfil: Fragment() {
 
         btnEditProfile.setOnClickListener {
             editMyProfile()
+        }
+
+        val imageButton = binding.misCursosBoton
+
+        imageButton.setOnClickListener {
+            openmiscursos()
         }
 
         return root
@@ -118,6 +125,14 @@ class FragmentoPerfil: Fragment() {
         val intent = Intent()
         intent.setClass(requireActivity(), LoginActivity::class.java)
         requireActivity().startActivity(intent)
+    }
+
+    private fun openmiscursos() {
+        val fragment = FragmentoCursos()
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.frag_perfil, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
 }
