@@ -30,19 +30,14 @@ class miscursosadapter(val clickListener: CursoClickListener): RecyclerView.Adap
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int):ViewHolder {
-        val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_element_cursos, viewGroup, false)
+        val v = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_element_mis_cursos, viewGroup, false)
         return ViewHolder(v, clickListener)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         var temp: Document = data[i]
 
-        if (temp.cost.toString() == "0") {
-            viewHolder.cobro_curso.text = "Gratuito"
-        }
-        else{
-            viewHolder.cobro_curso.text = "$" + temp.cost.toString()
-        }
+
 
 
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
@@ -93,7 +88,7 @@ class miscursosadapter(val clickListener: CursoClickListener): RecyclerView.Adap
         val status: TextView
         val botoncurso: Button
         val Imagen_curso: ImageView
-        val cobro_curso: TextView
+
 
 
 
@@ -103,7 +98,6 @@ class miscursosadapter(val clickListener: CursoClickListener): RecyclerView.Adap
             courseName =  itemView.findViewById(R.id.mi_titulo)
             description =  itemView.findViewById(R.id.mi_descripcion)
             startDate =  itemView.findViewById(R.id.mi_fecha)
-            cobro_curso = itemView.findViewById(R.id.cobro_curso)
             // endDate =  itemView.findViewById(R.id.course_Name)
             status =  itemView.findViewById(R.id.cobro_curso)
             modality =  itemView.findViewById(R.id.locacion_curso1)
