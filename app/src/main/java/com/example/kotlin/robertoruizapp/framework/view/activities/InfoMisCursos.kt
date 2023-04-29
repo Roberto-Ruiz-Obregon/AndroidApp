@@ -59,7 +59,6 @@ class InfoMisCursos : AppCompatActivity() {
                     binding.nombrePonente.text = curso.teacher
 
                     if (curso.modality == "Remoto"){
-                        //binding.ubicacionCurso.text = "Curso Online"
                         binding.ubicacionCurso.text = curso.accessLink
                     }
                     else{
