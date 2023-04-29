@@ -79,7 +79,13 @@ class FragmentoInscripcionExitosa : Fragment(){
                 {
                     _binding.textView27.text = curso.courseName
                     _binding.Modalidad.text = curso.modality
-                    _binding.textView34.text = curso.accessLink
+                    if (curso.modality == "Remoto"){
+                        _binding.textView34.text = curso.accessLink
+                    }
+                    else{
+                        _binding.textView34.text = curso.address
+                    }
+
 
                     val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
                     val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())

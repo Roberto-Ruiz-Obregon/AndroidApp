@@ -100,7 +100,7 @@ class FragmentoMisCursos : Fragment(), CursoClickListener {
 
                 recyclerView.layoutManager = layoutManager
                 val adapter = miscursosadapter(fragmentoInfoCursos)
-                adapter.miscursosResults(result!!.results)
+                result!!.results?.let { adapter.miscursosResults(it) }
                 result.data?.documents?.let { adapter.miscursosAdapter(it) } //!!
                 recyclerView.adapter = adapter
                 recyclerView.setHasFixedSize(true)

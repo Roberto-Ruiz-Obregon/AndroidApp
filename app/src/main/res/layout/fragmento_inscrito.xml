@@ -103,7 +103,7 @@
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Curso en ZOOM:"
+        android:text="Ubicación:"
         android:textColor="#038BC8"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
