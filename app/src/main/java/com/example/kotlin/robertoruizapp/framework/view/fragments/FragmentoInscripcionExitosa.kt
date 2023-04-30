@@ -61,7 +61,7 @@ class FragmentoInscripcionExitosa : Fragment(){
         val btnRegreso = root.findViewById<Button>(R.id.buttonRegreso)
 
         btnRegreso.setOnClickListener {
-            goToNewFragment()
+            goHome()
         }
 
         return root
@@ -117,10 +117,8 @@ class FragmentoInscripcionExitosa : Fragment(){
         return null
     }
 
-    private fun goToNewFragment() {
+    private fun goHome() {
         val intent = Intent(requireActivity(), MainActivity::class.java)
-// Si deseas agregar datos adicionales al Intent, usa el método putExtra
-// intent.putExtra("clave", valor)
         startActivity(intent)
     }
 
