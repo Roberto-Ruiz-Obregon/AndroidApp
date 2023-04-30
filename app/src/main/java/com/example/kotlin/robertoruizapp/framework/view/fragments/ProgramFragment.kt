@@ -22,7 +22,6 @@ import com.example.kotlin.robertoruizapp.framework.viewmodel.ProgramViewModel
 
 /**
  * ProgramFragment class that manages the fragment actions
- *
  */
 class ProgramFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var _binding: FragmentProgramasBinding? = null
