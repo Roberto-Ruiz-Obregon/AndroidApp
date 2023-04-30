@@ -13,6 +13,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.Part
@@ -59,7 +60,6 @@ interface ApiService {
     @POST("payment/startPayment")
     fun postPago(
         @Header("Authorization") authHeader: String,
-        //@Part("fieldname") fieldname: File,
         @Part imagen: MultipartBody.Part,
         @Part("courseId") cursoID: String?
     ): Call<Pago>

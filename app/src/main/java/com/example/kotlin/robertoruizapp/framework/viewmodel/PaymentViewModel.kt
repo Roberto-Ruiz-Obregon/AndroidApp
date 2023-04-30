@@ -14,7 +14,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 
-
 class PaymentViewModel: ViewModel() {
 
     var PaymentLiveData: MutableLiveData<Pago?> = MutableLiveData()
@@ -32,11 +31,10 @@ class PaymentViewModel: ViewModel() {
 
         val call = retroService.postPago(token, imagePart , course?.trim())
 
-        //val call = retroService.postPago(token, parts, course)
-            call.enqueue(object: Callback<Pago> {
-                override fun onFailure(call: Call<Pago>, t: Throwable) {
-                    Log.d("Falla de llamada", t.toString())
-                    PaymentLiveData.postValue(null)
+        call.enqueue(object: Callback<Pago> {
+            override fun onFailure(call: Call<Pago>, t: Throwable) {
+                Log.d("Falla de llamada", t.toString())
+                PaymentLiveData.postValue(null)
             }
 
             override fun onResponse(call: Call<Pago>, response: Response<Pago>) {
@@ -52,5 +50,3 @@ class PaymentViewModel: ViewModel() {
 
 
 }
-
-

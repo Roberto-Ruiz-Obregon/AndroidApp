@@ -74,11 +74,10 @@ class FragmentoPagoCurso : Fragment() {
         fun startPayment(imageFile: File) {
             val requestFile = fileToRequestBody(imageFile)
             val courseIdWithoutQuotes = cursoID?.trim()?.replace("\"", "")
-
-           // viewModel.startPayment(token, requestFile, cursoID?.trim())
-            viewModel.startPayment(token, requestFile, courseIdWithoutQuotes)
-
-
+            Timber.tag("FragmentoPagoCurso").d("Selected image file: $imageFile")
+            Timber.tag("FragmentoPagoCurso").d("Request file: $requestFile")
+            Log.d("FragmentoPagoCurso", "cursoID: $cursoID, courseIdWithoutQuotes: $courseIdWithoutQuotes")
+            viewModel.startPayment(token, requestFile, cursoID)
         }
 
 
@@ -110,8 +109,6 @@ class FragmentoPagoCurso : Fragment() {
             } else {
                 Toast.makeText(context, "Por favor, seleccione una imagen primero", Toast.LENGTH_SHORT).show()
             }}
-
-
         return root
     }
 
@@ -203,8 +200,6 @@ class FragmentoPagoCurso : Fragment() {
     }
 
     // SOLICITAR PERMISOS
-
-
 
     private fun checkPermissions() {
         val requiredPermissions = arrayOf(
