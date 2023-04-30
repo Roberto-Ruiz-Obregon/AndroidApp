@@ -21,7 +21,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
+/**
+ *
+ * FragmentoPerfil class for displaying the profile info of a user
+ *
+ * @return the view component of profile with the logout and edit methods
+ *
+ */
 class FragmentoPerfil: Fragment() {
     private var _binding : FragmentoPerfilBinding? = null
     private val binding get() = _binding!!
@@ -30,6 +36,7 @@ class FragmentoPerfil: Fragment() {
         PreferenceHelper.defaultPrefs(this@FragmentoPerfil.requireActivity())
     }
 
+    // creates the view of the fragment
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -57,6 +64,7 @@ class FragmentoPerfil: Fragment() {
         return root
     }
 
+    // Binds the data with the interface
     private fun initUI() {
         viewModel.getMyInfo()
         viewModel.userLiveData.observe(viewLifecycleOwner) { user ->
@@ -72,6 +80,7 @@ class FragmentoPerfil: Fragment() {
         }
     }
 
+    // Function that performs logout of the current session
     private fun performLogout(){
         val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
         val token = preferences["token", ""]
@@ -105,15 +114,18 @@ class FragmentoPerfil: Fragment() {
         requireActivity().startActivity(intent)
     }
 
+    // Clears the session
     private fun clearSessionPreference(){
         preferences["token"] = ""
     }
 
+    // Destroys the view
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
+    // Proceeds to change the actual view to the login
     private fun passViewGoToLogin() {
         val intent = Intent()
         intent.setClass(requireActivity(), LoginActivity::class.java)

@@ -41,6 +41,12 @@ class Repository() {
         }
     }
 
+    /**
+     * Gets the user profile usind their [id]
+     * @param [id] user idenifier
+     * @return the API response
+     *
+     */
     suspend fun getUserInfo(id:String): Profile?{
         api = NetworkModuleDI()
         return try{
