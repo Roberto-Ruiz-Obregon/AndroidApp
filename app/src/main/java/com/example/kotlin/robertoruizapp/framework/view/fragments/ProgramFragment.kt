@@ -183,7 +183,6 @@ class ProgramFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     /**
      * Sets the binding to Null after the fragment is destoroyed
-     *
      */
     override fun onDestroyView() {
         super.onDestroyView()
