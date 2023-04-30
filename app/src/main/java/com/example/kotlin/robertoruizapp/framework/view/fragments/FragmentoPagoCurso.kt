@@ -112,7 +112,7 @@ class FragmentoPagoCurso : Fragment() {
 
         button_enviar.setOnClickListener {
             startPayment()
-            Log.d("inscribirme boton", "me clickeaste")
+            Log.d("pago boton", "me clickeaste")
         }
 
         return root

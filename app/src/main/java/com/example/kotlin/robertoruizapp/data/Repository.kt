@@ -69,9 +69,9 @@ class Repository() {
     }
 
     /**
-     * Gets the courses [Profile] using their [jwt]
+     * Gets the courses [CursosObjeto] using their [jwt]
      * @param [jwt] Authorization header of the user
-     * @return the API response in [Profile]
+     * @return the API response in [CursosObjeto]
      */
     suspend fun getMyCourses(jwt:String): CursosObjeto?{
         api = NetworkModuleDI()
