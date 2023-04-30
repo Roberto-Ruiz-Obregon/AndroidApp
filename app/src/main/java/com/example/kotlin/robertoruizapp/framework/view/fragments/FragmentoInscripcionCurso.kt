@@ -1,7 +1,5 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
-import android.content.Intent
-import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -23,16 +20,15 @@ import com.example.kotlin.robertoruizapp.databinding.FragmentoInscripcionBinding
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.InscriptionViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants
-import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
-class FragmentoInscripcionCurso :  Fragment() {
+class FragmentoInscripcionCurso : Fragment() {
     private var _binding: FragmentoInscripcionBinding? = null
     private val binding get() = _binding!!
-    private var cursoID : String? = null
+    private var cursoID: String? = null
     private lateinit var viewModel: InscriptionViewModel
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -45,7 +41,6 @@ class FragmentoInscripcionCurso :  Fragment() {
         savedInstanceState: Bundle?
 
     ): View {
-        Log.d("check", "Entrando a vista")
         viewModel = ViewModelProvider(this)[InscriptionViewModel::class.java]
         _binding = FragmentoInscripcionBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -63,7 +58,7 @@ class FragmentoInscripcionCurso :  Fragment() {
 
             //Este es un ejemplo de un curso
             //TODO extraer info de curso en vista de Inscripción
-          //  val cursoId: String = "64386615c8ec2f0bc8b9dee3"
+            //  val cursoId: String = "64386615c8ec2f0bc8b9dee3"
 
             val user = Inscription(
                 cursoID
@@ -74,7 +69,6 @@ class FragmentoInscripcionCurso :  Fragment() {
 
         btnInscribirse.setOnClickListener {
             EnrollUser()
-            Log.d("inscribirme boton", "me clickeaste")
 
         }
 
@@ -82,15 +76,14 @@ class FragmentoInscripcionCurso :  Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    private fun getCourseList(){
+    private fun getCourseList() {
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
             val result: CursosObjeto? = repository.getCursosNoFilter()
 
-            CoroutineScope(Dispatchers.Main).launch{
-                val curso = cursoFromID(cursoID,result)
-                if (curso != null)
-                {
+            CoroutineScope(Dispatchers.Main).launch {
+                val curso = cursoFromID(cursoID, result)
+                if (curso != null) {
                     binding.Titulo.text = curso.courseName
                     binding.textoCurso.text = curso.description
                     binding.nombrePonente.text = curso.teacher
@@ -103,10 +96,11 @@ class FragmentoInscripcionCurso :  Fragment() {
             }
         }
     }
+
     private fun cursoFromID(cursoID: String?, result: CursosObjeto?): Document? {
-        for (curso in result!!.data.documents){
+        for (curso in result!!.data.documents) {
             var cursoid = curso._id
-            if(cursoid.toString() == cursoID)
+            if (cursoid.toString() == cursoID)
                 return curso
         }
         return null
