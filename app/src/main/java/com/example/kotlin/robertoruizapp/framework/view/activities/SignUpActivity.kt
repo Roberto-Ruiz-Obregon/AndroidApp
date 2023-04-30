@@ -2,21 +2,25 @@ package com.example.kotlin.robertoruizapp.framework.view.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.kotlin.robertoruizapp.R
-import com.example.kotlin.robertoruizapp.framework.viewmodel.SignUpActivityViewModel
 import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
+import com.example.kotlin.robertoruizapp.framework.viewmodel.SignUpActivityViewModel
 
-
+/**
+ * SignUpActivity class that manages the activity actions
+ *
+ */
 class SignUpActivity : AppCompatActivity() {
     private lateinit var viewModel: SignUpActivityViewModel
 
+    /**
+     * Sets the information for the current activity when creating the view
+     *
+     * @param savedInstanceState the state of the view
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -25,9 +29,18 @@ class SignUpActivity : AppCompatActivity() {
         val gender = findViewById<Spinner>(R.id.spinnerSex)
         gender.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, generos)
 
-        val estudios = arrayOf("Ninguno", "Primaria", "Secundaria", "Preparatoria", "Universidad", "Maestria", "Doctorado")
+        val estudios = arrayOf(
+            "Ninguno",
+            "Primaria",
+            "Secundaria",
+            "Preparatoria",
+            "Universidad",
+            "Maestria",
+            "Doctorado"
+        )
         val studies = findViewById<Spinner>(R.id.spinnerEducation)
-        studies.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, estudios)
+        studies.adapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, estudios)
 
         val name: EditText = findViewById(R.id.editTextName)
         val edad: EditText = findViewById<EditText>(R.id.editTextAge)
