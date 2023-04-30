@@ -15,6 +15,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 
+/**
+ *
+ * This class persists the information data of a user
+ *
+ */
 class PerfilViewModel : ViewModel() {
     val userLiveData = MutableLiveData<Profile?>()
     fun getUserInfo() {
