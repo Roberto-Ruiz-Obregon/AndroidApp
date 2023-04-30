@@ -73,6 +73,21 @@ class Repository() {
     }
 
     /**
+     * Gets the courses [Profile] using their [jwt]
+     * @param [jwt] Authorization header of the user
+     * @return the API response in [Profile]
+     */
+    suspend fun getMyCourses(jwt:String): CursosObjeto?{
+        api = NetworkModuleDI()
+        return try{
+            api.getMyCourses(jwt)
+        }catch (e:java.lang.Exception){
+            e.printStackTrace()
+            null
+        }
+    }
+
+    /**
      * Edits the user [Profile]
      * @param [jwt] Authorization header of the user
      * @param [request] Changed fields for the user's profile using a [EditProfileRequest]

@@ -74,16 +74,15 @@
             android:text="10-3- 2022" />
 
         <TextView
-            android:id="@+id/inscrito"
+            android:id="@+id/mi_inscripcion"
             style="@style/card_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/mi_fecha"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="d"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="12dp"
-            android:drawableStart="@drawable/cursoinscrito_24"
+            android:drawableStart="@drawable/libro_24"
             android:fontFamily="@font/roboto"
             android:text="¡Estás inscrit@!" />
 
