@@ -2,7 +2,6 @@ package com.example.kotlin.robertoruizapp.framework.view.fragments
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +24,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
+/**
+ * FragmentoInscripcionCurso class that manages the fragment actions
+ *
+ */
 class FragmentoInscripcionCurso : Fragment() {
     private var _binding: FragmentoInscripcionBinding? = null
     private val binding get() = _binding!!
@@ -32,8 +35,16 @@ class FragmentoInscripcionCurso : Fragment() {
     private lateinit var viewModel: InscriptionViewModel
 
     @RequiresApi(Build.VERSION_CODES.N)
-    //private lateinit var recyclerView: RecyclerView
 
+    /**
+     * When the fragment is created sets up binding and viewmodel
+     *
+     * @param inflater How the layout wil be created
+     * @param container what viewmgroup the fragment belongs to
+     * @param savedInstanceState the state of the activity / fragment
+     *
+     * @return [View] object containing the information about the fragment
+     */
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,10 +67,6 @@ class FragmentoInscripcionCurso : Fragment() {
         val token: String = "Bearer " + LoginActivity.token
         fun EnrollUser() {
 
-            //Este es un ejemplo de un curso
-            //TODO extraer info de curso en vista de Inscripción
-            //  val cursoId: String = "64386615c8ec2f0bc8b9dee3"
-
             val user = Inscription(
                 cursoID
             )
@@ -75,6 +82,11 @@ class FragmentoInscripcionCurso : Fragment() {
         return root
     }
 
+    /**
+     * Gets the list of [Document] objects that contain courses information
+     * to load the data into view
+     *
+     */
     @RequiresApi(Build.VERSION_CODES.N)
     private fun getCourseList() {
         CoroutineScope(Dispatchers.IO).launch {
@@ -97,6 +109,14 @@ class FragmentoInscripcionCurso : Fragment() {
         }
     }
 
+    /**
+     * Gets the [Document] object that matches the [cursoID] and [result] params
+     *
+     * @param cursoID the id of the curso
+     * @param result the information retrieved from API response
+     *
+     * @return the [Document] object that matches the [curso] or Null
+     */
     private fun cursoFromID(cursoID: String?, result: CursosObjeto?): Document? {
         for (curso in result!!.data.documents) {
             var cursoid = curso._id
@@ -106,7 +126,10 @@ class FragmentoInscripcionCurso : Fragment() {
         return null
     }
 
-
+    /**
+     * Sets the binding to Null after the fragment is destoroyed
+     *
+     */
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
