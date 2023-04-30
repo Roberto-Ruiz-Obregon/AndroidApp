@@ -64,7 +64,6 @@ class ProgramDetailActivity : Activity() {
 
     /**
      * Initializes the binding information of the view
-     *
      */
     private fun initializeBinding() {
         binding = ActivityProgramDetailBinding.inflate(layoutInflater)
