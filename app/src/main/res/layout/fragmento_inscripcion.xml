@@ -161,8 +161,8 @@
 
     <TextView
         android:id="@+id/ocupacion"
-        android:layout_width="72dp"
-        android:layout_height="20dp"
+        android:layout_width="79dp"
+        android:layout_height="22dp"
         android:layout_marginTop="268dp"
         android:fontFamily="@font/roboto"
         android:text="Ocupacion:"

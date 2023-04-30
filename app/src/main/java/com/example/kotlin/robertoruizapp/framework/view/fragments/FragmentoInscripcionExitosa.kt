@@ -118,17 +118,13 @@ class FragmentoInscripcionExitosa : Fragment(){
     }
 
     private fun goToNewFragment() {
-
-        val contenedor = (context as FragmentActivity).findViewById<ViewGroup>(R.id.Inscrito)
-        contenedor.removeAllViews()
-
-        val fragmentoNuevo = FragmentoMisCursos()
-        val transaction = (context as FragmentActivity).supportFragmentManager.beginTransaction()
-
-        transaction.replace(R.id.Inscrito, fragmentoNuevo)
-        transaction.addToBackStack(null)
-        transaction.commit()
+        val intent = Intent(requireActivity(), MainActivity::class.java)
+// Si deseas agregar datos adicionales al Intent, usa el método putExtra
+// intent.putExtra("clave", valor)
+        startActivity(intent)
     }
+
+
 
 
 }

@@ -230,7 +230,7 @@
         android:id="@+id/buttonRegreso"
         android:layout_width="266dp"
         android:layout_height="42dp"
-        android:text="Ir a mis cursos"
+        android:text="Regresar al inicio"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
