@@ -41,6 +41,7 @@ import java.io.FileOutputStream
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import timber.log.Timber
 
 
@@ -67,17 +68,19 @@ class FragmentoPagoCurso : Fragment() {
         val button_enviar: Button = root.findViewById(R.id.button_enviar)
         image_view = root.findViewById(R.id.image_view)
         cursoID = requireActivity().intent.getStringExtra(Constants.CURSO_ID_EXTRA)?.trim()
+        // Crear un RequestBody a partir de la cadena cursoID
+        val courseIdRequestBody = cursoID?.toRequestBody("text/plain".toMediaTypeOrNull())
         val token: String = "Bearer " + LoginActivity.token
 
         checkPermissions()
 
+
         fun startPayment(imageFile: File) {
             val requestFile = fileToRequestBody(imageFile)
-            val courseIdWithoutQuotes = cursoID?.trim()?.replace("\"", "")
-            Timber.tag("FragmentoPagoCurso").d("Selected image file: $imageFile")
-            Timber.tag("FragmentoPagoCurso").d("Request file: $requestFile")
-            Log.d("FragmentoPagoCurso", "cursoID: $cursoID, courseIdWithoutQuotes: $courseIdWithoutQuotes")
-            viewModel.startPayment(token, requestFile, cursoID)
+           // val courseIdWithoutQuotes = cursoID?.trim()?.replace("\"","")
+            //Log.d("antevpago", "cursoID: $cursoID, courseIdWithoutQuotes: $courseIdWithoutQuotes")
+           // Log.d("antevpago", cursoID.toString())
+            viewModel.startPayment2(token,courseIdRequestBody, requestFile)
         }
 
 
@@ -105,7 +108,9 @@ class FragmentoPagoCurso : Fragment() {
 
         button_enviar.setOnClickListener {
             if(selectedImageFile != null) {
-                startPayment(selectedImageFile!!)
+
+               startPayment(selectedImageFile!!)
+
             } else {
                 Toast.makeText(context, "Por favor, seleccione una imagen primero", Toast.LENGTH_SHORT).show()
             }}

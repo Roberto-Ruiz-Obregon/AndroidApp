@@ -1,22 +1,18 @@
 package com.example.kotlin.robertoruizapp.data.network.model
+
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Inscription
 import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Pago
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginRequest
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginResponse
+import com.example.kotlin.robertoruizapp.data.network.model.Login.User
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
-import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
-import retrofit2.http.Path
 import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.http.Headers
-import retrofit2.http.Multipart
-import retrofit2.http.Part
+import retrofit2.Call
+import retrofit2.http.*
+
 
 interface ApiService {
 
@@ -60,10 +56,10 @@ interface ApiService {
     @POST("payment/startPayment")
     fun postPago(
         @Header("Authorization") authHeader: String,
-        @Part imagen: MultipartBody.Part,
-        @Part("courseId") cursoID: String?
-    ): Call<Pago>
+        @Part("courseId") cursoID: RequestBody?,
+        @Part imagen: MultipartBody.Part
 
+    ): Call<Pago>
 
 
 

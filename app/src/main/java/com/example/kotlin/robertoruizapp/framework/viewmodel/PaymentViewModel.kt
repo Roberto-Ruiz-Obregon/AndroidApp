@@ -22,14 +22,16 @@ class PaymentViewModel: ViewModel() {
         return PaymentLiveData
     }
 
-    fun startPayment(token: String, parts: RequestBody, course: String?) {
+    fun startPayment2(token: String, course: RequestBody?, parts: RequestBody) {
+       // val yo: String = "Boss"
+       // val courseIdWithoutQuotes = course.trim().replace("\"","")
         val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
         val imagePart = MultipartBody.Part.createFormData("image", "image.jpg", parts)
-        Timber.tag("PaymentViewModel").d("Token: $token")
-        Timber.tag("PaymentViewModel").d("Image part: $imagePart")
-        Timber.tag("PaymentViewModel").d("Course ID: ${course?.trim()}")
+        Log.d("pay2", course.toString())
 
-        val call = retroService.postPago(token, imagePart , course?.trim())
+        val call = retroService.postPago(token, course, imagePart)
+
+
 
         call.enqueue(object: Callback<Pago> {
             override fun onFailure(call: Call<Pago>, t: Throwable) {
@@ -39,10 +41,12 @@ class PaymentViewModel: ViewModel() {
 
             override fun onResponse(call: Call<Pago>, response: Response<Pago>) {
                 if(response.isSuccessful) {
-                    Timber.tag("Salida").d(response.toString())
+                    Log.d("Salida", response.toString())
                     PaymentLiveData.postValue(response.body())
                 } else {
-                    PaymentLiveData.postValue(null)
+                    Log.d("Salida2", response.toString())
+                    //PaymentLiveData.postValue(null)
+                    PaymentLiveData.postValue(response.body())
                 }
             }
         })
