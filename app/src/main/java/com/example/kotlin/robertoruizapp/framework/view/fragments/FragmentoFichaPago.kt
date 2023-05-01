@@ -96,7 +96,9 @@ class FragmentoFichaPago : Fragment() {
                 if (curso != null)
                 {
                     Log.d("FragmentoFichaPago", "Resultado de getCursos(): $result")
+
                     binding.montoCurso.text = "$" + curso.cost.toString()
+                    binding.Banco.text = curso.bank
                     binding.numeroCuenta.text = "Cuenta:  " + "6464 5455 1145 1548"
                     binding.referenciaCurso.text = "Referencia:  " + curso.courseName
                 }
