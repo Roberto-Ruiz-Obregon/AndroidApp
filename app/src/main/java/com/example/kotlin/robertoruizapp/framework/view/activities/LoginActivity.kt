@@ -3,10 +3,10 @@ package com.example.kotlin.robertoruizapp.framework.view.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.data.network.model.ApiService
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginRequest
@@ -27,7 +27,7 @@ import java.io.File
  */
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-
+    private var progressBar: ProgressBar? = null
     companion object UserToken {
         var token: String = ""
     }
@@ -46,17 +46,29 @@ class LoginActivity : AppCompatActivity() {
 
         initializeBinding()
 
+
         val preferences = PreferenceHelper.defaultPrefs(this)
         if (preferences["token", ""].contains("."))
             goToHome()
 
+        val loadingPanel = findViewById<RelativeLayout>(R.id.loadingPanel)
+        progressBar = findViewById(R.id.progressBarLogin)
         val btnGoMenu = findViewById<Button>(R.id.button_login)
+        val btnSign = findViewById<Button>(R.id.signup)
+        val emailLogin = findViewById<TextView>(R.id.email_login)
+        val passwordLogin = findViewById<TextView>(R.id.password_login)
         btnGoMenu.setOnClickListener {
+            loadingPanel.visibility = View.VISIBLE
+            progressBar?.visibility = View.VISIBLE
+            passwordLogin.isEnabled = false
+            emailLogin.isEnabled = false
+            btnGoMenu.isEnabled = false
+            btnSign.isEnabled = false
             performLogin()
+
         }
 
         val btnStartRegisterActivity = findViewById<Button>(R.id.signup)
-
         btnStartRegisterActivity.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
@@ -87,6 +99,7 @@ class LoginActivity : AppCompatActivity() {
      * POST the login information of the user to pass to the home section
      */
     private fun performLogin() {
+
         val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
         val etEmail = findViewById<EditText>(R.id.email_login).text.toString()
         val etPassword = findViewById<EditText>(R.id.password_login).text.toString()
@@ -101,6 +114,7 @@ class LoginActivity : AppCompatActivity() {
 //                        checkCache(loginResponse.token)
                         token = loginResponse.token
                         createSessionPreference(loginResponse.token)
+                        progressBar?.visibility = View.INVISIBLE
                         goToHome()
 
                     }
@@ -120,6 +134,7 @@ class LoginActivity : AppCompatActivity() {
              * @param t exception to be thrown
              */
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                progressBar?.visibility = View.INVISIBLE
                 Toast.makeText(
                     applicationContext,
                     "No se pudo conectar a servidor",
