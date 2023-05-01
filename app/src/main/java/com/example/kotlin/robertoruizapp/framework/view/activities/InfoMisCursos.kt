@@ -57,6 +57,7 @@ class InfoMisCursos : AppCompatActivity() {
                     binding.descripcionCurso.text = curso.description
                     binding.tipoModalidad.text = curso.modality
                     binding.nombrePonente.text = curso.teacher
+                    binding.miHorario.text = curso.schedule
 
                     if (curso.modality == "Remoto"){
                         binding.ubicacionCurso.text = curso.accessLink

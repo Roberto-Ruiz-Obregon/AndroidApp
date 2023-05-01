@@ -237,7 +237,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Fecha de Fin"
+        android:text="Fecha de Fin:"
         android:textStyle="bold"
         android:fontFamily="@font/roboto"
         app:layout_constraintEnd_toEndOf="parent"
@@ -255,6 +255,35 @@
         app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Fecha_fin_Titulo" />
+
+    <TextView
+        android:id="@+id/Horario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:text="Horario:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tipo_modalidad"
+        app:drawableStartCompat="@drawable/horario_c"/>
+
+    <TextView
+        android:id="@+id/mi_horario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="20sp"
+        android:paddingRight="20sp"
+        android:text="nIn consequi nostruet quos commodi."
+        android:textAlignment="center"
+        android:textSize="14dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Horario"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

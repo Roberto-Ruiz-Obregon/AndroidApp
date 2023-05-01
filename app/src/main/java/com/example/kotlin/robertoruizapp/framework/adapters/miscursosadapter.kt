@@ -97,7 +97,6 @@ class miscursosadapter(val clickListener: CursoClickListener): RecyclerView.Adap
             description =  itemView.findViewById(R.id.mi_descripcion)
             startDate =  itemView.findViewById(R.id.mi_fecha)
             modality =  itemView.findViewById(R.id.mi_modalidad)
-
         }
     }
 }

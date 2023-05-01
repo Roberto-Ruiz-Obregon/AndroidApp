@@ -132,12 +132,13 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
         val courseName: TextView
         val description: TextView
         val startDate: TextView
-        //val endDate: Date
         val modality: TextView
         val status: TextView
         val botoncurso: Button
         val Imagen_curso: ImageView
         val cobro_curso: TextView
+        //val endDate: Date
+
 
 
 
@@ -151,7 +152,6 @@ class cursosadapter(val clickListener: CursoClickListener): RecyclerView.Adapter
             // endDate =  itemView.findViewById(R.id.course_Name)
             status =  itemView.findViewById(R.id.cobro_curso)
             modality =  itemView.findViewById(R.id.locacion_curso1)
-
         }
     }
 }
