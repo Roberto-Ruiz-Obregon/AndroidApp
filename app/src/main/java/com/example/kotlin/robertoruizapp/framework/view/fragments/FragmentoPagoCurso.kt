@@ -77,9 +77,6 @@ class FragmentoPagoCurso : Fragment() {
 
         fun startPayment(imageFile: File) {
             val requestFile = fileToRequestBody(imageFile)
-           // val courseIdWithoutQuotes = cursoID?.trim()?.replace("\"","")
-            //Log.d("antevpago", "cursoID: $cursoID, courseIdWithoutQuotes: $courseIdWithoutQuotes")
-           // Log.d("antevpago", cursoID.toString())
             viewModel.startPayment2(token,courseIdRequestBody, requestFile)
         }
 
@@ -108,7 +105,6 @@ class FragmentoPagoCurso : Fragment() {
 
         button_enviar.setOnClickListener {
             if(selectedImageFile != null) {
-
                startPayment(selectedImageFile!!)
 
             } else {
