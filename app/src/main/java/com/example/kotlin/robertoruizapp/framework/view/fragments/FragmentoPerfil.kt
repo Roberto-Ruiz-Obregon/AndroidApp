@@ -40,6 +40,15 @@ class FragmentoPerfil: Fragment() {
     }
 
     // creates the view of the fragment
+    /**
+     * When the fragment is created sets up bindinga and viewmodel
+     *
+     * @param inflater How the layout wil be created
+     * @param container what viewmgroup the fragment belongs to
+     * @param savedInstanceState the state of the activity / fragment
+     *
+     * @return [View] object containing the information about the fragment
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -74,6 +83,9 @@ class FragmentoPerfil: Fragment() {
     }
 
     // Binds the data with the interface
+    /**
+     * initializes the User Interface with the data retrieved from the user login activity
+     */
     private fun initUI() {
         viewModel.getMyInfo()
         viewModel.userLiveData.observe(viewLifecycleOwner) { user ->
@@ -89,6 +101,11 @@ class FragmentoPerfil: Fragment() {
         }
     }
 
+    /**
+     * LogsOut the user from the application doing a POST method with Retrofit.
+     * After this, the login activity is displayed
+     *
+     */
     // Function that performs logout of the current session
     private fun performLogout(){
         val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
@@ -116,24 +133,40 @@ class FragmentoPerfil: Fragment() {
 
         })
     }
-    // TODO
+
+    /**
+     * Calls the EditProfileActivity to change actual view
+     *
+     */
     private fun editMyProfile(){
         val intent = Intent()
         intent.setClass(requireActivity(), EditProfileActivity::class.java)
         requireActivity().startActivity(intent)
     }
 
+    /**
+     * Clears the token of the user to  nothing ("")
+     *
+     */
     // Clears the session
     private fun clearSessionPreference(){
         preferences["token"] = ""
     }
 
+    /**
+     * Sets the binding to Null after view is Destroyed
+     *
+     */
     // Destroys the view
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
+    /**
+     * Calls the LoginActivity with Intent Function
+     *
+     */
     // Proceeds to change the actual view to the login
     private fun passViewGoToLogin() {
         val intent = Intent()

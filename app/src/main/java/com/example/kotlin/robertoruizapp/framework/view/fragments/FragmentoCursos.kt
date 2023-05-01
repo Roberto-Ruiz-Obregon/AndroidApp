@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,20 +18,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.R
+import com.example.kotlin.robertoruizapp.data.Repository
+import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
+import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
 import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
-import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
-import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document as CourseDocument
-import com.example.kotlin.robertoruizapp.data.network.model.Topic.Document as TopicsDocument
-import com.example.kotlin.robertoruizapp.data.Repository
-import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import timber.log.Timber
+import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document as CourseDocument
+import com.example.kotlin.robertoruizapp.data.network.model.Topic.Document as TopicsDocument
 
 class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
     private var _binding: FragmentoCursosBinding? = null
@@ -50,8 +48,18 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
     private var postalCode = ""
 
     private var progressBar: ProgressBar? = null
+    private val finishedLoading = MutableLiveData<Boolean>()
 
-    val finishedLoading = MutableLiveData<Boolean>()
+
+    /**
+     * When the fragment is created sets up binding, viewmodel and progress bar
+     *
+     * @param inflater How the layout wil be created
+     * @param container what viewgroup the fragment belongs to
+     * @param savedInstanceState the state of the activity / fragment
+     *
+     * @return [View] object containing the information about the fragment
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -72,7 +80,10 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
 
         return root
     }
-
+    /**
+     * Sets the inputs that are displayed in the view and calls the appropriate method
+     * according to the situation specified
+     */
     private fun setInputs() {
         // Spinner topics
         CoroutineScope(Dispatchers.IO).launch {
@@ -108,9 +119,6 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
                         topicsObject?.forEach {
                             if (it.topic == selected) topicSelected = it._id
                         }
-
-                        Log.d("TOPIC", "topic: ${topicSelected}")
-
                         getCourseList()
                     }
 
@@ -171,7 +179,6 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 courseName = s.toString()
-                Log.d("EDITTEXT", "NAME: ${courseName}")
                 getCourseList()
             }
         })
@@ -183,23 +190,40 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 postalCode = s.toString()
-                Log.d("EDITTEXT", "PC: ${postalCode}")
                 getCourseList()
             }
         })
     }
 
+    /**
+     * When an Item is selected in the spinner, the category selected variable is updated
+     * and calls the getProgramList() method
+     *
+     * @param parent AdapterView of the parent
+     * @param view View of the parent
+     * @param position an Integer
+     * @param id id of the item
+     */
     override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
         statusSelected = binding.spinnerStatus.selectedItem.toString()
         modalitySelected = binding.spinnerModality.selectedItem.toString()
-        Log.d("SPINNER", "Selected: ${statusSelected} ${modalitySelected}")
         getCourseList()
     }
 
+    /**
+     * When no category is selected program list is displayed as normal
+     *
+     * @param parent the View of the parent
+     */
     override fun onNothingSelected(parent: AdapterView<*>?) {
         getCourseList()
     }
 
+    /**
+     * Initializes the Observers used in the fragment to update
+     * mutable live data objects. The RecyclerView and ProgressBar
+     *
+     */
     private fun initializeObservers() {
         finishedLoading.observe(viewLifecycleOwner, Observer { finishedLoading ->
             if (finishedLoading) {
@@ -207,11 +231,18 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
             }
         })
     }
-
+    /**
+     * Changes the display of the ProgessBar to GONE state
+     *
+     */
     private fun progressBarBye() {
         progressBar?.visibility = View.GONE
     }
 
+    /**
+     * Gets the list of [Document] that matches the categoryselected variable
+     *
+     */
     private fun getCourseList() {
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -230,6 +261,7 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
 
                 recyclerView.layoutManager = layoutManager
                 val adapter = cursosadapter(fragmentoInfoCursos)
+
                 adapter.cursosResults(result?.results)
                 result?.data?.documents?.let { adapter.cursosAdapter(it) } //!!
                 recyclerView.adapter = adapter
@@ -239,16 +271,22 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
         }
     }
 
+    /**
+     * Sets the interaction that will pass the view when button is clicked
+     *
+     * @param document gives the data to the next view
+     */
     override fun onClick(document: CourseDocument) {
         val intent = Intent(requireContext(), FragmentoInfoCursos::class.java)
         // Imprime el valor de document._id en el Logcat
-        Log.d("Salida3", "Document ID: ${document._id}")
-
 
         intent.putExtra(CURSO_ID_EXTRA, document._id)
         startActivity(intent)
     }
 
+    /**
+     * Sets the binding to Null after the fragment is destoroyed
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

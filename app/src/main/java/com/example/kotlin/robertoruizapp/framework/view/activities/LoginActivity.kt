@@ -21,8 +21,13 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 
+/**
+ * LoginActivity class that manages the activity actions
+ *
+ */
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+
     companion object UserToken {
         var token: String = ""
     }
@@ -31,22 +36,11 @@ class LoginActivity : AppCompatActivity() {
         return file.exists() && !file.isDirectory
     }
 
-    // TODO testing for file caching
-    /*fun checkCache(token_data: String) {
-        val filePath = "$cacheDir/token.cache"
-        val file = File(filePath)
-
-        if (isFileExists(file)) {
-            println("File exists!!")
-            println(file.readText())
-            println(filePath)
-        } else {
-            kotlin.io.path.createTempFile("token","cache")
-            file.writeText(token_data)
-            println(filePath)
-            println("File doesn't exist or program doesn't have access to it")
-        }
-    }*/
+    /**
+     * When the activity is created sets up binding and viewmodel
+     *
+     * @param savedInstanceState the state of the activity / fragment
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -71,16 +65,27 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Initializes the binding information of the view
+     */
     private fun initializeBinding() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
+    /**
+     * Creates the preferences of the seesion indicating what is the tokenSession
+     *
+     * @param token Session of the current user
+     */
     private fun createSessionPreference(token: String) {
         val preferences = PreferenceHelper.defaultPrefs(this)
         preferences["token"] = token
     }
 
+    /**
+     * POST the login information of the user to pass to the home section
+     */
     private fun performLogin() {
         val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
         val etEmail = findViewById<EditText>(R.id.email_login).text.toString()
@@ -88,12 +93,10 @@ class LoginActivity : AppCompatActivity() {
         val request = LoginRequest(etEmail, etPassword)
         val call = retroService.postLogin(request)
 
-        // TODO check why toasts arent displayed
         call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 val loginResponse = response.body()
                 if (response.isSuccessful) {
-                    Log.d("RESPONSE", loginResponse.toString())
                     if (loginResponse?.status == "success") {
 //                        checkCache(loginResponse.token)
                         token = loginResponse.token
@@ -110,6 +113,12 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
+            /**
+             * Function that displays a toast when the call to backend fails
+             *
+             * @param call the call that was created
+             * @param t exception to be thrown
+             */
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Toast.makeText(
                     applicationContext,
@@ -121,6 +130,10 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * TODO
+     *
+     */
     private fun goToHome() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

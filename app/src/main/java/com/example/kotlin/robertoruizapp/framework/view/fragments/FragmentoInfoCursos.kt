@@ -19,13 +19,21 @@ import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
 import java.util.*
 
+/**
+ * FragmentoInforCursos class that manages the fragment actions
+ */
 class FragmentoInfoCursos : AppCompatActivity() {
     private lateinit var binding: FragmentoInfoCursosBinding
-    private var cursoID : String? = null
+    private var cursoID: String? = null
     private lateinit var currentFragment: Fragment
+
+    /**
+     * Sets the information for the current fragment when creating the view
+     *
+     * @param savedInstanceState the state of the view
+     */
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,26 +42,36 @@ class FragmentoInfoCursos : AppCompatActivity() {
 
         // Carga los datos
         lateinit var data: List<Document>
+        cursoID = intent.getStringExtra(CURSO_ID_EXTRA)
+
+        initializeBinding()
         getCourseList()
 
     }
 
+    /**
+     * Initializes the components of the view to set up binding
+     *
+     */
     private fun initializeBinding() {
         binding = FragmentoInfoCursosBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
-
+    /**
+     * Calls the [Repository] to get a list of [Document] which are courses.
+     * Also binds the information to the view
+     *
+     */
     @RequiresApi(Build.VERSION_CODES.N)
-    private fun getCourseList(){
+    private fun getCourseList() {
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
             val result: CursosObjeto? = repository.getCursos("", "", "", "", null)
 
-            CoroutineScope(Dispatchers.Main).launch{
-                val curso = cursoFromID(cursoID,result)
-                if (curso != null)
-                {
+            CoroutineScope(Dispatchers.Main).launch {
+                val curso = cursoFromID(cursoID, result)
+                if (curso != null) {
                     binding.nombreCursoInfo.text = curso.courseName
                     binding.descripcionCurso.text = curso.description
                     binding.tipoModalidad.text = curso.modality
@@ -71,7 +89,8 @@ class FragmentoInfoCursos : AppCompatActivity() {
                     }
                     //binding.fechaCurso.text = curso.startDate
 
-                    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+                    val inputFormat =
+                        SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
                     val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                     val date = inputFormat.parse(curso.startDate)
                     val enddate = inputFormat.parse(curso.endDate)
@@ -85,7 +104,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
                         binding.tipoPago.text = "Gratuito"
                         val boton = findViewById<Button>(R.id.button_inscribirme)
                         boton.setText("Inscribirme")
-                        boton.setOnClickListener{
+                        boton.setOnClickListener {
                             val contenedor = findViewById<ViewGroup>(R.id.InfoCurso)
                             contenedor.removeAllViews() // Elimina todos los hijos del contenedor
 
@@ -93,7 +112,6 @@ class FragmentoInfoCursos : AppCompatActivity() {
                             supportFragmentManager.beginTransaction()
 
                                 .replace(R.id.InfoCurso, fragmentoNuevo)
-                                //.addToBackStack(null)
                                 .commit()
 
 
@@ -105,19 +123,17 @@ class FragmentoInfoCursos : AppCompatActivity() {
 
                         }
 
-                    }
-                    else{
+                    } else {
                         binding.tipoPago.text = "$" + curso.cost.toString()
                         val boton = findViewById<Button>(R.id.button_inscribirme)
                         boton.setText("Pagar")
-                        boton.setOnClickListener{
+                        boton.setOnClickListener {
                             val contenedor = findViewById<ViewGroup>(R.id.InfoCurso)
                             contenedor.removeAllViews() // Elimina todos los hijos del contenedor
 
                             val fragmentoNuevo = FragmentoFichaPago()
                             supportFragmentManager.beginTransaction()
                                 .replace(R.id.InfoCurso, fragmentoNuevo)
-                                //.addToBackStack(null)
                                 .commit()
 
 
@@ -125,12 +141,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
                                 .replace(R.id.InfoCurso, fragmentoNuevo)
                                 .addToBackStack(null)
                                 .commit()
-
-
                         }
-
-
-
                     }
 
                     val imageView = findViewById<ImageView>(R.id.imageView)
@@ -144,10 +155,18 @@ class FragmentoInfoCursos : AppCompatActivity() {
         }
     }
 
+    /**
+     * Gets the [Document] object that matches the [cursoID] and [result] params
+     *
+     * @param cursoID the id of the curso
+     * @param result the information retrieved from API response
+     *
+     * @return the [Document] object that matches the [curso] or Null
+     */
     private fun cursoFromID(cursoID: String?, result: CursosObjeto?): Document? {
-        for (curso in result!!.data.documents){
+        for (curso in result!!.data.documents) {
             var cursoid = curso._id
-            if(cursoid.toString() == cursoID)
+            if (cursoid.toString() == cursoID)
                 return curso
         }
         return null

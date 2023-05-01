@@ -1,44 +1,50 @@
 package com.example.kotlin.robertoruizapp.framework.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.kotlin.robertoruizapp.data.Repository
-import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginResponse
-import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileRequest
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity.UserToken.token
 import com.example.kotlin.robertoruizapp.utils.Constants
-import com.example.kotlin.robertoruizapp.utils.PreferenceHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.File
 
 /**
- *
+ * PerfilViewModel that manages the activity actions
  * This class persists the information data of a user
  *
  */
 class PerfilViewModel : ViewModel() {
     val userLiveData = MutableLiveData<Profile?>()
+
+    /**
+     * Calls the [Profile] information from the API service
+     * posting the resul on userLiveData
+     *
+     */
     fun getUserInfo() {
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
             val result: Profile? = repository.getUserInfo(Constants.ID_PERFIL)
-            Log.d("Salida", result.toString())
+
             CoroutineScope(Dispatchers.Main).launch {
                 userLiveData.postValue(result)
             }
         }
     }
 
-    // TODO add token to cache
+    /**
+     * Calls the [Profile] information from the API service.
+     * The information requested is based of the session token of the user
+     * as a jwt
+     *
+     */
     fun getMyInfo() {
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
             val result: Profile? = repository.getMyInfo("jwt=${token}")
-            Log.d("Salida", result.toString())
+
             CoroutineScope(Dispatchers.Main).launch {
                 userLiveData.postValue(result)
             }

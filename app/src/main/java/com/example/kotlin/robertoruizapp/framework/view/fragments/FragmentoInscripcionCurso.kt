@@ -1,10 +1,7 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
-import android.content.Intent
-import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,23 +29,34 @@ import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.InscriptionViewModel
 import com.example.kotlin.robertoruizapp.framework.viewmodel.PerfilViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants
-import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.*
 
-class FragmentoInscripcionCurso :  Fragment() {
+/**
+ * FragmentoInscripcionCurso class that manages the fragment actions
+ *
+ */
+class FragmentoInscripcionCurso : Fragment() {
     private var _binding: FragmentoInscripcionBinding? = null
     private val binding get() = _binding!!
-    private var cursoID : String? = null
+    private var cursoID: String? = null
     private lateinit var viewModel: InscriptionViewModel
     private lateinit var viewModelP: PerfilViewModel
 
     @RequiresApi(Build.VERSION_CODES.N)
-    //private lateinit var recyclerView: RecyclerView
 
+    /**
+     * When the fragment is created sets up binding and viewmodel
+     *
+     * @param inflater How the layout wil be created
+     * @param container what viewmgroup the fragment belongs to
+     * @param savedInstanceState the state of the activity / fragment
+     *
+     * @return [View] object containing the information about the fragment
+     */
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,7 +64,6 @@ class FragmentoInscripcionCurso :  Fragment() {
         savedInstanceState: Bundle?
 
     ): View {
-        Log.d("check", "Entrando a vista")
         viewModel = ViewModelProvider(this)[InscriptionViewModel::class.java]
         viewModelP = ViewModelProvider(this)[PerfilViewModel::class.java]
         _binding = FragmentoInscripcionBinding.inflate(inflater, container, false)
@@ -107,20 +114,23 @@ class FragmentoInscripcionCurso :  Fragment() {
         return root
     }
 
+    /**
+     * Gets the list of [Document] objects that contain courses information
+     * to load the data into view
+     *
+     */
     @RequiresApi(Build.VERSION_CODES.N)
-    private fun getCourseList(){
+    private fun getCourseList() {
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
             val result: CursosObjeto? = repository.getCursosNoFilter()
 
-            CoroutineScope(Dispatchers.Main).launch{
-                val curso = cursoFromID(cursoID,result)
-                if (curso != null)
-                {
+            CoroutineScope(Dispatchers.Main).launch {
+                val curso = cursoFromID(cursoID, result)
+                if (curso != null) {
                     binding.Titulo.text = curso.courseName
                     binding.textoCurso.text = curso.description
                     binding.nombrePonente.text = curso.teacher
-
 
                     Glide.with(requireContext())
                         .load(curso.imageUrl)
@@ -130,10 +140,19 @@ class FragmentoInscripcionCurso :  Fragment() {
             }
         }
     }
+
+    /**
+     * Gets the [Document] object that matches the [cursoID] and [result] params
+     *
+     * @param cursoID the id of the curso
+     * @param result the information retrieved from API response
+     *
+     * @return the [Document] object that matches the [curso] or Null
+     */
     private fun cursoFromID(cursoID: String?, result: CursosObjeto?): Document? {
-        for (curso in result!!.data.documents){
+        for (curso in result!!.data.documents) {
             var cursoid = curso._id
-            if(cursoid.toString() == cursoID)
+            if (cursoid.toString() == cursoID)
                 return curso
         }
         return null
@@ -170,6 +189,10 @@ class FragmentoInscripcionCurso :  Fragment() {
             Toast.makeText(it, text, duration).show()
         }
     }
+    /**
+     * Sets the binding to Null after the fragment is destoroyed
+     *
+     */
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

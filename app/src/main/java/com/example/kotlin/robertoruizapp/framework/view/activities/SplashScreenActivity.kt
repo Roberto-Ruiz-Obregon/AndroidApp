@@ -8,11 +8,20 @@ import androidx.lifecycle.Observer
 import com.example.kotlin.robertoruizapp.databinding.ActivitySplashscreenBinding
 import com.example.kotlin.robertoruizapp.framework.viewmodel.SplashScreenViewModel
 
-class SplashScreenActivity:AppCompatActivity() {
+/**
+ * Splash screen activity that shows splash screen at the launch of the app
+ *
+ */
+class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashscreenBinding
     private val viewModel: SplashScreenViewModel by viewModels()
 
+    /**
+     * Initializes the activity and calls the corresponding components
+     *
+     * @param savedInstanceState state of the activity
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initializeBinding()
@@ -20,21 +29,32 @@ class SplashScreenActivity:AppCompatActivity() {
         initializeObservers()
     }
 
-    private fun initializeBinding(){
+    /**
+     * Initializes the binding information with the view
+     *
+     */
+    private fun initializeBinding() {
         binding = ActivitySplashscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
-    private fun initializeObservers(){
-        viewModel.finishedLoading.observe(this, Observer {finishedLoading->
-            if(finishedLoading){
+    /**
+     * Initializes the Observers to change pass the view to the home fragment
+     *
+     */
+    private fun initializeObservers() {
+        viewModel.finishedLoading.observe(this, Observer { finishedLoading ->
+            if (finishedLoading) {
                 passViewGoToLogin()
             }
         })
     }
 
+    /**
+     * Passes the view to the home fragment as an Intent
+     */
     private fun passViewGoToLogin() {
-        var intent: Intent = Intent(this, LoginActivity::class.java)
+        var intent = Intent(this, LoginActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         startActivity(intent)
         finish()
