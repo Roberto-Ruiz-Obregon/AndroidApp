@@ -27,6 +27,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
@@ -78,6 +79,7 @@ class FragmentoPagoCurso : Fragment() {
         fun startPayment(imageFile: File) {
             val requestFile = fileToRequestBody(imageFile)
             viewModel.startPayment2(token,courseIdRequestBody, requestFile)
+            goToNewFragment()
         }
 
 
@@ -111,6 +113,25 @@ class FragmentoPagoCurso : Fragment() {
                 Toast.makeText(context, "Por favor, seleccione una imagen primero", Toast.LENGTH_SHORT).show()
             }}
         return root
+    }
+
+
+    private fun goToNewFragment() {
+
+        val contenedor = (context as FragmentActivity).findViewById<ViewGroup>(R.id.FragmentoPago)
+        contenedor.removeAllViews()
+
+        val fragmentoNuevo = Fragmento_ComprobanteEnviado()
+        val transaction = (context as FragmentActivity).supportFragmentManager.beginTransaction()
+
+        transaction.replace(R.id.FragmentoPago, fragmentoNuevo)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+    fun Fragment.makeToast(text: String,duration: Int = Toast.LENGTH_LONG) {
+        activity?.let {
+            Toast.makeText(it, text, duration).show()
+        }
     }
 
 

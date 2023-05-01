@@ -1,4 +1,6 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
-class Fragmento_ComprobanteEnviado {
+import androidx.fragment.app.Fragment
+
+class Fragmento_ComprobanteEnviado: Fragment()  {
 }
