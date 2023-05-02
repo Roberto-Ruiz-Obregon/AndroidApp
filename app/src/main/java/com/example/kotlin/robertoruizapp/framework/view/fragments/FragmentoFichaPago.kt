@@ -99,7 +99,12 @@ class FragmentoFichaPago : Fragment() {
 
                     binding.montoCurso.text = "$" + curso.cost.toString()
                     binding.Banco.text = curso.bank
-                    binding.numeroCuenta.text = "Cuenta:  " + curso.bankAccount
+                    if (curso.bankAccount != null){
+                        binding.numeroCuenta.text = "Cuenta:  " + curso.bankAccount
+                    }else{
+                        binding.numeroCuenta.text = "Cuenta:  Por Definir"
+                    }
+
                     binding.referenciaCurso.text = "Referencia:  " + curso.courseName
                 }
             }
