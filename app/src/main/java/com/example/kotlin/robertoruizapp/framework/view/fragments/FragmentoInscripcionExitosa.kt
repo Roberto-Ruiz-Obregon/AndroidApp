@@ -36,7 +36,7 @@ class FragmentoInscripcionExitosa : Fragment(){
     private lateinit var _binding: FragmentoInscritoBinding
     private var cursoID : String? = null
     private lateinit var viewModel: InscriptionViewModel
-
+    val token: String = "Bearer " + LoginActivity.token
     @RequiresApi(Build.VERSION_CODES.N)
     //private lateinit var recyclerView: RecyclerView
 
@@ -71,7 +71,8 @@ class FragmentoInscripcionExitosa : Fragment(){
     private fun getCourseList(){
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
-            val result: CursosObjeto? = repository.getCursosNoFilter()
+
+            val result: CursosObjeto? = repository.getCursosNoFilter(token)
 
             CoroutineScope(Dispatchers.Main).launch{
                 val curso = cursoFromID(cursoID,result)

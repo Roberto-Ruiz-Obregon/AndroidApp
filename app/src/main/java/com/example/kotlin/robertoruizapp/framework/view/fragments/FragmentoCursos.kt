@@ -24,6 +24,7 @@ import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
 import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
+import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
@@ -88,7 +89,8 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
         // Spinner topics
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
-            val result: TopicsObject? = repository.getTopics()
+            val token: String = "Bearer " + LoginActivity.token
+            val result: TopicsObject? = repository.getTopics(token)
 
             CoroutineScope(Dispatchers.Main).launch {
                 topicsObject = result?.data?.documents
@@ -247,7 +249,9 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
 
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
+            val token: String = "Bearer " + LoginActivity.token
             val result: CursosObjeto? = repository.getCursos(
+                token,
                 courseName,
                 postalCode,
                 modalitySelected,

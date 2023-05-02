@@ -3,6 +3,7 @@ package com.example.kotlin.robertoruizapp.framework.view.fragments
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
@@ -15,6 +16,7 @@ import com.example.kotlin.robertoruizapp.data.Repository
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document
 import com.example.kotlin.robertoruizapp.databinding.FragmentoInfoCursosBinding
+import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -63,11 +65,12 @@ class FragmentoInfoCursos : AppCompatActivity() {
      * Also binds the information to the view
      *
      */
+    val token: String = "Bearer " + LoginActivity.token
     @RequiresApi(Build.VERSION_CODES.N)
     private fun getCourseList() {
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
-            val result: CursosObjeto? = repository.getCursos("", "", "", "", null)
+            val result: CursosObjeto? = repository.getCursosNoFilter(token)
 
             CoroutineScope(Dispatchers.Main).launch {
                 val curso = cursoFromID(cursoID, result)
@@ -165,6 +168,7 @@ class FragmentoInfoCursos : AppCompatActivity() {
      * @return the [Document] object that matches the [curso] or Null
      */
     private fun cursoFromID(cursoID: String?, result: CursosObjeto?): Document? {
+
         for (curso in result!!.data.documents) {
             var cursoid = curso._id
             if (cursoid.toString() == cursoID)

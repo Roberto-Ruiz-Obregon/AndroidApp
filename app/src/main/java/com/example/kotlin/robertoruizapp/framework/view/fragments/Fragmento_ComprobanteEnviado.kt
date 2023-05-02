@@ -1,16 +1,13 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
 import android.content.Intent
-import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import androidx.annotation.RequiresApi
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.kotlin.robertoruizapp.R
@@ -18,13 +15,12 @@ import com.example.kotlin.robertoruizapp.data.Repository
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document
 import com.example.kotlin.robertoruizapp.databinding.FragmentoComprobanteenviadoBinding
-import com.example.kotlin.robertoruizapp.databinding.FragmentoInfoCursosBinding
+import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.view.activities.MainActivity
 import com.example.kotlin.robertoruizapp.utils.Constants
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.Locale
 
 class Fragmento_ComprobanteEnviado: Fragment()  {
 
@@ -73,7 +69,9 @@ class Fragmento_ComprobanteEnviado: Fragment()  {
     private fun getCourseList(){
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
+            val token: String = "Bearer " + LoginActivity.token
             val result: CursosObjeto? = repository.getCursos(
+                token,
                 courseName,
                 postalCode,
                 modalitySelected,

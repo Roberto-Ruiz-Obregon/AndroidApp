@@ -119,11 +119,13 @@ class FragmentoInscripcionCurso : Fragment() {
      * to load the data into view
      *
      */
+    val token: String = "Bearer " + LoginActivity.token
     @RequiresApi(Build.VERSION_CODES.N)
     private fun getCourseList() {
         CoroutineScope(Dispatchers.IO).launch {
+
             val repository = Repository()
-            val result: CursosObjeto? = repository.getCursosNoFilter()
+            val result: CursosObjeto? = repository.getCursosNoFilter(token)
 
             CoroutineScope(Dispatchers.Main).launch {
                 val curso = cursoFromID(cursoID, result)

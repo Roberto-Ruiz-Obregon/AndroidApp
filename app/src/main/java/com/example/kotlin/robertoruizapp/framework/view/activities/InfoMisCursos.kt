@@ -47,7 +47,8 @@ class InfoMisCursos : AppCompatActivity() {
     private fun getCourseList(){
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
-            val result: CursosObjeto? = repository.getCursos("", "", "", "", null)
+            val token: String = "Bearer " + LoginActivity.token
+            val result: CursosObjeto? = repository.getCursos(token,"", "", "", "", null)
 
             CoroutineScope(Dispatchers.Main).launch{
                 val curso = cursoFromID(cursoID,result)

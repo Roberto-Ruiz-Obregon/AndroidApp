@@ -37,6 +37,7 @@ interface ApiService {
     //https://us-central1-robertoruiz-eca78.cloudfunctions.net/api/course/
     @GET("course")
     suspend fun getCursos(
+        @Header("Authorization") jwt: String,
         @Query("courseName[regex]") courseName: String,
         @Query("postalCode[regex]") postalCode: String,
         @Query("modality[regex]") modality: String,
@@ -46,11 +47,13 @@ interface ApiService {
 
     // Cursos Sin Filtros - HotFix
     @GET("course")
-    suspend fun getCursosNoFilter() : CursosObjeto
+    suspend fun getCursosNoFilter(
+        @Header("Authorization") jwt: String
+    ) : CursosObjeto
 
     @GET("topics")
     suspend fun getTopics(
-
+        @Header("Authorization") jwt: String
     ): TopicsObject
 
     @GET("user/{id}")

@@ -1,15 +1,11 @@
 package com.example.kotlin.robertoruizapp.data
 
-import android.net.Network
 import com.example.kotlin.robertoruizapp.data.network.model.*
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
-import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Inscription
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileRequest
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileResponse
 import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
-import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Result
-import retrofit2.Call
 
 /**
  * Repository class that has the methods to call the [NetworkModuleDI]
@@ -23,10 +19,10 @@ class Repository() {
      *
      * @return the call to the [NetworkModuleDI] method [getCursosNoFilter]
      */
-    suspend fun getCursosNoFilter() : CursosObjeto? {
+    suspend fun getCursosNoFilter(jwt:String) : CursosObjeto? {
         api = NetworkModuleDI()
         return try{
-            api.getCursosNoFilter()
+            api.getCursosNoFilter(jwt)
         }catch (e:java.lang.Exception){
             e.printStackTrace()
             null
@@ -44,10 +40,10 @@ class Repository() {
      *
      * @return [CursosObjeto] object
      */
-    suspend fun getCursos(courseName: String, postalCode: String, modality: String, status: String, topic: String?): CursosObjeto?{
+    suspend fun getCursos(jwt:String, courseName: String, postalCode: String, modality: String, status: String, topic: String?): CursosObjeto?{
         api = NetworkModuleDI()
         return try{
-            api.getCursos(courseName, postalCode, modality, status, topic)
+            api.getCursos(jwt,courseName, postalCode, modality, status, topic)
         }catch (e:java.lang.Exception){
             e.printStackTrace()
             null
@@ -59,10 +55,10 @@ class Repository() {
      *
      * @return [TopicsObject] object
      */
-    suspend fun getTopics(): TopicsObject?{
+    suspend fun getTopics(jwt:String): TopicsObject?{
         api = NetworkModuleDI()
         return try{
-            api.getTopics()
+            api.getTopics(jwt)
         }catch (e:java.lang.Exception){
             e.printStackTrace()
             null
