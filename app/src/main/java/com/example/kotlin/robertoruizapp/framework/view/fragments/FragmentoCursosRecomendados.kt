@@ -17,6 +17,7 @@ class FragmentoCursosRecomendados : Fragment(), AdapterView.OnItemSelectedListen
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return super.onCreateView(inflater, container, savedInstanceState)
     }
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
