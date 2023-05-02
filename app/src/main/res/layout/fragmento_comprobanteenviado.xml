@@ -8,10 +8,12 @@
     <ImageView
         android:id="@+id/imagen_curso"
         android:layout_width="403dp"
-        android:layout_height="182dp"
+        android:layout_height="0dp"
         android:layout_marginTop="4dp"
+        android:layout_marginBottom="395dp"
         app:circularflow_defaultRadius="12sp"
         app:circularflow_radiusInDP="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/boton_regreso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,4 +61,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.654" />
+
+    <Button
+        android:id="@+id/boton_regreso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="102dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagen_curso" />
 </androidx.constraintlayout.widget.ConstraintLayout>

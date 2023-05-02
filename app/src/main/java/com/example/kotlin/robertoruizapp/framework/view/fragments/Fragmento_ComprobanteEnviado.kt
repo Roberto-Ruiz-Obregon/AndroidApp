@@ -1,5 +1,6 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
+import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
@@ -18,6 +19,7 @@ import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document
 import com.example.kotlin.robertoruizapp.databinding.FragmentoComprobanteenviadoBinding
 import com.example.kotlin.robertoruizapp.databinding.FragmentoInfoCursosBinding
+import com.example.kotlin.robertoruizapp.framework.view.activities.MainActivity
 import com.example.kotlin.robertoruizapp.utils.Constants
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,7 +37,11 @@ class Fragmento_ComprobanteEnviado: Fragment()  {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         binding = FragmentoComprobanteenviadoBinding.inflate(inflater, container, false)
+
+
         return binding.root
     }
 
@@ -46,6 +52,12 @@ class Fragmento_ComprobanteEnviado: Fragment()  {
         // Carga los datos
         lateinit var data: List<Document>
         getCourseList()
+
+        val root = binding.root
+        val btnRegreso : Button = root.findViewById(R.id.boton_regreso)
+        btnRegreso.setOnClickListener {
+            goHome()
+        }
     }
 
 
@@ -77,6 +89,11 @@ class Fragmento_ComprobanteEnviado: Fragment()  {
                 return curso
         }
         return null
+    }
+
+    private fun goHome() {
+        val intent = Intent(requireActivity(), MainActivity::class.java)
+        startActivity(intent)
     }
 
 }
