@@ -54,7 +54,6 @@ class Repository() {
         }
     }
 
-<<<<<<< HEAD
     suspend fun getCursosRecomendados(postalCode: String): CursosObjeto? {
         api = NetworkModuleDI()
         return try {
@@ -65,13 +64,11 @@ class Repository() {
         }
     }
 
-=======
     /**
      * Gets the [TopicsObject] from [NetworkModuleDI]
      *
      * @return [TopicsObject] object
      */
->>>>>>> 82dae8e1b8743947f69e5e0ff8711fd7a0d9e362
     suspend fun getTopics(): TopicsObject?{
         api = NetworkModuleDI()
         return try{

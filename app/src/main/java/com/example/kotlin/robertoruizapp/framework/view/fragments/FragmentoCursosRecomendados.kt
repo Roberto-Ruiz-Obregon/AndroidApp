@@ -60,7 +60,9 @@ class FragmentoCursosRecomendados : Fragment(),
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
             val result: CursosObjeto? = repository.getCursosRecomendados(postalCode)
-           Log.d("getCourseList", result.toString())
+            for (it in result?.data?.documents!!) {
+                Log.d("getCourseList", it.toString())
+            }
             CoroutineScope(Dispatchers.Main).launch {
                 val layoutManager = GridLayoutManager(requireContext(), 2)
                 val fragmentoInfoCursos = this@FragmentoCursosRecomendados
