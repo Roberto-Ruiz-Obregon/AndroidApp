@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -41,7 +42,6 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
     private val binding get() = _binding!!
     private lateinit var viewModel: CursosFragmentoViewModel
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recommendedCoursesBtn: Button
     private var topics: MutableList<String> = mutableListOf<String>("")
     private var status: Array<String?> = arrayOf<String?>("", "Gratuito", "Pagado")
     private var modality: Array<String?> = arrayOf<String?>("", "Remoto", "Presencial")
@@ -70,9 +70,9 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
         val root: View = binding.root
         recyclerView = root.findViewById<RecyclerView>(R.id.recyclercursos)
 
-        recommendedCoursesBtn = root.findViewById<Button>(R.id.recommendedCoursesBtn)
-        recommendedCoursesBtn.setOnClickListener {
-            onClickRecommendedCourses()
+        val button = binding.recommendedCoursesBtn
+        button.setOnClickListener{
+            goToNewFragment()
         }
 
         setInputs()
@@ -260,7 +260,7 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+       // _binding = null
     }
 
     private fun exchangeCurrentFragment(newFragment: Fragment){
@@ -270,7 +270,16 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
             .commit()
     }
 
-    private fun onClickRecommendedCourses() {
-        exchangeCurrentFragment(FragmentoCursosRecomendados())
+    private fun goToNewFragment() {
+        //R.id.frag_perfil es el fragmento del cual se parte
+        val contenedor = (context as FragmentActivity).findViewById<ViewGroup>(R.id.TituloCursos)
+        contenedor.removeAllViews()
+
+        val fragmentoNuevo = FragmentoCursosRecomendados()
+        val transaction = (context as FragmentActivity).supportFragmentManager.beginTransaction()
+
+        transaction.replace(R.id.TituloCursos, fragmentoNuevo)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }
