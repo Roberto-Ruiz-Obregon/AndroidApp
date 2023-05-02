@@ -27,6 +27,7 @@ import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
 import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
+import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoCursosRecomendados
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
 import kotlinx.coroutines.CoroutineScope
@@ -50,6 +51,7 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
     private var modalitySelected = ""
     private var courseName = ""
     private var postalCode = ""
+    private lateinit var currentFragment: Fragment
 
     private var progressBar: ProgressBar? = null
 
@@ -69,7 +71,9 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
         recyclerView = root.findViewById<RecyclerView>(R.id.recyclercursos)
 
         recommendedCoursesBtn = root.findViewById<Button>(R.id.recommendedCoursesBtn)
-        recommendedCoursesBtn.setOnTouchListener { v, event -> onClickRecommendedCourses() }
+        recommendedCoursesBtn.setOnClickListener {
+            onClickRecommendedCourses()
+        }
 
         setInputs()
 
@@ -259,15 +263,14 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
         _binding = null
     }
 
-    private fun exchangeCurrentFragment(newFragment: Fragment, newMenuOption:String){
+    private fun exchangeCurrentFragment(newFragment: Fragment){
         currentFragment = newFragment
-        supportFragmentManager.beginTransaction()
+        parentFragmentManager.beginTransaction()
             .replace(R.id.nav_host_fragment_content_main,currentFragment)
             .commit()
-        currentMenuOption = newMenuOption
     }
 
-    fun onClickRecommendedCourses() {
-
+    private fun onClickRecommendedCourses() {
+        exchangeCurrentFragment(FragmentoCursosRecomendados())
     }
 }
