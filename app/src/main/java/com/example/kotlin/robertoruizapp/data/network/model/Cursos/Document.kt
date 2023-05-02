@@ -20,7 +20,7 @@ data class Document(
     val postalCode: String,
     val accessLink: String,
     val address: String,
-    val schedule: String
+    val schedule: String,
     val bank: String,
     val bankAccount: String
 )

@@ -101,5 +101,3 @@ interface ApiService {
     ): Call<Pago>
 }
 
-
-}

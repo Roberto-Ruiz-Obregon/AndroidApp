@@ -30,7 +30,15 @@ class Fragmento_ComprobanteEnviado: Fragment()  {
 
     private lateinit var binding: FragmentoComprobanteenviadoBinding
     private var cursoID: String? = null
-
+    private var topics: MutableList<String> = mutableListOf<String>("")
+    private var status: Array<String?> = arrayOf<String?>("", "Gratuito", "Pagado")
+    private var modality: Array<String?> = arrayOf<String?>("", "Remoto", "Presencial")
+    private var topicsObject: List<com.example.kotlin.robertoruizapp.data.network.model.Topic.Document>? = arrayListOf()
+    private var topicSelected: String? = null
+    private var statusSelected = ""
+    private var modalitySelected = ""
+    private var courseName = ""
+    private var postalCode = ""
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,7 +73,13 @@ class Fragmento_ComprobanteEnviado: Fragment()  {
     private fun getCourseList(){
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
-            val result: CursosObjeto? = repository.getCursos()
+            val result: CursosObjeto? = repository.getCursos(
+                courseName,
+                postalCode,
+                modalitySelected,
+                statusSelected,
+                topicSelected
+            )
 
             CoroutineScope(Dispatchers.Main).launch{
                 val curso = cursoFromID(cursoID,result)

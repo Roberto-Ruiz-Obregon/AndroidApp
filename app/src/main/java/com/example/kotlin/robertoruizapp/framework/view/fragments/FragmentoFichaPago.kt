@@ -33,7 +33,15 @@ class FragmentoFichaPago : Fragment() {
     private lateinit var viewModel: FichaPagoViewModel
     private lateinit var recyclerView: RecyclerView
     private var cursoID: String? = null  // Declaración de la variable
-
+    private var topics: MutableList<String> = mutableListOf<String>("")
+    private var status: Array<String?> = arrayOf<String?>("", "Gratuito", "Pagado")
+    private var modality: Array<String?> = arrayOf<String?>("", "Remoto", "Presencial")
+    private var topicsObject: List<com.example.kotlin.robertoruizapp.data.network.model.Topic.Document>? = arrayListOf()
+    private var topicSelected: String? = null
+    private var statusSelected = ""
+    private var modalitySelected = ""
+    private var courseName = ""
+    private var postalCode = ""
     /**
      * When the fragment is created sets up binding, viewmodel and progress bar
      *
@@ -93,7 +101,13 @@ class FragmentoFichaPago : Fragment() {
     private fun getCourseList(){
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
-            val result: CursosObjeto? = repository.getCursos()
+            val result: CursosObjeto? = repository.getCursos(
+                courseName,
+                postalCode,
+                modalitySelected,
+                statusSelected,
+                topicSelected
+            )
 
             CoroutineScope(Dispatchers.Main).launch{
                 val curso = cursoFromID(cursoID,result)
