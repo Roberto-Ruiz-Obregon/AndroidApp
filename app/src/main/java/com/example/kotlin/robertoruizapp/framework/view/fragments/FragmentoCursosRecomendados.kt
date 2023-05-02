@@ -46,7 +46,7 @@ class FragmentoCursosRecomendados : Fragment(),
         getCourseList()
 
 
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return root
     }
 
     private fun getCourseList() {
