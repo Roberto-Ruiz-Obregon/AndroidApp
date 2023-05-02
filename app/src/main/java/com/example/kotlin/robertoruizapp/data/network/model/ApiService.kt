@@ -6,6 +6,7 @@ import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Pago
 import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginRequest
 import com.example.kotlin.robertoruizapp.data.network.model.Login.LoginResponse
+import com.example.kotlin.robertoruizapp.data.network.model.Login.User
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileRequest
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileResponse
@@ -18,11 +19,14 @@ import retrofit2.http.Path
 import com.example.kotlin.robertoruizapp.data.network.model.signup.SignUp
 import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Result
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Headers
 import retrofit2.http.Query
 import retrofit2.http.PATCH
 import retrofit2.http.Multipart
 import retrofit2.http.Part
+import retrofit2.http.*
+
 
 interface ApiService {
 
@@ -91,7 +95,11 @@ interface ApiService {
     @POST("payment/startPayment")
     fun postPago(
         @Header("Authorization") authHeader: String,
-        @Part("fieldname") fieldname: MultipartBody?,
-        @Part("cursoID") cursoID: Pago
+        @Part("courseId") cursoID: RequestBody?,
+        @Part imagen: MultipartBody.Part
+
     ): Call<Pago>
+}
+
+
 }

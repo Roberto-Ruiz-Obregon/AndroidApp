@@ -21,5 +21,7 @@ data class Document(
     val accessLink: String,
     val address: String,
     val schedule: String
+    val bank: String,
+    val bankAccount: String
 )
 

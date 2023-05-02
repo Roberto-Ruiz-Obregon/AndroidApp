@@ -39,3 +39,4 @@ object NetworkModuleDI {
             .create(ApiService::class.java)
     }
 }
+
