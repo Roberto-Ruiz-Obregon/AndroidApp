@@ -19,6 +19,9 @@ data class Document(
     val topics: List<Any>,
     val postalCode: String,
     val accessLink: String,
-    val address: String
+    val address: String,
+    val schedule: String,
+    val bank: String,
+    val bankAccount: String
 )
 

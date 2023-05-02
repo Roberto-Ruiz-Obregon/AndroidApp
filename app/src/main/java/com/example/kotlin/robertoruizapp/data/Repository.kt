@@ -3,15 +3,26 @@ package com.example.kotlin.robertoruizapp.data
 import android.net.Network
 import com.example.kotlin.robertoruizapp.data.network.model.*
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
+import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Inscription
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileRequest
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileResponse
 import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.Profile
+import com.example.kotlin.robertoruizapp.data.network.model.Inscripcion.Result
 import retrofit2.Call
 
+/**
+ * Repository class that has the methods to call the [NetworkModuleDI]
+ *
+ */
 class Repository() {
     private lateinit var api: ApiService
 
+    /**
+     * Gets the [CursosObjeto] calling the [NetworkModuleDI]
+     *
+     * @return the call to the [NetworkModuleDI] method [getCursosNoFilter]
+     */
     suspend fun getCursosNoFilter() : CursosObjeto? {
         api = NetworkModuleDI()
         return try{
@@ -21,6 +32,18 @@ class Repository() {
             null
         }
     }
+
+    /**
+     * gets the [CursosObjeto] calling the [NetworkModuleDI]
+     *
+     * @param courseName the name of the course
+     * @param postalCode postal code of course
+     * @param modality how the course is presented
+     * @param status status of the course
+     * @param topic the about of the course
+     *
+     * @return [CursosObjeto] object
+     */
     suspend fun getCursos(courseName: String, postalCode: String, modality: String, status: String, topic: String?): CursosObjeto?{
         api = NetworkModuleDI()
         return try{
@@ -31,6 +54,7 @@ class Repository() {
         }
     }
 
+<<<<<<< HEAD
     suspend fun getCursosRecomendados(postalCode: String): CursosObjeto? {
         api = NetworkModuleDI()
         return try {
@@ -41,6 +65,13 @@ class Repository() {
         }
     }
 
+=======
+    /**
+     * Gets the [TopicsObject] from [NetworkModuleDI]
+     *
+     * @return [TopicsObject] object
+     */
+>>>>>>> 82dae8e1b8743947f69e5e0ff8711fd7a0d9e362
     suspend fun getTopics(): TopicsObject?{
         api = NetworkModuleDI()
         return try{
@@ -51,6 +82,12 @@ class Repository() {
         }
     }
 
+    /**
+     * Gets the user profile usind their [id]
+     * @param [id] user idenifier
+     * @return the API response
+     *
+     */
     suspend fun getUserInfo(id:String): Profile?{
         api = NetworkModuleDI()
         return try{
@@ -70,6 +107,21 @@ class Repository() {
         api = NetworkModuleDI()
         return try{
             api.getMyInfo(jwt)
+        }catch (e:java.lang.Exception){
+            e.printStackTrace()
+            null
+        }
+    }
+
+    /**
+     * Gets the courses [CursosObjeto] using their [jwt]
+     * @param [jwt] Authorization header of the user
+     * @return the API response in [CursosObjeto]
+     */
+    suspend fun getMyCourses(jwt:String): CursosObjeto?{
+        api = NetworkModuleDI()
+        return try{
+            api.getMyCourses(jwt)
         }catch (e:java.lang.Exception){
             e.printStackTrace()
             null

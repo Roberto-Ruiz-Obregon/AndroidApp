@@ -1,6 +1,5 @@
 package com.example.kotlin.robertoruizapp.framework.view.fragments
 
-import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,12 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.kotlin.mypokedexapp.viewmodel.MainViewModel
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.data.Repository
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.CursosObjeto
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document
 import com.example.kotlin.robertoruizapp.databinding.FragmentoFichapagoBinding
+import com.example.kotlin.robertoruizapp.databinding.FragmentoInfoCursosBinding
 import com.example.kotlin.robertoruizapp.framework.viewmodel.FichaPagoViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants
 import kotlinx.coroutines.CoroutineScope
@@ -25,15 +24,33 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
-
+/**
+ * FragmentoFichaPago class that manages the fragment actions
+ */
 class FragmentoFichaPago : Fragment() {
-    private var _binding: FragmentoFichapagoBinding? = null
+    private lateinit var _binding: FragmentoFichapagoBinding
     private val binding get() = _binding ?: throw IllegalStateException("Binding is null.")
     private lateinit var viewModel: FichaPagoViewModel
     private lateinit var recyclerView: RecyclerView
     private var cursoID: String? = null  // Declaración de la variable
-
-
+    private var topics: MutableList<String> = mutableListOf<String>("")
+    private var status: Array<String?> = arrayOf<String?>("", "Gratuito", "Pagado")
+    private var modality: Array<String?> = arrayOf<String?>("", "Remoto", "Presencial")
+    private var topicsObject: List<com.example.kotlin.robertoruizapp.data.network.model.Topic.Document>? = arrayListOf()
+    private var topicSelected: String? = null
+    private var statusSelected = ""
+    private var modalitySelected = ""
+    private var courseName = ""
+    private var postalCode = ""
+    /**
+     * When the fragment is created sets up binding, viewmodel and progress bar
+     *
+     * @param inflater How the layout wil be created
+     * @param container what viewmgroup the fragment belongs to
+     * @param savedInstanceState the state of the activity / fragment
+     *
+     * @return [View] object containing the information about the fragment
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,17 +61,16 @@ class FragmentoFichaPago : Fragment() {
 
 
         val root = binding.root
-
-        //val intent = requireActivity().intent
+        val intent = requireActivity().intent
         cursoID = requireActivity().intent.getStringExtra(Constants.CURSO_ID_EXTRA);
 
 
         // Carga los datos
-       // lateinit var data: List<Document>
-       // getCourseList()
+      lateinit var data: List<Document>
+       getCourseList()
 
 
-        val boton : Button = root.findViewById(R.id.boton_comprobante)
+        val boton: Button = root.findViewById(R.id.boton_comprobante)
         boton.setOnClickListener {
             val newFragment = FragmentoPagoCurso()
             val currentFragment = FragmentoFichaPago()
@@ -79,18 +95,19 @@ class FragmentoFichaPago : Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
-
-
-
-
         return root
     }
 
-    /*
     private fun getCourseList(){
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
-            val result: CursosObjeto? = repository.getCursos()
+            val result: CursosObjeto? = repository.getCursos(
+                courseName,
+                postalCode,
+                modalitySelected,
+                statusSelected,
+                topicSelected
+            )
 
             CoroutineScope(Dispatchers.Main).launch{
                 val curso = cursoFromID(cursoID,result)
@@ -99,7 +116,13 @@ class FragmentoFichaPago : Fragment() {
                     Log.d("FragmentoFichaPago", "Resultado de getCursos(): $result")
 
                     binding.montoCurso.text = "$" + curso.cost.toString()
-                    binding.numeroCuenta.text = "Cuenta:  " + "6464 5455 1145 1548"
+                    binding.Banco.text = curso.bank
+                    if (curso.bankAccount != null){
+                        binding.numeroCuenta.text = "Cuenta:  " + curso.bankAccount
+                    }else{
+                        binding.numeroCuenta.text = "Cuenta:  Por Definir"
+                    }
+
                     binding.referenciaCurso.text = "Referencia:  " + curso.courseName
                 }
             }
@@ -113,11 +136,12 @@ class FragmentoFichaPago : Fragment() {
         }
         return null
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        //_binding = null
     }
-*/
+
 }
 
 

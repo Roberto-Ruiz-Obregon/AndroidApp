@@ -2,20 +2,26 @@ package com.example.kotlin.robertoruizapp.framework.view.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.kotlin.robertoruizapp.R
 import com.example.kotlin.robertoruizapp.data.network.model.Profile.EditProfileRequest
 import com.example.kotlin.robertoruizapp.framework.viewmodel.EditProfileViewModel
 
+/**
+ * EditProfileActivity  class that manages the activity actions
+ *
+ */
 class EditProfileActivity : AppCompatActivity() {
     private lateinit var viewModel: EditProfileViewModel
 
+    /**
+     * When the activity is created sets up binding and viewmodel
+     * alsi initializes the manageIntent, Binding and Listener methods
+     *
+     * @param savedInstanceState the state of the activity / fragment
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
@@ -33,25 +39,7 @@ class EditProfileActivity : AppCompatActivity() {
         val edad: EditText = findViewById(R.id.editTextAge)
         val job: EditText = findViewById(R.id.editTextJob)
         val postalCode: EditText = findViewById(R.id.editTextPostalCode)
-        fun initViewModel() {
-            viewModel = ViewModelProvider(this)[EditProfileViewModel::class.java]
-            viewModel.getProfileUserObserver().observe(this) {
 
-                if (it == null) {
-                    Toast.makeText(
-                        this@EditProfileActivity,
-                        "Failed to edit User",
-                        Toast.LENGTH_LONG
-                    ).show()
-                } else {
-                    Toast.makeText(
-                        this@EditProfileActivity,
-                        "Successfully edited User",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            }
-        }
         initViewModel()
         val btnConfirm = findViewById<Button>(R.id.buttonConfirm)
         val btnCancel = findViewById<Button>(R.id.buttonCancel)
@@ -71,6 +59,7 @@ class EditProfileActivity : AppCompatActivity() {
             viewModel.editMyInfo(user)
         }
 
+
         btnConfirm.setOnClickListener {
             editUserProfile()
         }
@@ -78,6 +67,31 @@ class EditProfileActivity : AppCompatActivity() {
         btnCancel.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+        }
+
+    }
+
+    /**
+     * Initializes the ViewModel of the EditProfileActivity
+     *
+     */
+   private fun initViewModel() {
+        viewModel = ViewModelProvider(this)[EditProfileViewModel::class.java]
+        viewModel.getProfileUserObserver().observe(this) {
+
+            if (it == null) {
+                Toast.makeText(
+                    this@EditProfileActivity,
+                    "Failed to edit User",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                Toast.makeText(
+                    this@EditProfileActivity,
+                    "Successfully edited User",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 }

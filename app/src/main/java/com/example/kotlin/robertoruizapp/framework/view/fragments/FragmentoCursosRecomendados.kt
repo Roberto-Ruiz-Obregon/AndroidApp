@@ -19,7 +19,7 @@ import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
 import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosRecomendadosBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
 import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
-import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
+import com.example.kotlin.robertoruizapp.framework.viewmodel.PerfilViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,30 +30,37 @@ class FragmentoCursosRecomendados : Fragment(),
 
     private var _binding: FragmentoCursosRecomendadosBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: CursosFragmentoViewModel
+    private lateinit var viewModel: PerfilViewModel
     private lateinit var recyclerView: RecyclerView
-    private var postalCode = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        viewModel = ViewModelProvider(this)[CursosFragmentoViewModel::class.java]
+    ): View {
+        viewModel = ViewModelProvider(this)[PerfilViewModel::class.java]
         _binding = FragmentoCursosRecomendadosBinding.inflate(inflater, container, false)
         val root: View = binding.root
         recyclerView = root.findViewById(R.id.recyclercursosrecomendados)
-        getCourseList()
-
-
+        initUserData()
         return root
     }
 
-    private fun getCourseList() {
+    private fun initUserData() {
+        viewModel.getMyInfo()
+        viewModel.userLiveData.observe(viewLifecycleOwner) { user ->
+            if (user != null) {
+                val postalCode: String = user.data.document.postalCode.toString()
+                getCourseList(postalCode)
+            }
+        }
+    }
+
+    private fun getCourseList(postalCode: String) {
         CoroutineScope(Dispatchers.IO).launch {
             val repository = Repository()
             val result: CursosObjeto? = repository.getCursosRecomendados(postalCode)
-           Log.d("result", result.toString())
+           Log.d("getCourseList", result.toString())
             CoroutineScope(Dispatchers.Main).launch {
                 val layoutManager = GridLayoutManager(requireContext(), 2)
                 val fragmentoInfoCursos = this@FragmentoCursosRecomendados

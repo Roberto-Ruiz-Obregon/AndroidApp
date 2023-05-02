@@ -21,24 +21,38 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * ProgramViewHolder class which has bind, passViewGoToProgramDetail
+ * and getProgramInfo methods
+ *
+ * @property binding property acquired from DataBinding object
+ */
 class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView.ViewHolder
     (binding.root) {
 
+    /**
+     * Create the binding from the JSON [Document] as a result of the API request
+     * to the parts of the view at ProgramFragment. If some data is missing default
+     * information is displayed
+     *
+     * @param item the information provided from API in the JSON [Document]
+     * @param context Context of the  view
+     */
     fun bind(item: Document, context: Context) {
 
-        if(item.createdAt.isNullOrEmpty()) {
+        if(item.createdAt.isEmpty()) {
             binding.tvCardCalendarioPrograma.text =  "15/04/2023"
             binding.tvCardTituloPrograma.text = item.programName // Se le cambia el valor a la card
             binding.tvCardDescripcionPrograma.text = item.description
             CoroutineScope(Dispatchers.Main).launch {
-                var urlImage = item.imageUrl
+                val urlImage = item.imageUrl
 
                 val requestOptions = RequestOptions()
                     .priority(Priority.HIGH)
                     .placeholder(R.mipmap.ic_launcher)
                     .error(R.mipmap.ic_launcher)
 
-                Glide.with(context).load(urlImage?.toString())
+                Glide.with(context).load(urlImage)
                     .apply(requestOptions)
                     .into(binding.ivPrograma)
             }
@@ -54,7 +68,7 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
             val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
             val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val date = inputFormat.parse(item.createdAt)
-            val formattedDate = outputFormat.format(date)
+            val formattedDate = outputFormat.format(date!!)
 
             binding.tvCardTituloPrograma.text = item.programName // Se le cambia el valor a la card
             binding.tvCardCalendarioPrograma.text =  formattedDate
@@ -62,12 +76,12 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
             binding.tvCardCategoryPrograma.text = item.category
 
             CoroutineScope(Dispatchers.Main).launch {
-                var urlImage = item.imageUrl
+                val urlImage = item.imageUrl
 
                 val requestOptions = RequestOptions()
                     .priority(Priority.HIGH)
 
-                Glide.with(context).load(urlImage?.toString())
+                Glide.with(context).load(urlImage)
                     .apply(requestOptions)
                     .into(binding.ivPrograma)
             }
@@ -80,6 +94,13 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
 
     }
 
+    /**
+     * gets information about Program to load the image of the card with Glide
+     *
+     * @param url URL of the said program that includes de Image attribute
+     * @param imageView the widget used in the layout
+     * @param context context of the view
+     */
     private fun getProgramInfo(url: String, imageView: ImageView, context: Context) {
 
 
@@ -101,16 +122,17 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
         }
     }
 
-    private fun passViewGoToProgramDetail(url: String, context: Context) {
-        var intent: Intent = Intent(context, ProgramDetailActivity::class.java)
+    /**
+     * function that passes the information of each program to a new activity
+     *
+     * @param programID the ID of the program to get information
+     * @param context view context for the activity
+     */
+    private fun passViewGoToProgramDetail(programID: String, context: Context) {
+        val intent = Intent(context, ProgramDetailActivity::class.java)
+
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-        intent.putExtra(Constants.ID_PROGRAM, url)
+        intent.putExtra(Constants.ID_PROGRAM, programID)
         context.startActivity(intent)
-        Log.d("ID_PROGRAM", url)
-
-
-
-
-
     }
 }

@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Inscripcion"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:layout_editor_absoluteX="12dp"
     tools:layout_editor_absoluteY="0dp">
+
+    <TextView
+        android:id="@+id/correo"
+        android:layout_width="65dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="200dp"
+        android:fontFamily="@font/roboto"
+        android:text="Correo:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.161"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
+
     <ImageView
         android:id="@+id/imagen"
         android:layout_width="405dp"
@@ -33,13 +47,30 @@
         android:id="@+id/nombre_ponente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="3dp"
         android:fontFamily="@font/roboto"
         android:text="Jose Hernandez"
         app:layout_constraintBottom_toTopOf="@+id/imagen"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.158"
+        app:layout_constraintHorizontal_bias="0.165"
+        app:layout_constraintStart_toEndOf="@+id/Ponente_t"
+
+        app:layout_constraintTop_toBottomOf="@+id/Titulo"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/Ponente_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="3dp"
+        android:fontFamily="@font/roboto"
+        android:text="Impartido por:"
+        app:layout_constraintBottom_toTopOf="@+id/imagen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Titulo"
         app:layout_constraintVertical_bias="1.0" />
@@ -56,75 +87,135 @@
         app:layout_constraintTop_toBottomOf="@+id/imagen" />
 
     <TextView
-        android:id="@+id/text1"
-        android:layout_width="130dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/name5"
+        android:layout_width="128dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="300dp"
+        android:fontFamily="@font/roboto"
+        android:text="Nivel Educativo:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
+
+    <TextView
+        android:id="@+id/pi_academico"
+        android:layout_width="89dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="300dp"
+        android:fontFamily="@font/roboto"
+        android:text="definir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toEndOf="@+id/name5"
+        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
+
+    <TextView
+        android:id="@+id/pi_sexo"
+        android:layout_width="177dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="160dp"
+        android:fontFamily="@font/roboto"
+        android:text="Masculino"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.128"
+        app:layout_constraintStart_toEndOf="@+id/name3"
+        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
+
+    <TextView
+        android:id="@+id/pi_nombre"
+        android:layout_width="202dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="76dp"
         android:fontFamily="@font/roboto"
         android:text="Ramiro Peréz Ruiz"
-        app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.216"
+        app:layout_constraintStart_toEndOf="@+id/name1"
+        app:layout_constraintTop_toBottomOf="@+id/texto_curso"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/name2"
+        android:layout_width="36dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/roboto"
+        android:text="Edad:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
+
+    <TextView
+        android:id="@+id/name4"
+        android:layout_width="72dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="236dp"
+        android:fontFamily="@font/roboto"
+        android:text="Municipio:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.165"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
+
+    <TextView
+        android:id="@+id/ocupacion"
+        android:layout_width="79dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="268dp"
+        android:fontFamily="@font/roboto"
+        android:text="Ocupacion:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
+
+    <TextView
+        android:id="@+id/pi_correo"
+        android:layout_width="262dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="200dp"
+        android:fontFamily="@font/roboto"
+        android:text="example@hotmail.com"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/correo"
+        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
+
+    <TextView
+        android:id="@+id/pi_municipio"
+        android:layout_width="245dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="236dp"
+        android:fontFamily="@font/roboto"
+        android:text="Amealco"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.342"
+        app:layout_constraintStart_toEndOf="@+id/name4"
+        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
+
+    <TextView
+        android:id="@+id/pi_ocupacion"
+        android:layout_width="208dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="268dp"
+        android:fontFamily="@font/roboto"
+        android:text="Estudiante"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toEndOf="@+id/ocupacion"
         app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
 
     <TextView
         android:id="@+id/name1"
         android:layout_width="56dp"
         android:layout_height="23dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="76dp"
         android:fontFamily="@font/roboto"
         android:text="Nombre:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.154"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
-
-    <TextView
-        android:id="@+id/text22"
-        android:layout_width="37dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="56dp"
-        android:fontFamily="@font/roboto"
-        android:text="16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.339"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
-
-    <TextView
-        android:id="@+id/name2"
-        android:layout_width="36dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/roboto"
-        android:text="Edad:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
-
-    <TextView
-        android:id="@+id/P_correo"
-        android:layout_width="61dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="144dp"
-        android:fontFamily="@font/roboto"
-        android:text="Amealco"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.431"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="73dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="100dp"
-        android:fontFamily="@font/roboto"
-        android:text="Masculino"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.325"
+        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
 
@@ -132,47 +223,36 @@
         android:id="@+id/name3"
         android:layout_width="38dp"
         android:layout_height="24dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="160dp"
         android:fontFamily="@font/roboto"
         android:text="Sexo:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
+        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
 
     <TextView
-        android:id="@+id/textView10"
-        android:layout_width="89dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="184dp"
+        android:id="@+id/pi_edad"
+        android:layout_width="50dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="120dp"
         android:fontFamily="@font/roboto"
-        android:text="Estudiante"
+        android:text="16"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toEndOf="@+id/name5"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toEndOf="@+id/name2"
         app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
 
     <TextView
-        android:id="@+id/name4"
-        android:layout_width="72dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="148dp"
-        android:fontFamily="@font/roboto"
-        android:text="Municipio:"
+        android:id="@+id/mis_datos"
+        android:layout_width="266dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_slab"
+        android:text="Datos de Inscripción:"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.162"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
-
-    <TextView
-        android:id="@+id/name5"
-        android:layout_width="128dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="184dp"
-        android:fontFamily="@font/roboto"
-        android:text="Nivel Academico:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintHorizontal_bias="0.374"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
 
@@ -186,7 +266,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/pi_academico"
         app:layout_constraintVertical_bias="0.228" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

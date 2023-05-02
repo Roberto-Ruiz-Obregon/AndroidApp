@@ -22,15 +22,16 @@
         android:id="@+id/Nombre_curso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
         android:fontFamily="@font/roboto_slab"
         android:text="Nombre del curso"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagen_curso" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.318" />
 
     <TextView
         android:id="@+id/Label_curso"
@@ -42,113 +43,126 @@
         android:textColor="#2196F3"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_modalidad" />
+        app:layout_constraintTop_toBottomOf="@+id/text_modalidad"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/nombre_curso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto"
         android:text="Inscripción exitosa"
         android:textColor="#099311"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Nombre_curso" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.374" />
 
     <TextView
         android:id="@+id/label_advertencia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto"
         android:text="*Ingresa a la sesión de zoom con tu nombre para que se te permita el acceso*"
         android:textAlignment="center"
         android:textColor="#A80606"
         android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_contrasenia" />
+        app:layout_constraintTop_toBottomOf="@+id/label_contrasenia"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/icon_calendario1"
         android:layout_width="65dp"
         android:layout_height="58dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nombre_curso"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/calendario" />
 
     <TextView
         android:id="@+id/label_fecha1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
         android:fontFamily="@font/roboto_slab"
         android:text="Fecha:"
         android:textSize="12sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toEndOf="@+id/icon_calendario1"
-        app:layout_constraintTop_toBottomOf="@+id/nombre_curso" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.47" />
 
     <TextView
         android:id="@+id/label_fecha2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
         android:fontFamily="@font/roboto"
         android:text="10 de marzo"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toEndOf="@+id/icon_calendario1"
-        app:layout_constraintTop_toBottomOf="@+id/label_fecha1" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.514" />
 
     <ImageView
         android:id="@+id/modalidad_icon"
         android:layout_width="60dp"
         android:layout_height="57dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="44dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_calendario1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.649"
         app:srcCompat="@drawable/ping" />
 
     <TextView
         android:id="@+id/label_modalidad1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
         android:fontFamily="@font/roboto_slab"
         android:text="Modalidad:"
         android:textColor="#5E5B5B"
         android:textSize="12sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintHorizontal_bias="0.075"
         app:layout_constraintStart_toEndOf="@+id/modalidad_icon"
-        app:layout_constraintTop_toBottomOf="@+id/label_fecha2" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.621" />
 
     <TextView
         android:id="@+id/text_modalidad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto"
         android:text="Curso en línea"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/modalidad_icon"
-        app:layout_constraintTop_toBottomOf="@+id/label_modalidad1" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.659" />
 
     <TextView
         android:id="@+id/text_modalidad2"
@@ -159,10 +173,12 @@
         android:text="XXX -  XXX - XXX"
         android:textSize="12sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.165"
         app:layout_constraintStart_toEndOf="@+id/label_liga"
-        app:layout_constraintTop_toBottomOf="@+id/Label_curso" />
+        app:layout_constraintTop_toBottomOf="@+id/Label_curso"
+        app:layout_constraintVertical_bias="0.009" />
 
     <TextView
         android:id="@+id/text_modalidad3"
@@ -173,10 +189,12 @@
         android:text="XXX -  XXX - XXX"
         android:textSize="12sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintStart_toEndOf="@+id/label_contrasenia"
-        app:layout_constraintTop_toBottomOf="@+id/text_modalidad2" />
+        app:layout_constraintTop_toBottomOf="@+id/text_modalidad2"
+        app:layout_constraintVertical_bias="0.02" />
 
     <TextView
         android:id="@+id/label_liga"
@@ -187,10 +205,12 @@
         android:text="Liga:"
         android:textSize="12sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.336"
+        app:layout_constraintHorizontal_bias="0.321"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Label_curso" />
+        app:layout_constraintTop_toBottomOf="@+id/Label_curso"
+        app:layout_constraintVertical_bias="0.01" />
 
     <TextView
         android:id="@+id/label_contrasenia"
@@ -201,8 +221,10 @@
         android:text="Contraseña:"
         android:textSize="12sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.336"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_liga" />
+        app:layout_constraintTop_toBottomOf="@+id/label_liga"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

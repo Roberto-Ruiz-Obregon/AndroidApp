@@ -4,8 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.format.DateFormat
-import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -20,10 +19,19 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * ProgramDetailActivity class that manages the activity actions
+ */
 class ProgramDetailActivity : Activity() {
     private lateinit var binding: ActivityProgramDetailBinding
     private var programID: String? = null
 
+    /**
+     * When the activity is created sets up binding and viewmodel
+     * alsi initializes the manageIntent, Binding and Listener methods
+     *
+     * @param savedInstanceState the state of the activity / fragment
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,6 +40,10 @@ class ProgramDetailActivity : Activity() {
         initializeListeners()
 
     }
+
+    /**
+     * Initializes the Listeners to bind the icons with their corresponding action
+     */
     private fun initializeListeners() {
         binding.ivDetailProgramWhatsApp.setOnClickListener {
             val openURL = Intent(Intent.ACTION_VIEW)
@@ -43,31 +55,29 @@ class ProgramDetailActivity : Activity() {
             openURL.data = Uri.parse("https://wa.me/524428205425")
             startActivity(openURL)
         }
-        binding.tvDetailProgramTelefono.setOnClickListener{
-            val phone = "tel:"+ binding.tvDetailProgramTelefono.text.toString()
-            startActivity(Intent(Intent.ACTION_DIAL,Uri.parse(phone)))
+        binding.tvDetailProgramTelefono.setOnClickListener {
+            val phone = "tel:" + binding.tvDetailProgramTelefono.text.toString()
+            startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(phone)))
         }
-        //TODO add setOnClickListener del correo
-        /*binding.tvDetailProgramCorreo.setOnClickListener {
-            val email = "email:" + binding.tvDetailProgramCorreo.text.toString()
-            startActivity(Intent(Intent.ACTION_SENDTO, Uri.parse(email)))
-        }*/
 
     }
 
-
+    /**
+     * Initializes the binding information of the view
+     */
     private fun initializeBinding() {
         binding = ActivityProgramDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
     }
 
+    /**
+     * Extracts the binding information passed from [ProgramFragment]
+     * and sets the view
+     */
     private fun manageIntent() {
         if (intent != null) {
             programID = intent.getStringExtra(Constants.ID_PROGRAM)
         }
-        //TODO preguntarle a Alex como acomodarlo para mantener un Clean Architecture
 
         var programIDString: String = programID.toString()
 
@@ -76,7 +86,7 @@ class ProgramDetailActivity : Activity() {
             val programInfoRequirement = ProgramInfoRequirement()
             val result: Program? = programInfoRequirement(programIDString)
 
-            if(result?.data?.document?.createdAt != null) {
+            if (result?.data?.document?.createdAt != null) {
                 CoroutineScope(Dispatchers.Main).launch {
 
                     val urlImage = result.data.document.imageUrl
@@ -84,7 +94,8 @@ class ProgramDetailActivity : Activity() {
                     val imageView: ImageView = activity.findViewById(R.id.ivDetailProgramImagen)
 
                     val aux = result.data.document
-                    val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+                    val inputFormat =
+                        SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
                     val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                     val date = inputFormat.parse(aux.createdAt)
                     val formattedDate = outputFormat.format(date!!)
@@ -137,11 +148,7 @@ class ProgramDetailActivity : Activity() {
                         .into(imageView)
                 }
             }
-
-
         }
-
-
     }
 }
 
