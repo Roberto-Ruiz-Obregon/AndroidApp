@@ -25,8 +25,14 @@ class InscriptionViewModel : ViewModel() {
 
     var InscripitionLiveData: MutableLiveData<Result?> = MutableLiveData()
 
+    var InscripitionLiveDataError : MutableLiveData<String?> = MutableLiveData()
+
     fun getInscriptionObserver(): MutableLiveData<Result?> {
         return InscripitionLiveData
+    }
+
+    fun getInscriptionObserverError(): MutableLiveData<String?> {
+        return InscripitionLiveDataError
     }
 
     /**
@@ -50,12 +56,15 @@ class InscriptionViewModel : ViewModel() {
                         InscripitionLiveData.postValue(response.body())
                     }
                 } else {
-                    InscripitionLiveData.postValue(null)
-                }
+                        InscripitionLiveData.postValue(null)
+                    }
             }
 
-            override fun onFailure(call: Call<Result>, t: Throwable) {
-                InscripitionLiveData.postValue(null)
+            override fun onFailure(call: Call<Result?>, t: Throwable) {
+                t.message?.let { Log.d("Response" , it) }
+                InscripitionLiveDataError.postValue(t.message)
+
+
             }
 
 

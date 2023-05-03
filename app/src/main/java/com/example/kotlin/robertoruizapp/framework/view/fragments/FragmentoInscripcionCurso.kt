@@ -85,35 +85,13 @@ class FragmentoInscripcionCurso : Fragment() {
             )
             viewModel.enrollUser(token, user)
             val confirmation = viewModel.getInscriptionObserver()
+            val error = viewModel.getInscriptionObserverError()
 
             confirmation.observe(viewLifecycleOwner){
 
                 if (it?.status == "success" ) {
                     goToNewFragment()
                 }
-                else if (it?.message == "Ya te has inscrito a este curso.") {
-                    Log.d("llamada1", it?.message)
-                    makeToast("Ya estás inscrito a este curso")
-                } else if (it?.message == "Este curso ya ha iniciado, no puedes inscribirte.") {
-                    Log.d("llamada2", it?.message)
-                    makeToast("Este curso ya ha iniciado")
-                } else if (it?.message == "No haz iniciado sesion, por favor inicia sesion para obtener acceso.") {
-                    Log.d("llamada3", it?.message)
-                    makeToast("No haz iniciado sesión, por favor inicia sesión para poder inscribirte")
-                }else if (it?.message == " Ya no hay espacio disponible en este curso.") {
-                    Log.d("llamada4", it?.message)
-                    makeToast("Ya no hay espacio disponible en este curso.")
-                }
-                else if (it?.message == "Hemos tenido problemas enviando un correo de confirmación.") {
-                    Log.d("llamada5", it?.message)
-                    makeToast("Hemos tenido problemas enviando un correo de confirmación")
-                    goToNewFragment()
-                } else{
-                    Log.d("llamada6", it?.message.toString())
-                    Log.d("llamada7", it?.status.toString())
-                    makeToast("Error al inscribirse")
-                }
-
 
                 /*else {
                     if (it?.message == "Ya te haz inscrito a este curso."){
@@ -138,6 +116,14 @@ class FragmentoInscripcionCurso : Fragment() {
                     else{
                         makeToast("Error al inscribirse")
                     }*/
+
+            }
+
+            error.observe(viewLifecycleOwner){
+                Log.d("response", it.toString())
+                if (it == "Ya te has inscrito a este curso."){
+                    makeToast("Ya estas inscrito a este curso")
+                }
 
             }
         }
