@@ -66,7 +66,7 @@
                 android:layout_marginTop="20dp"
                 android:drawableStart="@drawable/calendario_60"
                 android:drawablePadding="12dp"
-                android:text="Fecha límitepara envío de datos"
+                android:text="Fecha límite para envío de datos"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -110,11 +110,13 @@
                 android:layout_below="@id/tvDetailProgramWhatsapp"
                 android:layout_alignEnd="@id/tvDetailProgramWhatsapp"
                 android:layout_marginTop="50dp"
-                android:layout_marginEnd="60dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="20dp"
                 android:drawableStart="@drawable/correo_24"
-                android:drawablePadding="12dp"
+                android:drawablePadding="6dp"
+                android:textSize="11sp"
                 android:gravity="center"
-                android:text="robregon@gmail.com" />
+                android:text="administracion@fundacionrro.com" />
 
             <TextView
                 android:id="@+id/tvDetailProgramTelefono"
@@ -122,12 +124,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvDetailProgramWhatsapp"
                 android:layout_alignStart="@id/tvDetailProgramWhatsapp"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="100dp"
                 android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"
                 android:drawableStart="@drawable/telefono_24"
                 android:drawablePadding="12dp"
                 android:gravity="center"
-                android:text="442 5014 968" />
+                android:text="442 214 4020" />
 
             <ImageView
                 android:id="@+id/ivDetailProgramWhatsApp"
