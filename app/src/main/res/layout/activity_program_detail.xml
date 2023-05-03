@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/logo_robertoruiz" />
 
     <TextView
         android:id="@+id/tvDetailProgramTitle"
