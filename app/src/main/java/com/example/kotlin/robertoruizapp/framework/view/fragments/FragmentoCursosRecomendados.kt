@@ -50,6 +50,7 @@ class FragmentoCursosRecomendados : Fragment(),
         viewModel.getMyInfo()
         viewModel.userLiveData.observe(viewLifecycleOwner) { user ->
             if (user != null) {
+                Log.d("postal code", user.toString() )
                 val postalCode: String = user.data.document.postalCode.toString()
                 getCourseList(postalCode)
             }
