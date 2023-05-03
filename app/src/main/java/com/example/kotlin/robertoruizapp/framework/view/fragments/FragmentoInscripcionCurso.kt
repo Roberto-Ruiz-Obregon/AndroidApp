@@ -87,7 +87,8 @@ class FragmentoInscripcionCurso : Fragment() {
             val confirmation = viewModel.getInscriptionObserver()
 
             confirmation.observe(viewLifecycleOwner){
-
+                goToNewFragment()
+                /*
                 if (it?.status == "success" ) {
                     goToNewFragment()
                 }
@@ -112,32 +113,7 @@ class FragmentoInscripcionCurso : Fragment() {
                     Log.d("llamada6", it?.message.toString())
                     Log.d("llamada7", it?.status.toString())
                     makeToast("Error al inscribirse")
-                }
-
-
-                /*else {
-                    if (it?.message == "Ya te haz inscrito a este curso."){
-                        makeToast("Ya estas inscrito a este curso")
-                    }
-                    if(it?.message == "Este curso ya ha iniciado, no puedes inscribirte."){
-                        makeToast("Este curso ya ha iniciado")
-                    }
-                    if(it?.message == "No haz iniciado sesion, por favor inicia sesion para obtener acceso."){
-                        makeToast("No haz iniciado sesión, por favor inicia sesión para poder inscribirte")
-                    }
-                    if ( it?.status == "Hemos tenido problemas enviando un correo de confirmación"){
-                        Log.d("TXT", "Hemos tenido problemas enviando un correo de confirmación")
-                        makeToast("Hemos tenido problemas enviando un correo de confirmación")
-                        goToNewFragment()
-                    }
-                    if ( it?.status == "500"){
-                        Log.d("500", "Hemos tenido problemas enviando un correo de confirmación")
-                        makeToast("Hemos tenido problemas enviando un correo de confirmación")
-                        goToNewFragment()
-                    }
-                    else{
-                        makeToast("Error al inscribirse")
-                    }*/
+                }*/
 
             }
         }
