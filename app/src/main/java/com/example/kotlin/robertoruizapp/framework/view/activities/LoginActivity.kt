@@ -119,6 +119,7 @@ class LoginActivity : AppCompatActivity() {
 
                     }
                 } else {
+                    progressBar?.visibility = View.INVISIBLE
                     Toast.makeText(
                         applicationContext,
                         "Usuario o contraseña no válidos",
