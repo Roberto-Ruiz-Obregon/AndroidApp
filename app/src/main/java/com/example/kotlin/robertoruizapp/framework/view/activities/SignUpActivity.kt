@@ -91,7 +91,16 @@ class SignUpActivity : AppCompatActivity() {
                 password.text.toString(),
                 cnfPassword.text.toString(),
             )
-            viewModel.signUpNewUser(user)
+            try {
+                viewModel.signUpNewUser(user)
+            } catch (e: Exception) {
+                Toast.makeText(
+                    applicationContext,
+                    "$e",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
 
         }
 

@@ -86,7 +86,7 @@ class ProgramDetailActivity : Activity() {
             val programInfoRequirement = ProgramInfoRequirement()
             val result: Program? = programInfoRequirement(programIDString)
 
-            if (result?.data?.document?.createdAt != null) {
+            if (result?.data?.document?.limitDate != null) {
                 CoroutineScope(Dispatchers.Main).launch {
 
                     val urlImage = result.data.document.imageUrl
@@ -97,7 +97,7 @@ class ProgramDetailActivity : Activity() {
                     val inputFormat =
                         SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
                     val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                    val date = inputFormat.parse(aux.createdAt)
+                    val date = inputFormat.parse(aux.limitDate)
                     val formattedDate = outputFormat.format(date!!)
 
 
@@ -107,8 +107,8 @@ class ProgramDetailActivity : Activity() {
 
 
                     // Agrega el icono de calendario a la vista de DetailProgram
-                    Glide.with(activity).load(R.drawable.calendario_24)
-                        .into(binding.ivDetailProgramCalendario)
+                    //Glide.with(activity).load(R.drawable.calendario_24)
+                       //nto(binding.ivDetailProgramCalendario)
                     // Agrega el icono de whatsapp a la vista de DetailProgram
                     Glide.with(activity).load(R.drawable.whatsapp)
                         .into(binding.ivDetailProgramWhatsApp) //
@@ -134,8 +134,8 @@ class ProgramDetailActivity : Activity() {
 
 
                     // Agrega el icono de calendario a la vista de DetailProgram
-                    Glide.with(activity).load(R.drawable.calendario_24)
-                        .into(binding.ivDetailProgramCalendario)
+                    //Glide.with(activity).load(R.drawable.calendario_24)
+                       // .into(binding.ivDetailProgramCalendario)
                     // Agrega el icono de whatsapp a la vista de DetailProgram
                     Glide.with(activity).load(R.drawable.whatsapp)
                         .into(binding.ivDetailProgramWhatsApp) //

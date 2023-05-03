@@ -40,7 +40,7 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
      */
     fun bind(item: Document, context: Context) {
 
-        if(item.createdAt.isEmpty()) {
+        if(item.limitDate.isNullOrEmpty()) {
             binding.tvCardCalendarioPrograma.text =  "15/04/2023"
             binding.tvCardTituloPrograma.text = item.programName // Se le cambia el valor a la card
             binding.tvCardDescripcionPrograma.text = item.description
@@ -67,7 +67,7 @@ class ProgramViewHolder(private val binding: ItemProgramaBinding) : RecyclerView
 
             val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
             val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            val date = inputFormat.parse(item.createdAt)
+            val date = inputFormat.parse(item.limitDate)
             val formattedDate = outputFormat.format(date!!)
 
             binding.tvCardTituloPrograma.text = item.programName // Se le cambia el valor a la card
