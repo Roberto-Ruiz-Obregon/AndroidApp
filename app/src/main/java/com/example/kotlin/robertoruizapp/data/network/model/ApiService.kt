@@ -102,5 +102,10 @@ interface ApiService {
         @Part imagen: MultipartBody.Part
 
     ): Call<Pago>
+
+    @GET("course")
+    suspend fun getCursosRecomendados(
+        @Query("postalCode[regex]") postalCode: String,
+    ): CursosObjeto
 }
 

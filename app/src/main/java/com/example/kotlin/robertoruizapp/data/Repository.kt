@@ -50,6 +50,16 @@ class Repository() {
         }
     }
 
+    suspend fun getCursosRecomendados(postalCode: String): CursosObjeto? {
+        api = NetworkModuleDI()
+        return try {
+            api.getCursosRecomendados(postalCode)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
     /**
      * Gets the [TopicsObject] from [NetworkModuleDI]
      *

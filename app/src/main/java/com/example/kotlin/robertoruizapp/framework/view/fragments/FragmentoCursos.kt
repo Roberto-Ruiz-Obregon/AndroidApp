@@ -10,8 +10,11 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -24,6 +27,7 @@ import com.example.kotlin.robertoruizapp.data.network.model.Topic.TopicsObject
 import com.example.kotlin.robertoruizapp.databinding.FragmentoCursosBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.cursosadapter
 import com.example.kotlin.robertoruizapp.framework.view.activities.CursoClickListener
+import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoCursosRecomendados
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
@@ -47,6 +51,7 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
     private var modalitySelected = ""
     private var courseName = ""
     private var postalCode = ""
+    private lateinit var currentFragment: Fragment
 
     private var progressBar: ProgressBar? = null
     private val finishedLoading = MutableLiveData<Boolean>()
@@ -74,6 +79,11 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
 
         val root: View = binding.root
         recyclerView = root.findViewById<RecyclerView>(R.id.recyclercursos)
+
+        val button = binding.recommendedCoursesBtn
+        button.setOnClickListener{
+            goToNewFragment()
+        }
 
         setInputs()
 
@@ -293,6 +303,26 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
      */
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+       // _binding = null
+    }
+
+    private fun exchangeCurrentFragment(newFragment: Fragment){
+        currentFragment = newFragment
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_fragment_content_main,currentFragment)
+            .commit()
+    }
+
+    private fun goToNewFragment() {
+        //R.id.frag_perfil es el fragmento del cual se parte
+        val contenedor = (context as FragmentActivity).findViewById<ViewGroup>(R.id.TituloCursos)
+        contenedor.removeAllViews()
+
+        val fragmentoNuevo = FragmentoCursosRecomendados()
+        val transaction = (context as FragmentActivity).supportFragmentManager.beginTransaction()
+
+        transaction.replace(R.id.TituloCursos, fragmentoNuevo)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }
