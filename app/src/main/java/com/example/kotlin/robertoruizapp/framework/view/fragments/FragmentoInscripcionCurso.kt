@@ -2,6 +2,7 @@ package com.example.kotlin.robertoruizapp.framework.view.fragments
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -86,10 +87,35 @@ class FragmentoInscripcionCurso : Fragment() {
             val confirmation = viewModel.getInscriptionObserver()
 
             confirmation.observe(viewLifecycleOwner){
-                if (it?.status == "success") {
-                    goToNewFragment()
 
-                } else {
+                if (it?.status == "success" ) {
+                    goToNewFragment()
+                }
+                else if (it?.message == "Ya te has inscrito a este curso.") {
+                    Log.d("llamada1", it?.message)
+                    makeToast("Ya estás inscrito a este curso")
+                } else if (it?.message == "Este curso ya ha iniciado, no puedes inscribirte.") {
+                    Log.d("llamada2", it?.message)
+                    makeToast("Este curso ya ha iniciado")
+                } else if (it?.message == "No haz iniciado sesion, por favor inicia sesion para obtener acceso.") {
+                    Log.d("llamada3", it?.message)
+                    makeToast("No haz iniciado sesión, por favor inicia sesión para poder inscribirte")
+                }else if (it?.message == " Ya no hay espacio disponible en este curso.") {
+                    Log.d("llamada4", it?.message)
+                    makeToast("Ya no hay espacio disponible en este curso.")
+                }
+                else if (it?.message == "Hemos tenido problemas enviando un correo de confirmación.") {
+                    Log.d("llamada5", it?.message)
+                    makeToast("Hemos tenido problemas enviando un correo de confirmación")
+                    goToNewFragment()
+                } else{
+                    Log.d("llamada6", it?.message.toString())
+                    Log.d("llamada7", it?.status.toString())
+                    makeToast("Error al inscribirse")
+                }
+
+
+                /*else {
                     if (it?.message == "Ya te haz inscrito a este curso."){
                         makeToast("Ya estas inscrito a este curso")
                     }
@@ -99,10 +125,20 @@ class FragmentoInscripcionCurso : Fragment() {
                     if(it?.message == "No haz iniciado sesion, por favor inicia sesion para obtener acceso."){
                         makeToast("No haz iniciado sesión, por favor inicia sesión para poder inscribirte")
                     }
+                    if ( it?.status == "Hemos tenido problemas enviando un correo de confirmación"){
+                        Log.d("TXT", "Hemos tenido problemas enviando un correo de confirmación")
+                        makeToast("Hemos tenido problemas enviando un correo de confirmación")
+                        goToNewFragment()
+                    }
+                    if ( it?.status == "500"){
+                        Log.d("500", "Hemos tenido problemas enviando un correo de confirmación")
+                        makeToast("Hemos tenido problemas enviando un correo de confirmación")
+                        goToNewFragment()
+                    }
                     else{
                         makeToast("Error al inscribirse")
-                    }
-                }
+                    }*/
+
             }
         }
 
