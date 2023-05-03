@@ -6,129 +6,144 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- Tarjeta por altura -->
-    <ImageView
-        android:id="@+id/ivDetailProgramImagen"
+    <ScrollView
+        style="@android:style/Widget.Holo.Light.ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:scaleType="fitXY"
-        android:src="@drawable/logo_robertoruiz" />
+        android:layout_height="match_parent"
+        android:fadeScrollbars="true"
+        android:fillViewport="true"
+        android:scrollbarFadeDuration="250"
+        android:scrollbarSize="8dp"
+        android:scrollbarStyle="insideOverlay">
 
-    <TextView
-        android:id="@+id/tvDetailProgramTitle"
-        style="@style/detail_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ivDetailProgramImagen"
-        android:layout_marginTop="30dp"
-        android:text="Detalle Programa"
-        android:textAlignment="center"
-        android:textStyle="bold" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!-- Tarjeta por altura -->
+            <ImageView
+                android:id="@+id/ivDetailProgramImagen"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/logo_robertoruiz" />
 
-    <TextView
-        android:id="@+id/tvDetailProgramDescripcion"
-        android:layout_width="match_parent"
-        android:layout_height="158dp"
-        android:layout_below="@id/tvDetailProgramTitle"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="16dp"
-        android:paddingLeft="20sp"
-        android:paddingTop="20dp"
-        android:paddingRight="20sp"
-        android:text="@string/Lorem"
-        android:textAlignment="center"
-        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tvDetailProgramTitle"
+                style="@style/detail_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ivDetailProgramImagen"
+                android:layout_marginTop="20dp"
+                android:text="Detalle Programa"
+                android:textAlignment="center"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvDetailProgramFecha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="449dp"
-        android:layout_marginEnd="93dp"
-        android:text="Fecha límitepara envío de datos"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvDetailProgramDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDetailProgramTitle"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:minHeight="160dp"
+                android:paddingLeft="20sp"
+                android:paddingTop="10dp"
+                android:paddingRight="20sp"
+                android:text="@string/Lorem"
+                android:textAlignment="center"
+                android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/tvDetailProgramCambioFecha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvDetailProgramFecha"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="97dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="237dp"
-        android:text="Fecha" />
+            <TextView
+                android:id="@+id/tvDetailProgramFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDetailProgramDescripcion"
 
-    <TextView
-        android:id="@+id/tvDetailProgramWhatsapp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="670dp"
-        android:text="Vía WhatsApp"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/calendario_60"
+                android:drawablePadding="12dp"
+                android:text="Fecha límitepara envío de datos"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvDetailProgramComunicate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvDetailProgramFecha"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="53dp"
-        android:layout_marginBottom="190dp"
-        android:text="Comunicate con nosotros para más información"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvDetailProgramCambioFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvDetailProgramFecha"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-30dp"
+                android:text="Fecha" />
 
-    <TextView
-        android:id="@+id/tvDetailProgramCorreo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginBottom="30dp"
-        android:drawableStart="@drawable/correo_24"
-        android:drawablePadding="12dp"
-        android:gravity="center"
-        android:text="robregon@gmail.com" />
+            <TextView
+                android:id="@+id/tvDetailProgramWhatsapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_below="@id/ivDetailProgramWhatsApp"
+                android:paddingEnd="8dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Vía WhatsApp"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvDetailProgramTelefono"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="220dp"
-        android:layout_marginBottom="28dp"
-        android:drawableStart="@drawable/telefono_24"
-        android:drawablePadding="12dp"
-        android:gravity="center"
-        android:text="442 5014 968" />
+            <TextView
+                android:id="@+id/tvDetailProgramComunicate"
+                android:layout_width="200dp"
+                android:layout_height="20dp"
+                android:layout_below="@id/ivDetailProgramWhatsApp"
+                android:layout_alignBottom="@id/ivDetailProgramWhatsApp"
+                android:layout_centerHorizontal="true"
+                android:text="Comunicate con nosotros para más información"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/ivDetailProgramWhatsApp"
-        android:layout_width="60dp"
-        android:layout_height="52dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="600dp"
-        app:srcCompat="@drawable/whatsapp" />
+            <TextView
+                android:id="@+id/tvDetailProgramCorreo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDetailProgramWhatsapp"
+                android:layout_alignEnd="@id/tvDetailProgramWhatsapp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="60dp"
+                android:drawableStart="@drawable/correo_24"
+                android:drawablePadding="12dp"
+                android:gravity="center"
+                android:text="robregon@gmail.com" />
 
-    <ImageView
+            <TextView
+                android:id="@+id/tvDetailProgramTelefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvDetailProgramWhatsapp"
+                android:layout_alignStart="@id/tvDetailProgramWhatsapp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="50dp"
+                android:drawableStart="@drawable/telefono_24"
+                android:drawablePadding="12dp"
+                android:gravity="center"
+                android:text="442 5014 968" />
+
+            <ImageView
+                android:id="@+id/ivDetailProgramWhatsApp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/tvDetailProgramFecha"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:contentDescription="@string/whatsapp_icon"
+                app:srcCompat="@drawable/whatsapp" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <!--<ImageView
         android:id="@+id/ivDetailProgramCalendario"
         android:layout_width="60dp"
         android:layout_height="52dp"
@@ -136,7 +151,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="40dp"
         android:layout_marginTop="445dp"
-        app:srcCompat="@drawable/calendario_24" />
+        app:srcCompat="@drawable/calendario_24"
+        tools:visibility="visible" />-->
 
 
 </RelativeLayout>

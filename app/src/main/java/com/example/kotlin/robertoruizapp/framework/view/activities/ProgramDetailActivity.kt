@@ -107,8 +107,8 @@ class ProgramDetailActivity : Activity() {
 
 
                     // Agrega el icono de calendario a la vista de DetailProgram
-                    Glide.with(activity).load(R.drawable.calendario_24)
-                        .into(binding.ivDetailProgramCalendario)
+                    //Glide.with(activity).load(R.drawable.calendario_24)
+                       //nto(binding.ivDetailProgramCalendario)
                     // Agrega el icono de whatsapp a la vista de DetailProgram
                     Glide.with(activity).load(R.drawable.whatsapp)
                         .into(binding.ivDetailProgramWhatsApp) //
@@ -134,8 +134,8 @@ class ProgramDetailActivity : Activity() {
 
 
                     // Agrega el icono de calendario a la vista de DetailProgram
-                    Glide.with(activity).load(R.drawable.calendario_24)
-                        .into(binding.ivDetailProgramCalendario)
+                    //Glide.with(activity).load(R.drawable.calendario_24)
+                       // .into(binding.ivDetailProgramCalendario)
                     // Agrega el icono de whatsapp a la vista de DetailProgram
                     Glide.with(activity).load(R.drawable.whatsapp)
                         .into(binding.ivDetailProgramWhatsApp) //
