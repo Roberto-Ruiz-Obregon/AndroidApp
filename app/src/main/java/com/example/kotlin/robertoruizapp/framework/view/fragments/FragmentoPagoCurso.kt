@@ -305,8 +305,6 @@ class FragmentoPagoCurso : Fragment() {
         }
     }
 
-
-
     override fun onDestroy() {
         super.onDestroy()
         Glide.with(requireContext()).clear(image_view)

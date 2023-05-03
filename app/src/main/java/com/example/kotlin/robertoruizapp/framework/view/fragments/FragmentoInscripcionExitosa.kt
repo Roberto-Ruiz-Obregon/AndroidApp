@@ -83,7 +83,7 @@ class FragmentoInscripcionExitosa : Fragment(){
                     _binding.Horario.text = curso.schedule
                     if (curso.modality == "Remoto"){
                         _binding.textView34.text = curso.accessLink
-                        _binding.AvisoZoom.text = "*Ingresa a la sesión de zoom con tu nombre para que se te permita el acceso"
+                        _binding.AvisoZoom.text = "Ingresa a la sesión de zoom con tu nombre para que se te permita el acceso"
                     }
                     else{
                         _binding.textView34.text = curso.address
