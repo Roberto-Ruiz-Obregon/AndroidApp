@@ -28,6 +28,7 @@ import java.io.File
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private var progressBar: ProgressBar? = null
+
     companion object UserToken {
         var token: String = ""
     }
@@ -105,6 +106,12 @@ class LoginActivity : AppCompatActivity() {
         val etPassword = findViewById<EditText>(R.id.password_login).text.toString()
         val request = LoginRequest(etEmail, etPassword)
         val call = retroService.postLogin(request)
+        val loadingPanel = findViewById<RelativeLayout>(R.id.loadingPanel)
+        val btnGoMenu = findViewById<Button>(R.id.button_login)
+        val btnSign = findViewById<Button>(R.id.signup)
+        val emailLogin = findViewById<TextView>(R.id.email_login)
+        val passwordLogin = findViewById<TextView>(R.id.password_login)
+
 
         call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
@@ -120,6 +127,12 @@ class LoginActivity : AppCompatActivity() {
                     }
                 } else {
                     progressBar?.visibility = View.INVISIBLE
+                    loadingPanel.visibility = View.INVISIBLE
+                    passwordLogin.isEnabled = true
+                    emailLogin.isEnabled = true
+                    btnGoMenu.isEnabled = true
+                    btnSign.isEnabled = true
+
                     Toast.makeText(
                         applicationContext,
                         "Usuario o contraseña no válidos",
@@ -136,6 +149,11 @@ class LoginActivity : AppCompatActivity() {
              */
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 progressBar?.visibility = View.INVISIBLE
+                loadingPanel.visibility = View.INVISIBLE
+                passwordLogin.isEnabled = true
+                emailLogin.isEnabled = true
+                btnGoMenu.isEnabled = true
+                btnSign.isEnabled = true
                 Toast.makeText(
                     applicationContext,
                     "No se pudo conectar a servidor",
