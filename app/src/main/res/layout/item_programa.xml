@@ -89,14 +89,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="77dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvCardCalendarioPrograma"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="5dp"
-            android:backgroundTint="@color/primary"
-
-            android:layout_marginBottom="7dp"
-            android:hapticFeedbackEnabled="true"/>
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btnCardDetallePrograma"
