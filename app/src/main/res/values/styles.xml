@@ -11,7 +11,7 @@
     </style>
 
     <style name="card_content">
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:gravity">center</item>
     </style>
     <style name="detail_title">
