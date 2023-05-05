@@ -10,8 +10,8 @@
 
     <TextView
         android:id="@+id/correo"
-        android:layout_width="65dp"
-        android:layout_height="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:fontFamily="@font/roboto"
         android:text="Correo:"
@@ -87,36 +87,12 @@
         app:layout_constraintTop_toBottomOf="@+id/imagen" />
 
     <TextView
-        android:id="@+id/name5"
-        android:layout_width="128dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="300dp"
-        android:fontFamily="@font/roboto"
-        android:text="Nivel Educativo:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.19"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
-
-    <TextView
-        android:id="@+id/pi_academico"
-        android:layout_width="89dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="300dp"
-        android:fontFamily="@font/roboto"
-        android:text="definir"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.071"
-        app:layout_constraintStart_toEndOf="@+id/name5"
-        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
-
-    <TextView
         android:id="@+id/pi_sexo"
-        android:layout_width="177dp"
-        android:layout_height="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
         android:fontFamily="@font/roboto"
-        android:text="Masculino"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintStart_toEndOf="@+id/name3"
@@ -124,11 +100,11 @@
 
     <TextView
         android:id="@+id/pi_nombre"
-        android:layout_width="202dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:fontFamily="@font/roboto"
-        android:text="Ramiro Peréz Ruiz"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toEndOf="@+id/name1"
@@ -137,8 +113,8 @@
 
     <TextView
         android:id="@+id/name2"
-        android:layout_width="36dp"
-        android:layout_height="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:fontFamily="@font/roboto"
         android:text="Edad:"
@@ -147,70 +123,72 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
 
+
     <TextView
-        android:id="@+id/name4"
-        android:layout_width="72dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="236dp"
+        android:id="@+id/ocupacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="232dp"
         android:fontFamily="@font/roboto"
-        android:text="Municipio:"
+        android:text="Ocupacion:"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.165"
+        app:layout_constraintHorizontal_bias="0.168"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
 
     <TextView
-        android:id="@+id/ocupacion"
-        android:layout_width="79dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="268dp"
+        android:id="@+id/pi_academico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="264dp"
         android:fontFamily="@font/roboto"
-        android:text="Ocupacion:"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toEndOf="@+id/name5"
+        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
+
+    <TextView
+        android:id="@+id/name5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="264dp"
+        android:fontFamily="@font/roboto"
+        android:text="Nivel Educativo:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
+
+    <TextView
+        android:id="@+id/pi_ocupacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="232dp"
+        android:fontFamily="@font/roboto"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.205"
+        app:layout_constraintStart_toEndOf="@+id/ocupacion"
         app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
 
     <TextView
         android:id="@+id/pi_correo"
-        android:layout_width="262dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:fontFamily="@font/roboto"
-        android:text="example@hotmail.com"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toEndOf="@+id/correo"
         app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
 
-    <TextView
-        android:id="@+id/pi_municipio"
-        android:layout_width="245dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="236dp"
-        android:fontFamily="@font/roboto"
-        android:text="Amealco"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.342"
-        app:layout_constraintStart_toEndOf="@+id/name4"
-        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
-
-    <TextView
-        android:id="@+id/pi_ocupacion"
-        android:layout_width="208dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="268dp"
-        android:fontFamily="@font/roboto"
-        android:text="Estudiante"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
-        app:layout_constraintStart_toEndOf="@+id/ocupacion"
-        app:layout_constraintTop_toBottomOf="@+id/texto_curso" />
 
     <TextView
         android:id="@+id/name1"
-        android:layout_width="56dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:fontFamily="@font/roboto"
         android:text="Nombre:"
@@ -221,8 +199,8 @@
 
     <TextView
         android:id="@+id/name3"
-        android:layout_width="38dp"
-        android:layout_height="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
         android:fontFamily="@font/roboto"
         android:text="Sexo:"
@@ -233,11 +211,11 @@
 
     <TextView
         android:id="@+id/pi_edad"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:fontFamily="@font/roboto"
-        android:text="16"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toEndOf="@+id/name2"
