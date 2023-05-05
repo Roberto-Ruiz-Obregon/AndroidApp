@@ -299,7 +299,7 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
     }
 
     /**
-     * Sets the binding to Null after the fragment is destoroyed
+     * Sets the binding to Null after the fragment is destroyed
      */
     override fun onDestroyView() {
         super.onDestroyView()
