@@ -105,12 +105,23 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         btnRegister.setOnClickListener {
-            if (validateInput(email.text.toString(), password.text.toString(), cnfPassword.text.toString())) {
+            if (validateInput(
+                    name.text.toString(),
+                    edad.text.toString(),
+                    gender.selectedItem.toString(),
+                    job.text.toString(),
+                    studies.selectedItem.toString(),
+                    postalCode.text.toString(),
+                    email.text.toString(),
+                    password.text.toString(),
+                    cnfPassword.text.toString()
+                )) {
                 signUpUser()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
         }
+
 
 
         btnGoLogin.setOnClickListener {
@@ -120,7 +131,47 @@ class SignUpActivity : AppCompatActivity() {
         }
 
     }
-    private fun validateInput(email: String, password: String, cnfPassword: String): Boolean {
+    private fun validateInput(
+        name: String,
+        age: String,
+        selectedGender: String,
+        job: String,
+        selectedStudies: String,
+        postalCode: String,
+        email: String,
+        password: String,
+        cnfPassword: String
+    ):Boolean {
+        if (name.isEmpty()) {
+            Toast.makeText(this, "El nombre no puede estar vacío.", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (age.isEmpty()) {
+            Toast.makeText(this, "La edad no puede estar vacía.", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (selectedGender == "Seleccione su género") {
+            Toast.makeText(this, "Por favor, seleccione su género.", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (job.isEmpty()) {
+            Toast.makeText(this, "La Ocupación no puede estar vacía.", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (selectedStudies == "Seleccione su nivel de estudios") {
+            Toast.makeText(this, "Por favor, seleccione su nivel de estudios.", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (postalCode.isEmpty()) {
+            Toast.makeText(this, "El código postal no puede estar vacío.", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, "Ingrese un correo electrónico válido.", Toast.LENGTH_SHORT).show()
             return false
