@@ -153,7 +153,7 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         if (selectedGender == "Seleccione su género") {
-            Toast.makeText(this, "Por favor, seleccione su género.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Por favor, seleccione su Preferencia.", Toast.LENGTH_SHORT).show()
             return false
         }
 
