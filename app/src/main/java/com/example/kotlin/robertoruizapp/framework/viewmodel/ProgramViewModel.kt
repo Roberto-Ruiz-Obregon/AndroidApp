@@ -9,6 +9,7 @@ import com.example.kotlin.robertoruizapp.domain.ProgramListRequirement
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * ProgamViewModel that manages the activity actions
@@ -29,11 +30,11 @@ class ProgramViewModel : ViewModel() {
      */
     fun getProgramList(programName: String, categorySelected: String) {
         finishedLoading.postValue(false)
-        viewModelScope.launch(Dispatchers.IO) {
+        CoroutineScope(Dispatchers.IO).launch {
             val result: Program? = programListRequirement(programName, categorySelected)
             val programs: List<Document>? = result?.data?.documents
 
-            CoroutineScope(Dispatchers.Main).launch {
+            withContext(Dispatchers.Main.immediate) {
                 programObjectLiveData.postValue(programs!!) // !! "Sé lo que estoy haciendo"
                 finishedLoading.postValue(true)
             }
