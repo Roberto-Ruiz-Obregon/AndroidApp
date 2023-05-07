@@ -60,9 +60,9 @@ class FragmentoHome : Fragment() {
 
         val imageView = binding.fondoImagen
 
-        val configuration = binding.imageView5
+        val configuration = binding.config
         configuration.setOnClickListener {
-            val popupMenu = PopupMenu(context, imageView)
+            val popupMenu = PopupMenu(context, configuration)
             popupMenu.menuInflater.inflate(R.menu.configuration_button, popupMenu.menu)
             popupMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
@@ -108,7 +108,7 @@ class FragmentoHome : Fragment() {
 
         binding.whaLogo.setOnClickListener {
             val openURL = Intent(Intent.ACTION_VIEW)
-            openURL.data = Uri.parse("https://wa.me/524428205425")
+            openURL.data = Uri.parse("https://wa.me/524422142380")
             startActivity(openURL)
         }
 
