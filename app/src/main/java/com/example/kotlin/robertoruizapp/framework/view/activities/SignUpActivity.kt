@@ -105,11 +105,13 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         btnRegister.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            signUpUser()
-            startActivity(intent)
-
+            if (validateInput(email.text.toString(), password.text.toString(), cnfPassword.text.toString())) {
+                signUpUser()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
         }
+
 
         btnGoLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
@@ -118,4 +120,23 @@ class SignUpActivity : AppCompatActivity() {
         }
 
     }
+    private fun validateInput(email: String, password: String, cnfPassword: String): Boolean {
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "Ingrese un correo electrónico válido.", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (password.isEmpty() || cnfPassword.isEmpty()) {
+            Toast.makeText(this, "La contraseña no puede estar vacía.", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (password != cnfPassword) {
+            Toast.makeText(this, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return true
+    }
+
 }
