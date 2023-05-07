@@ -48,9 +48,9 @@ class LoginActivity : AppCompatActivity() {
         initializeBinding()
 
 
-        val preferences = PreferenceHelper.defaultPrefs(this)
+     /*   val preferences = PreferenceHelper.defaultPrefs(this)
         if (preferences["token", ""].contains("."))
-            goToHome()
+            goToHome()*/
 
         val loadingPanel = findViewById<RelativeLayout>(R.id.loadingPanel)
         progressBar = findViewById(R.id.progressBarLogin)
