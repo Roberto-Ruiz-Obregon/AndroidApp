@@ -6,13 +6,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.mypokedexapp.viewmodel.MainViewModel
 import com.example.kotlin.robertoruizapp.R
+import com.example.kotlin.robertoruizapp.data.network.model.ApiService
+import com.example.kotlin.robertoruizapp.data.network.model.NetworkModuleDI
 import com.example.kotlin.robertoruizapp.databinding.FragmentoHomeBinding
+import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
+import com.example.kotlin.robertoruizapp.utils.PreferenceHelper
+import com.example.kotlin.robertoruizapp.utils.PreferenceHelper.get
+import com.example.kotlin.robertoruizapp.utils.PreferenceHelper.set
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoPerfil as perfil
 /**
  * FragmentHome class that manages the fragment actions
  */
@@ -21,6 +34,9 @@ class FragmentoHome : Fragment() {
     private var _binding: FragmentoHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
+    private val preferences by lazy {
+        PreferenceHelper.defaultPrefs(this@FragmentoHome.requireActivity())
+    }
 
     /**
      * When the fragment is created sets up binding, viewmodel and progress bar
@@ -41,7 +57,25 @@ class FragmentoHome : Fragment() {
         val root: View = binding.root
 
         initializeListeners()
+
         val imageView = binding.fondoImagen
+
+        val configuration = binding.imageView5
+        configuration.setOnClickListener {
+            val popupMenu = PopupMenu(context, imageView)
+            popupMenu.menuInflater.inflate(R.menu.configuration_button, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.menu_item1 -> {
+                        performLogout()
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popupMenu.show()
+        }
+
 
         imageView.setOnClickListener {
             goToNewFragment()
@@ -96,6 +130,41 @@ class FragmentoHome : Fragment() {
         }
     }
 
+    private fun performLogout(){
+        val retroService = NetworkModuleDI.getRetroInstance().create(ApiService::class.java)
+        val token = preferences["token", ""]
+        val call = retroService.postLogout("Bearer $token")
+
+        call.enqueue(object: Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                clearSessionPreference()
+                Toast.makeText(
+                    this@FragmentoHome.requireActivity(),
+                    "Logout exitoso",
+                    Toast.LENGTH_SHORT
+                ).show()
+                passViewGoToLogin()
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Toast.makeText(
+                    this@FragmentoHome.requireActivity(),
+                    "Se produjo un error en el servidor (logout)",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+        })
+    }
+    private fun clearSessionPreference(){
+        preferences["token"] = ""
+    }
+    private fun passViewGoToLogin() {
+        val intent = Intent()
+        intent.setClass(requireActivity(), LoginActivity::class.java)
+        requireActivity().startActivity(intent)
+    }
+
     private fun goToNewFragment() {
 
         val contenedor = (context as FragmentActivity).findViewById<ViewGroup>(R.id.frag_home)
@@ -117,6 +186,8 @@ class FragmentoHome : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 
 }
 

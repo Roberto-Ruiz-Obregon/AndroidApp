@@ -12,7 +12,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="120dp"
-            android:fontFamily="@font/roboto_slab"
             android:text="¡Bienvenido!"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +34,6 @@
             android:id="@+id/Mis_cursos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_slab"
             android:text="@string/misCursos"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
@@ -57,7 +55,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:fontFamily="@font/roboto_slab"
             android:text="@string/redesSociales"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.529"
@@ -68,7 +65,6 @@
             android:id="@+id/label_contacto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_slab"
             android:text="@string/contacto"
             android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -209,6 +205,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.959"
             app:srcCompat="@drawable/telefono" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="38dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.957"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.025"
+            app:srcCompat="@drawable/configuration"
+            tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
