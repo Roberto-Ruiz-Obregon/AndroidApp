@@ -31,9 +31,7 @@ import com.example.kotlin.robertoruizapp.framework.view.fragments.FragmentoCurso
 import com.example.kotlin.robertoruizapp.framework.view.activities.LoginActivity
 import com.example.kotlin.robertoruizapp.framework.viewmodel.CursosFragmentoViewModel
 import com.example.kotlin.robertoruizapp.utils.Constants.CURSO_ID_EXTRA
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import com.example.kotlin.robertoruizapp.data.network.model.Cursos.Document as CourseDocument
 import com.example.kotlin.robertoruizapp.data.network.model.Topic.Document as TopicsDocument
 
@@ -52,7 +50,7 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
     private var courseName = ""
     private var postalCode = ""
     private lateinit var currentFragment: Fragment
-
+    private val coroutineScope = MainScope()
     private var progressBar: ProgressBar? = null
     private val finishedLoading = MutableLiveData<Boolean>()
 
@@ -97,59 +95,60 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
      */
     private fun setInputs() {
         // Spinner topics
-        CoroutineScope(Dispatchers.IO).launch {
+        coroutineScope.launch(Dispatchers.IO) {
             val repository = Repository()
             val token: String = "Bearer " + LoginActivity.token
             val result: TopicsObject? = repository.getTopics(token)
 
             CoroutineScope(Dispatchers.Main).launch {
-                topicsObject = result?.data?.documents
+                if (isAdded) {                topicsObject = result?.data?.documents
 
-                result?.data?.documents?.forEach { it: TopicsDocument ->
-                    topics.add(it.topic)
-                }
+                    result?.data?.documents?.forEach { it: TopicsDocument ->
+                        topics.add(it.topic)
+                    }
 
-                val spinTopics = binding.spinnerTopics
+                    val spinTopics = binding.spinnerTopics
 
-                spinTopics.onItemSelectedListener = object : OnItemSelectedListener {
-                    override fun onItemSelected(
-                        parent: AdapterView<*>,
-                        view: View?,
-                        position: Int,
-                        id: Long
-                    ) {
-                        val selected = binding.spinnerTopics.selectedItem.toString()
+                    spinTopics.onItemSelectedListener = object : OnItemSelectedListener {
+                        override fun onItemSelected(
+                            parent: AdapterView<*>,
+                            view: View?,
+                            position: Int,
+                            id: Long
+                        ) {
+                            val selected = binding.spinnerTopics.selectedItem.toString()
 
-                        if (selected == "") {
-                            topicSelected = null
+                            if (selected == "") {
+                                topicSelected = null
 
+                                getCourseList()
+
+                                return
+                            }
+
+                            topicsObject?.forEach {
+                                if (it.topic == selected) topicSelected = it._id
+                            }
                             getCourseList()
-
-                            return
                         }
 
-                        topicsObject?.forEach {
-                            if (it.topic == selected) topicSelected = it._id
+                        override fun onNothingSelected(parent: AdapterView<*>) {
+                            getCourseList()
                         }
-                        getCourseList()
                     }
 
-                    override fun onNothingSelected(parent: AdapterView<*>) {
-                        getCourseList()
-                    }
-                }
+                    val adTopics: ArrayAdapter<*> = ArrayAdapter<Any?>(
+                        requireContext().applicationContext,
+                        R.layout.item_spinner,
+                        topics as List<Any?>
+                    )
 
-                val adTopics: ArrayAdapter<*> = ArrayAdapter<Any?>(
-                    requireContext().applicationContext,
-                    R.layout.item_spinner,
-                    topics as List<Any?>
-                )
+                    adTopics.setDropDownViewResource(
+                        android.R.layout.simple_spinner_dropdown_item
+                    )
 
-                adTopics.setDropDownViewResource(
-                    android.R.layout.simple_spinner_dropdown_item
-                )
+                    spinTopics.adapter = adTopics}
 
-                spinTopics.adapter = adTopics
             }
         }
 
@@ -257,7 +256,7 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
      */
     private fun getCourseList() {
 
-        CoroutineScope(Dispatchers.IO).launch {
+        coroutineScope.launch(Dispatchers.IO) {
             val repository = Repository()
             val token: String = "Bearer " + LoginActivity.token
             val result: CursosObjeto? = repository.getCursos(
@@ -270,17 +269,20 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
             )
 
             CoroutineScope(Dispatchers.Main).launch {
-                val layoutManager = GridLayoutManager(requireContext(), 2)
-                val fragmentoInfoCursos = this@FragmentoCursos
+                if (isAdded) {
+                    val layoutManager = GridLayoutManager(requireContext(), 2)
+                    val fragmentoInfoCursos = this@FragmentoCursos
 
-                recyclerView.layoutManager = layoutManager
-                val adapter = cursosadapter(fragmentoInfoCursos)
+                    recyclerView.layoutManager = layoutManager
+                    val adapter = cursosadapter(fragmentoInfoCursos)
 
-                adapter.cursosResults(result?.results)
-                result?.data?.documents?.let { adapter.cursosAdapter(it) } //!!
-                recyclerView.adapter = adapter
-                recyclerView.setHasFixedSize(true)
-                finishedLoading.postValue(true)
+                    adapter.cursosResults(result?.results)
+                    result?.data?.documents?.let { adapter.cursosAdapter(it) } //!!
+                    recyclerView.adapter = adapter
+                    recyclerView.setHasFixedSize(true)
+                    finishedLoading.postValue(true)
+                }
+
             }
         }
     }
@@ -303,7 +305,8 @@ class FragmentoCursos : Fragment(), OnItemSelectedListener, CursoClickListener {
      */
     override fun onDestroyView() {
         super.onDestroyView()
-       // _binding = null
+        _binding = null
+        coroutineScope.cancel()
     }
 
     private fun exchangeCurrentFragment(newFragment: Fragment){

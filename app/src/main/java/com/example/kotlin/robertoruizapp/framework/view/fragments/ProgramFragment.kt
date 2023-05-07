@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlin.robertoruizapp.R
@@ -19,6 +20,9 @@ import com.example.kotlin.robertoruizapp.data.network.model.program.Document
 import com.example.kotlin.robertoruizapp.databinding.FragmentProgramasBinding
 import com.example.kotlin.robertoruizapp.framework.adapters.ProgramAdapter
 import com.example.kotlin.robertoruizapp.framework.viewmodel.ProgramViewModel
+import kotlinx.coroutines.MainScope
+
+
 
 /**
  * ProgramFragment class that manages the fragment actions
@@ -145,15 +149,17 @@ class ProgramFragment : Fragment(), AdapterView.OnItemSelectedListener {
      *
      */
     private fun initializeObservers() {
-        viewModel.programObjectLiveData.observe(viewLifecycleOwner) { programs ->
+        viewModel.programObjectLiveData.observe(viewLifecycleOwner, { programs ->
             setUpRecyclerView(programs)
-        }
-        viewModel.finishedLoading.observe(viewLifecycleOwner) { finishedLoading ->
+        })
+        viewModel.finishedLoading.observe(viewLifecycleOwner, { finishedLoading ->
             if (finishedLoading) {
                 progressBarBye()
             }
-        }
+        })
     }
+
+
 
     /**
      * Changes the display of the ProgessBar to GONE state
